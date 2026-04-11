@@ -79,9 +79,9 @@ const translations = {
       }
     },
     sections: [
-      { id: 'info_history', title: 'Dati e Storia', description: 'Informazioni base e percorso scolastico', color: 'bg-blue-600', lightColor: 'bg-blue-50', borderColor: 'border-blue-200', textColor: 'text-blue-700', image: 'https://cdn-icons-png.flaticon.com/512/2232/2232688.png' },
-      { id: 'family', title: 'Genogramma', description: 'Mappa delle parentele e famiglia', color: 'bg-rose-600', lightColor: 'bg-rose-50', borderColor: 'border-rose-200', textColor: 'text-rose-700', image: 'https://cdn-icons-png.flaticon.com/512/437/437501.png' },
-      { id: 'needs_strengths', title: 'Bisogni e Risorse', description: 'Cosa serve e cosa sa fare', color: 'bg-emerald-600', lightColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', image: 'https://cdn-icons-png.flaticon.com/512/2589/2589175.png' },
+      { id: 'info_history', title: 'Dati e Storia', description: 'Informazioni base e percorso scolastico', color: 'bg-blue-600', lightColor: 'bg-blue-50', borderColor: 'border-blue-200', textColor: 'text-blue-700', image: '/storia.png' },
+      { id: 'family', title: 'Genogramma', description: 'Mappa delle parentele e famiglia', color: 'bg-rose-600', lightColor: 'bg-rose-50', borderColor: 'border-rose-200', textColor: 'text-rose-700', image: '/famiglia.png' },
+      { id: 'needs_strengths', title: 'Bisogni e Risorse', description: 'Cosa serve e cosa sa fare', color: 'bg-emerald-600', lightColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', image: '/bisogni.png' },
     ]
   },
   ar: {
@@ -137,9 +137,9 @@ const translations = {
       }
     },
     sections: [
-      { id: 'info_history', title: 'البيانات والتاريخ', description: 'المعلومات الأساسية والمسار المدرسي', color: 'bg-blue-600', lightColor: 'bg-blue-50', borderColor: 'border-blue-200', textColor: 'text-blue-700', image: 'https://cdn-icons-png.flaticon.com/512/2232/2232688.png' },
-      { id: 'family', title: 'شجرة العائلة', description: 'خريطة القرابة والعائلة', color: 'bg-rose-600', lightColor: 'bg-rose-50', borderColor: 'border-rose-200', textColor: 'text-rose-700', image: 'https://cdn-icons-png.flaticon.com/512/437/437501.png' },
-      { id: 'needs_strengths', title: 'الاحتياجات والموارد', description: 'ما هو مطلوب وما يمكن القيام به', color: 'bg-emerald-600', lightColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', image: 'https://cdn-icons-png.flaticon.com/512/2589/2589175.png' },
+      { id: 'info_history', title: 'البيانات والتاريخ', description: 'المعلومات الأساسية والمسار المدرسي', color: 'bg-blue-600', lightColor: 'bg-blue-50', borderColor: 'border-blue-200', textColor: 'text-blue-700', image: '/storia.png' },
+      { id: 'family', title: 'شجرة العائلة', description: 'خريطة القرابة والعائلة', color: 'bg-rose-600', lightColor: 'bg-rose-50', borderColor: 'border-rose-200', textColor: 'text-rose-700', image: '/famiglia.png' },
+      { id: 'needs_strengths', title: 'الاحتياجات والموارد', description: 'ما هو مطلوب وما يمكن القيام به', color: 'bg-emerald-600', lightColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', image: '/bisogni.png' },
     ]
   },
   zh: {
@@ -195,9 +195,9 @@ const translations = {
       }
     },
     sections: [
-      { id: 'info_history', title: '数据与历史', description: '基本信息与就学路径', color: 'bg-blue-600', lightColor: 'bg-blue-50', borderColor: 'border-blue-200', textColor: 'text-blue-700', image: 'https://cdn-icons-png.flaticon.com/512/2232/2232688.png' },
-      { id: 'family', title: '家谱图', description: '亲属关系与家庭地图', color: 'bg-rose-600', lightColor: 'bg-rose-50', borderColor: 'border-rose-200', textColor: 'text-rose-700', image: 'https://cdn-icons-png.flaticon.com/512/437/437501.png' },
-      { id: 'needs_strengths', title: '需求与资源', description: '所需内容与能力', color: 'bg-emerald-600', lightColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', image: 'https://cdn-icons-png.flaticon.com/512/2589/2589175.png' },
+      { id: 'info_history', title: '数据与历史', description: '基本信息与就学路径', color: 'bg-blue-600', lightColor: 'bg-blue-50', borderColor: 'border-blue-200', textColor: 'text-blue-700', image: '/storia.png' },
+      { id: 'family', title: '家谱图', description: '亲属关系与家庭地图', color: 'bg-rose-600', lightColor: 'bg-rose-50', borderColor: 'border-rose-200', textColor: 'text-rose-700', image: '/famiglia.png' },
+      { id: 'needs_strengths', title: '需求与资源', description: '所需内容与能力', color: 'bg-emerald-600', lightColor: 'bg-emerald-50', borderColor: 'border-emerald-200', textColor: 'text-emerald-700', image: '/bisogni.png' },
     ]
   }
 };
