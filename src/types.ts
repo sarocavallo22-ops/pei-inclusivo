@@ -19,6 +19,28 @@ export interface Relationship {
   type: 'parent-child' | 'spouse' | 'sibling';
 }
 
+export interface SchoolHistory {
+  infanzia: string;
+  primaria: string;
+  media: string;
+  superiore: string;
+}
+
+export interface SchoolActivity {
+  id: string;
+  type: 'text' | 'image';
+  content: string;
+  title?: string;
+  date: string;
+}
+
+export interface SubjectSection {
+  id: string;
+  name: string;
+  activities: SchoolActivity[];
+  color: string;
+}
+
 export interface PEIData {
   studentName: string;
   birthDate: string;
@@ -26,7 +48,91 @@ export interface PEIData {
   languagesSpoken: string[];
   familyMembers: FamilyMember[];
   relationships: Relationship[];
-  schoolHistory: string;
+  schoolHistory: SchoolHistory;
+  schoolYears: SchoolHistory;
+  freeTime: string;
   strengths: string;
   needs: string;
+  communication: string;
+  autonomy: string;
+  learning: string;
+  relation: string;
+  lis: boolean | null;
+  braille: boolean | null;
+  isDeaf: boolean | null;
+  isBlind: boolean | null;
+  schoolAreas: {
+    humanities: string;
+    scientific: string;
+    foreignLanguages: string;
+    artsMusicSports: string;
+    civics: string;
+    educationalSupport: string;
+  };
+  schoolObservations: {
+    [key: string]: {
+      autonomia_igiene: boolean | null;
+      autonomia_spazi: boolean | null;
+      autonomia_aiuto: boolean | null;
+      autonomia_materiale: boolean | null;
+      comunicazione_bisogni: boolean | null;
+      comunicazione_consegne: boolean | null;
+      comunicazione_caa: boolean | null;
+      relazionale_comportamento: boolean | null;
+      relazionale_regole: boolean | null;
+      relazionale_contatto: boolean | null;
+      cognitiva_attenzione: boolean | null;
+      cognitiva_concentrazione: boolean | null;
+      cognitiva_base: boolean | null;
+      emotiva_emozioni: boolean | null;
+      emotiva_frustrazione: boolean | null;
+      emotiva_motivazione: boolean | null;
+      emotiva_stereotipie: boolean | null;
+    };
+  };
+  agendaImages: (string | null)[];
+  agendaWithWhomImages: (string | null)[];
+  agendaHours: (number | null)[];
+  agendaHourColors: (string | null)[];
+  agendaActivityArchive: string[];
+  agendaWhomArchive: string[];
+  agendaDurations: number[];
+  agendaDay: string;
+  agendaWeather: string;
+  agendaProgress: number;
+  tokenSymbol: string | null;
+  tokenArchive: string[];
+  tokenRewardImage: string | null;
+  tokenRewardOptions: string[];
+  agendaObjectives: string[];
+  choiceImages: (string | null)[];
+  choiceArchivio: string[];
+  selectedChoiceIndex: number | null;
+  choiceMood: 'happy' | 'sad' | null;
+  removedChoices: number[];
+  choiceDuration: number;
+  choiceLocation: string;
+  choiceLocationArchive: string[];
+  choiceWithWhom: string;
+  choiceWithWhomArchive: string[];
+  tokenStepsCount: number;
+  autonomyDiary: SubjectSection[];
+  relaxArea: SchoolActivity[];
+  dailyDiary: { id: string, date: string, image: string, comment: string, translatedComment?: string }[];
+  needsChoices: { id: string, label: string, img: string }[];
+  feelingsChoices: { id: string, label: string, img: string }[];
+  passport: {
+    photo: string | null;
+    name: string;
+    surname: string;
+    birthDate: string;
+    birthPlace: string;
+    residence: string;
+    likes: { type: 'text' | 'image', content: string }[];
+    dislikes: { type: 'text' | 'image', content: string }[];
+    strengths: string[];
+    uniqueness: string;
+    youtubeLinks: string[];
+  };
+  schoolDiary: SubjectSection[];
 }
