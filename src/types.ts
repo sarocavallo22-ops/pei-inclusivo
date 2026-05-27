@@ -69,6 +69,12 @@ export interface PEIData {
     civics: string;
     educationalSupport: string;
   };
+  schoolDisciplineDetails?: Record<string, {
+    segueProgramma: boolean | null;
+    obiettivi: string;
+    verificaPrimoQuadrimestre: string;
+    verificaSecondoQuadrimestre: string;
+  }>;
   schoolObservations: {
     [key: string]: {
       autonomia_igiene: boolean | null;
@@ -116,11 +122,13 @@ export interface PEIData {
   choiceWithWhom: string;
   choiceWithWhomArchive: string[];
   tokenStepsCount: number;
+  tokenStepsStatus?: boolean[];
   autonomyDiary: SubjectSection[];
   relaxArea: SchoolActivity[];
   dailyDiary: { id: string, date: string, image: string, comment: string, translatedComment?: string }[];
   needsChoices: { id: string, label: string, img: string }[];
   feelingsChoices: { id: string, label: string, img: string }[];
+  needsTaskAnalysis?: Record<string, { id: string, text: string, done?: boolean }[]>;
   passport: {
     photo: string | null;
     name: string;
@@ -135,4 +143,64 @@ export interface PEIData {
     youtubeLinks: string[];
   };
   schoolDiary: SubjectSection[];
+  strengthsPhotos?: string[];
+  familyObjectives1?: string;
+  familyObjectives2?: string;
+  familyObjectives3?: string;
+  communication1?: string;
+  communication2?: string;
+  communication3?: string;
+  autonomy1?: string;
+  autonomy2?: string;
+  autonomy3?: string;
+  learning1?: string;
+  learning2?: string;
+  learning3?: string;
+  relation1?: string;
+  relation2?: string;
+  relation3?: string;
+  classTeachers?: {
+    id: string;
+    name: string;
+    subject: string;
+    status: 'da_iniziare' | 'in_corso' | 'pronto';
+  }[];
+  gloDeadlines?: {
+    id: string;
+    title: string;
+    month: string;
+    status: 'completato' | 'in_corso' | 'da_pianificare';
+    dueDate: string;
+  }[];
+  didacticObservations?: {
+    id: string;
+    subject: string;
+    pathType: 'A' | 'B' | 'C';
+    area: string;
+    indicatorsStatus: { [key: string]: 'si' | 'no' | 'in_corso' };
+    indicatorsNotes: { [key: string]: string };
+    customObjectives?: string;
+    assessments?: string;
+  }[];
+  schoolAppointments?: {
+    id: string;
+    title: string;
+    date: string;
+    time: string;
+    type: 'GLO' | 'Consiglio' | 'Incontro Famiglia' | 'Altro';
+    category?: 'scuola-famiglia' | 'team';
+    notes?: string;
+  }[];
+  schoolDocuments?: {
+    id: string;
+    name: string;
+    uploadedAt: string;
+    size: string;
+    fileType: string;
+    category: 'PEI' | 'Verbale' | 'Certificazione' | 'Altro';
+    contentUrl?: string;
+  }[];
+  didacticGeneralObservations?: {
+    [key: string]: boolean | null;
+  };
 }
