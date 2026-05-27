@@ -51,14 +51,14 @@ export function SoapBubblesGame() {
   };
 
   return (
-    <div className="bg-slate-900 border-4 border-cyan-400 rounded-[40px] p-8 relative overflow-hidden min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full">
-      <div className="flex justify-between items-center z-10">
+    <div className="bg-slate-900 border-4 border-cyan-400 rounded-[24px] sm:rounded-[40px] p-4 sm:p-8 relative overflow-hidden min-h-[420px] sm:min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-10">
         <div>
-          <h4 className="text-2xl font-black uppercase tracking-tight text-cyan-300">🫧 Bolle di Sapone</h4>
-          <p className="text-slate-400 font-bold text-xs uppercase tracking-wider mt-0.5">Tocca le bolle per farle scoppiare!</p>
+          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-cyan-300">🫧 Bolle di Sapone</h4>
+          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">Tocca le bolle per farle scoppiare!</p>
         </div>
-        <div className="bg-cyan-950/80 border border-cyan-800 px-5 py-2 rounded-2xl shadow-lg">
-          <span className="font-sans text-cyan-200 font-bold uppercase text-xs">Punti: <strong className="text-lg text-white font-black ml-1">{poppedCount}</strong></span>
+        <div className="bg-cyan-950/80 border border-cyan-800 px-4 py-1.5 sm:px-5 sm:py-2 rounded-xl sm:rounded-2xl shadow-lg">
+          <span className="font-sans text-cyan-200 font-bold uppercase text-[10px] sm:text-xs">Punti: <strong className="text-base sm:text-lg text-white font-black ml-1">{poppedCount}</strong></span>
         </div>
       </div>
 
@@ -128,14 +128,14 @@ export function StressBallGame() {
   };
 
   return (
-    <div className="bg-slate-900 border-4 border-rose-400 rounded-[40px] p-8 min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full">
-      <div className="flex justify-between items-center z-10">
+    <div className="bg-slate-900 border-4 border-rose-400 rounded-[24px] sm:rounded-[40px] p-4 sm:p-8 min-h-[420px] sm:min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-10">
         <div>
-          <h4 className="text-2xl font-black uppercase tracking-tight text-rose-300">🛑 Pallina Antistress</h4>
-          <p className="text-slate-400 font-bold text-xs uppercase tracking-wider mt-0.5">Schiaccia e tieni premuto la pallina!</p>
+          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-rose-300">🛑 Pallina Antistress</h4>
+          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">Schiaccia e tieni premuto la pallina!</p>
         </div>
-        <div className="bg-rose-950/80 border border-rose-800 px-5 py-2 rounded-2xl shadow-lg">
-          <span className="font-sans text-rose-200 font-bold uppercase text-xs">Schiacciate: <strong className="text-lg text-white font-black ml-1">{squeezeCount}</strong></span>
+        <div className="bg-rose-950/80 border border-rose-800 px-4 py-1.5 sm:px-5 sm:py-2 rounded-xl sm:rounded-2xl shadow-lg">
+          <span className="font-sans text-rose-200 font-bold uppercase text-[10px] sm:text-xs">Schiacciate: <strong className="text-base sm:text-lg text-white font-black ml-1">{squeezeCount}</strong></span>
         </div>
       </div>
 
@@ -327,23 +327,23 @@ export function MemoryGame() {
   const isCompleted = cards.length > 0 && cards.every((c) => c.isMatched);
 
   return (
-    <div className="bg-slate-900 border-4 border-yellow-400 rounded-[40px] p-8 min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full relative">
-      <div className="flex justify-between items-center z-10">
+    <div className="bg-slate-900 border-4 border-yellow-400 rounded-[24px] sm:rounded-[40px] p-4 sm:p-8 min-h-[420px] sm:min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full relative">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-10">
         <div>
-          <h4 className="text-2xl font-black uppercase tracking-tight text-yellow-300">
+          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-yellow-300">
             🃏 Gioco delle Coppie (Memory)
           </h4>
-          <p className="text-slate-400 font-bold text-xs uppercase tracking-wider mt-0.5">
+          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">
             Cerca e abbina le 6 carte sul tavolo!
           </p>
         </div>
-        <div className="flex gap-2 items-center">
-          <div className="bg-slate-950 px-4 py-2 rounded-2xl border border-slate-800 text-xs text-yellow-300 font-black">
+        <div className="flex gap-2 items-center w-full sm:w-auto justify-between sm:justify-end">
+          <div className="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-[10px] sm:text-xs text-yellow-300 font-black">
             Mosse: {moves}
           </div>
           <button
             onClick={initGame}
-            className="bg-yellow-500 hover:bg-yellow-600 active:scale-95 transition-transform text-slate-950 font-black rounded-2xl uppercase text-[10px] px-4 py-2 flex items-center gap-1.5"
+            className="bg-yellow-500 hover:bg-yellow-600 active:scale-95 transition-transform text-slate-950 font-black rounded-xl uppercase text-[10px] px-3.5 py-1.5 flex items-center gap-1.5 cursor-pointer"
           >
             <RefreshCw size={10} />
             Reset

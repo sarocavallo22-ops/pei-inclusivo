@@ -1807,7 +1807,7 @@ export default function App() {
             >
               {!studentSubSection ? (
                 <>
-                  <div className="w-full space-y-12 bg-[#0a192f]/60 backdrop-blur-md p-12 rounded-[60px] shadow-2xl border border-white/10">
+                  <div className="w-full space-y-6 sm:space-y-12 bg-[#0a192f]/60 backdrop-blur-md p-4 sm:p-8 md:p-12 rounded-[24px] sm:rounded-[40px] md:rounded-[60px] shadow-2xl border border-white/10">
                     <div className="flex items-center justify-between">
                       <Button
                         variant="ghost"
@@ -1952,7 +1952,7 @@ export default function App() {
               ) : ["scelte", "bisogni", "sentimenti"].includes(
                   studentSubSection as string,
                 ) ? (
-                <div className="w-full space-y-8 bg-[#0a192f]/60 backdrop-blur-md p-12 rounded-[60px] min-h-[80vh] shadow-2xl border border-white/10">
+                <div className="w-full space-y-6 sm:space-y-8 bg-[#0a192f]/60 backdrop-blur-md p-4 sm:p-8 md:p-12 rounded-[24px] sm:rounded-[40px] md:rounded-[60px] min-h-[80vh] shadow-2xl border border-white/10">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6">
                       <Button
@@ -2770,7 +2770,7 @@ export default function App() {
                   </div>
                 </div>
               ) : (
-                <div className="w-full space-y-8 bg-[#0a192f]/60 backdrop-blur-md p-12 rounded-[60px] min-h-[80vh] shadow-2xl border border-white/10">
+                <div className="w-full space-y-6 sm:space-y-8 bg-[#0a192f]/60 backdrop-blur-md p-4 sm:p-8 md:p-12 rounded-[24px] sm:rounded-[40px] md:rounded-[60px] min-h-[80vh] shadow-2xl border border-white/10">
                   <div className="flex items-center gap-6">
                     <Button
                       variant="ghost"
@@ -5492,14 +5492,14 @@ export default function App() {
                   )}
 
                   {studentSubSection === "relax" && (
-                    <div className="w-full max-w-6xl mx-auto p-4">
-                      <div className="bg-white/10 backdrop-blur-md rounded-[50px] p-12 border-4 border-white/10">
-                        <div className="flex justify-between items-center mb-12">
+                    <div className="w-full max-w-6xl mx-auto p-2 sm:p-4">
+                      <div className="bg-white/10 backdrop-blur-md rounded-[28px] sm:rounded-[50px] p-4 sm:p-8 md:p-12 border-4 border-white/10">
+                        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 sm:mb-12">
                           <div>
-                            <h3 className="text-4xl font-black text-white uppercase italic tracking-tighter">
+                            <h3 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tighter">
                               La mia bolla relax
                             </h3>
-                            <p className="text-indigo-200 font-bold uppercase tracking-widest text-sm mt-2">
+                            <p className="text-indigo-200 font-bold uppercase tracking-widest text-xs sm:text-sm mt-1 sm:mt-2">
                               I miei momenti di tranquillità
                             </p>
                           </div>
@@ -5544,7 +5544,7 @@ export default function App() {
                         </div>
 
                         {/* Interactive Calming Tools Row */}
-                        <div className="mb-12 bg-white/5 p-8 rounded-[40px] border-2 border-white/5 shadow-inner">
+                        <div className="mb-12 bg-white/5 p-4 sm:p-8 rounded-[24px] sm:rounded-[40px] border-2 border-white/5 shadow-inner">
                           <h4 className="text-lg font-black text-white uppercase tracking-wider mb-6 text-center md:text-left">
                             Esercizi e Attività Calmanti
                           </h4>
