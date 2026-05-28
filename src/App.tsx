@@ -7,6 +7,8 @@ import {
   ChevronRight,
   ChevronLeft,
   Globe,
+  Volume2,
+  VolumeX,
   Save,
   Languages,
   CheckCircle2,
@@ -90,6 +92,7 @@ import {
   StressBallGame,
   MemoryGame,
 } from "./components/RelaxGames";
+import { useIsMobile } from "./hooks/useIsMobile";
 
 const countryList = countries
   .map((c) => ({
@@ -117,10 +120,11 @@ type Language = "it" | "ar" | "es";
 
 const translations = {
   it: {
-    title: "my/our PEI",
-    subtitle: "",
-    welcome: "my/our PEI",
+    title: "my/our/PEI",
+    subtitle: "partecipazione attiva scuola-famiglia per l'alunno",
+    welcome: "my/our/PEI",
     choose: "scegli da che parte iniziare a raccontarci di voi",
+    chooseRole: "scegli il tuo percorso",
     appRules: "Regolamento e Istruzioni",
     peiExplanation: "Cos'è il PEI?",
     progettoVita: "Progetto di Vita",
@@ -137,6 +141,19 @@ const translations = {
     next: "Avanti",
     prev: "Indietro",
     complete: "Completa",
+    family: "Famiglia",
+    schoolLabel: "Scuola",
+    schoolFamily: "Scuola-Famiglia",
+    confirmAndClose: "CONFERMA E CHIUDI PEI",
+    tornaAlleAree: "Torna alle aree",
+    tornaAllaScelta: "Torna alla scelta",
+    sezioneDedicataInsegnanti: "Sezione dedicata agli insegnanti e al personale scolastico.",
+    stiamoPreparando: "Stiamo preparando questa attività per te!",
+    backToHome: "Torna alla Home",
+    backToChoice: "Torna alla scelta",
+    back: "Indietro",
+    familyDesc: "Raccontaci la storia e i bisogni dell'alunno dal tuo punto di vista.",
+    schoolDesc: "Accedi alla sezione osservazione e monitoraggio scolastico.",
     helpTitle: "Aiuto Linguistico",
     helpDesc:
       "Hai dubbi su un termine? Clicca sull'icona info per una spiegazione semplice.",
@@ -171,10 +188,94 @@ const translations = {
     relationPlaceholder: "Come si relaziona con gli altri?",
     predefinedTitle: "Suggerimenti (clicca per aggiungere):",
     deaf: "L'alunno è sordo",
-    blind: "L'alunno è cieco",
+    blind: "L'alunno è ciego",
     studentRole: {
       title: "Alunno",
       description: "Esprimiti e comunica i tuoi bisogni attraverso i simboli.",
+    },
+    student: {
+      chooseAction: "Ciao! Scegli cosa vuoi fare:",
+      myDay: "La mia giornata",
+      myBag: "Il mio zaino",
+      passport: "Passaporto comunicativo",
+      choices: "Scelte",
+      needs: "Bisogni",
+      feelings: "Sentimenti",
+      autonomyDiary: "Diario delle autonomie",
+      relaxArea: "Area relax",
+      myProgettoVita: "Il mio progetto di vita",
+      relaxBubbleTitle: "{((t as any).student as any).relaxBubbleTitle}",
+      relaxBubbleSub: "{((t as any).student as any).relaxBubbleSub}",
+      addActivity: "Aggiungi attività",
+      calmingExercises: "{((t as any).student as any).calmingExercises}",
+      soapBubblesBtn: "Bolle di Sapone",
+      stressBallBtn: "Schiaccia la Pallina",
+      memoryBtn: "Memory",
+      passportTitle: "Passaporto Comunicativo myPEI",
+      passportCode: "{(t as any).student.passportCode}",
+      createdWith: "Creato con myPEI",
+      activitiesSaved: "schede salvate",
+      goBackToAutonomies: "Torna alle autonomie",
+      myDiary: "Il mio Diario",
+      myConquests: "Le mie conquiste",
+      addPhoto: "Aggiungi Foto",
+      uploadPhotoForObjective: "{((t as any).student as any).uploadPhotoForObjective}",
+      subjectIgiene: "Igiene",
+      subjectAbbigliamento: "Abbigliamento",
+      subjectAlimentazione: "Alimentazione",
+      rewardCostruzioni: "Costruzioni",
+      rewardBiscotti: "Biscotti",
+      rewardTablet: "Tablet",
+      visualAgenda: "Agenda Visiva",
+      tokenActivity: "Token Attività",
+      dayDiary: "Diario del giorno",
+      removeSquare: "Togli quadrato",
+      addSquare: "Aggiungi quadrato",
+      activityArchive: "Archivio Attività",
+      whomArchive: "Archivio Con Chi?",
+      uploadOrSelectImages: "Carica o seleziona le immagini per l'agenda",
+      uploadImages: "Carica Immagini",
+      archiveEmpty: "L'archivio è vuoto",
+      pauseYellow: "Pausa (Giallo)",
+      workBlue: "Lavoro (Blu)",
+      hourColor: "Ora / Colore",
+      choose: "Scegli",
+      newImage: "Nuova Immagine",
+      fromArchive: "Dall'archivio:",
+      deleteFromArchive: "Elimina dall'archivio",
+      activity: "Attività",
+      withWhom: "Con Chi?",
+      tokenEconomyTitle: "TOKEN ECONOMY DELLE ATTIVITÀ",
+      customizeToken: "Personalizza Gettone",
+      tokenArchive: "Archivio Gettoni",
+      selectOrCreateToken: "Seleziona o carica l'immagine del gettone",
+      removeToken: "Rimuovi Gettone",
+      chooseReward: "Scegli il tuo premio",
+      tapRewardToSelect: "Tocca un'immagine per selezionarla come premio finale",
+      deleteReward: "Elimina premio caricato",
+      uploadMore: "Carica altro",
+      dailyDiaryTitle: "Diario Giornaliero",
+      diarySub: "Racconta la tua giornata con foto e commenti",
+      newEntry: "Nuovo Inserimento",
+      uploadPhoto: "Carica Foto",
+      date: "Data",
+      weatherSereno: "Sereno",
+      weatherNuvoloso: "Nuvoloso",
+      weatherPioggia: "Pioggia",
+      weatherVento: "Vento",
+      weatherNeve: "Neve",
+      objectivesTitle: "OBIETTIVI DELLA GIORNATA",
+      addObjectivePlaceholder: "Aggiungi un obiettivo...",
+      newContact: "Nuovo Contatto",
+      playWithSymbols: "Usa i simboli per comunicare",
+      backToChoice: "Torna alla scelta",
+      goForward: "Avanti",
+      backToHome: "Torna alla home",
+      instructions: "Istruzioni",
+      hideInfo: "Nascondi Info",
+      notesForFamily: "Note per la Famiglia",
+      weGrowTogether: "Cresciamo Insieme",
+      progettoVitaSub: "Qui puoi scrivere e immaginare il tuo futuro, la tua autonomia e tutto ciò che desideri imparare o fare meglio anno dopo anno!",
     },
     school: {
       welcome: "Benvenuto Cdc",
@@ -193,6 +294,37 @@ const translations = {
       placeholder:
         "Inserisci qui le osservazioni e gli obiettivi per quest'area...",
     },
+    clickForInfo: "Clicca il simbolo per Info",
+    photoAlbum: "Album Fotografico delle sue abilità",
+    photoAlbumDesc: "Carica le foto delle attività, dei disegni o dei lavori svolti dall'alunno per vedere e documentare cosa sa fare!",
+    noPhotos: "Nessuna foto presente. Carica una foto per creare l'album!",
+    uploadPhotoBtn: "Carica Foto",
+    classFirst: "Classe Prima",
+    classSecond: "Classe Seconda",
+    classThird: "Classe Terza",
+    progettoVitaTitle: "Informazioni Progetto di Vita",
+    strengthsInstructionsTitle: "Istruzioni Punti di Forza",
+    needsInstructionsTitle: "Istruzioni Bisogni e Difficoltà",
+    helpModals: {
+      guideTitle: "Guida alla compilazione",
+      meaningTitle: "Significato della sezione:",
+      actionTitle: "Cosa fare / Come compilare:",
+      familyNoteTitle: "Note per la Famiglia:",
+      progettoVitaPerspectiveTitle: "In un'ottica di Progetto di Vita:",
+      understandBtn: "Ho capito, continua",
+      strengths: {
+        meaning: "I punti di forza rappresentano le abilità, gli interessi e le cose in cui l'alunno eccelle o che svolge con piacere e motivazione.",
+        action: "Descrivi cosa sa fare meglio, i contesti in cui si sente a suo agio, i suoi talenti naturali e in quali modi l'insegnante può valorizzare queste competenze nel percorso educativo di tutti i giorni."
+      },
+      needs: {
+        meaning: "I bisogni e le difficoltà descrivono le barriere, le aree di fragilità o le attività specifiche in cui l'alunno richiede assistenza, mediazione o un supporto personalizzato.",
+        action: "Indica in quali situazioni e compiti l'alunno riscontra maggiori ostacoli, dove ha più bisogno di una figura di supporto/guida, e indica quali canali comunicativi o strumenti concreti ne agevolano il superamento delle barriere."
+      },
+      progettoVita: {
+        meaning: "Questa sezione raccoglie le vostre aspettative, desideri e visioni sul futuro di vostro figlio.",
+        action: "Vi invitiamo a indicare gli obiettivi educativi, di autonomia personale, sociale o relazionale che vi piacerebbe che l'alunno raggiungesse, suddivisi per ciascuno dei tre anni della scuola secondaria di primo grado (scuola media)."
+      }
+    },
     genogram: {
       title: "Storia della Famiglia",
       desc: "Trascina i membri per spostarli. I legami sono automatici.",
@@ -209,6 +341,9 @@ const translations = {
       uploadPhoto: "Carica Foto",
       placeholderSelect: "Seleziona Parente",
       emptyState: "Seleziona un membro nel grafico per modificarne i dettagli.",
+      createRelation: "Crea Legame",
+      cancelRelation: "Annulla Legame",
+      selectToConnect: "Seleziona un altro membro per creare un legame",
       relations: {
         student: "Alunno/a",
         mother: "Madre",
@@ -286,16 +421,230 @@ const translations = {
         image: "/sentimenti.png",
       },
     ],
+    
+    schoolManager: {
+      gestioneDidatticaClasse: "Gestione e Didattica di Classe",
+      milestoneApprovazione: "Approvazione del PEI",
+      milestoneVerificaIntermedia: "Verifica Intermedia (Verifica PEI)",
+      milestoneVerificaFinale: "Verifica Finale (PEI)",
+      didatticaOsservazione: "Didattica & Osservazione",
+      didatticaOsservazioneDesc: "Strumenti di osservazione e metodologie didattiche",
+      disciplineScolastiche: "Discipline Scolastiche",
+      disciplineScolasticheDesc: "Abilità cognitive, discipline e griglie d'osservazione",
+      calendarioAppuntamenti: "Calendario Appuntamenti",
+      calendarioAppuntamentiDesc: "Consigli d'istituto, riunioni d'aula e incontri GLO",
+      archivioDocumenti: "Archivio Documenti",
+      archivioDocumentiDesc: "Fascicolo protetto per verbali d'incontro e bozze PEI",
+      tornaIndietro: "Torna indietro",
+      sezioneDiscipline: "Sezione Discipline",
+      calendarioGloScuola: "Calendario GLO & Scuola",
+      agendaIncontriScolastici: "Agenda degli Incontri Scolastici",
+      agendaIncontriDesc: "Organizza e tieni traccia di tutte le relazioni con i genitori e le riunioni di programmazione didattica con il team.",
+      oggi: "Oggi",
+      tooltipMesePrec: "Mese precedente",
+      tooltipMeseSucc: "Mese successivo",
+      ministerialeGlo: "Ministeriale GLO",
+      scuolaFamigliaLabel: "Scuola-Famiglia",
+      teamConsigli: "Team & consigli",
+      impegniGiornalieri: "Impegni Giornalieri",
+      nessunImpegno: "Nessun impegno pianificato",
+      compilaFormAggiungi: "Compila il form sottostante per aggiungere un incontro in questo giorno.",
+      scadenzaPei: "Scadenza PEI",
+      tooltipCancella: "Cancella Incontro",
+      annotazioniRelazione: "Annotazioni e Relazione",
+      inserisciVerbali: "Inserisci qui i verbali riassuntivi o le decisioni dell'incontro...",
+      aggiungiImpegno: "Aggiungi Impegno",
+      oggettoTitolo: "Oggetto / Titolo",
+      placeholderTitoloImpegno: "es. Colloquio genitori o riunione coordinamento",
+      ora: "Ora",
+      tipologia: "Tipologia",
+      noteLink: "Note o link videoconferenza",
+      placeholderLinkMeet: "Link Meet o dettagli presenza...",
+      salvaInAgenda: "Salva in Agenda",
+      sincAnnuale: "Sincronizzazione Annuale",
+      sincAnnualeDesc: "Il calendario mensile è sintonizzato con le scadenze del PEI (Ottobre, Gennaio, Giugno) integrate in automatico a partire dalla programmazione ministeriale.",
+      archivioDocumentiAula: "Archivio Documenti d'aula",
+      fascicoloPeiAlunno: "Fascicolo PEI dell'Alunno",
+      fascicoloPeiDesc: "Spazio d'archivio protetto per caricare verbali GLO, certificazioni e documentazione scolastica.",
+      caricaDocumento: "Carica Documento",
+      caricaFileFascicolo: "Carica un file nel fascicolo",
+      nomeIdentificativoFile: "Nome identificativo file",
+      placeholderNomeFile: "es. PEI_Sottoscritto_Famiglia_Liceo",
+      categoria: "Categoria",
+      salvaNelCloud: "Salva nel Cloud",
+      trascinaQuiFile: "Trascina qui il file d'aula per caricarlo",
+      supportaFile: "SUPPORTA PDF, DOCX, PNG fino a 20MB",
+      placeholderFiltraDoc: "Filtra documenti per nome...",
+      tutti: "Tutti",
+      nessunFileArchiviato: "Nessun file archiviato",
+      nessunFileArchiviatoDesc: "Scegli una categoria e premi \"+ Carica\" per riempire l'archivio.",
+      gdprTitle: "Trattamento Dati Sensibili Conforme GDPR",
+      gdprDesc: "Tutta la documentazione caricata all'interno del fascicolo PEI è protetta da cifratura end-to-end e visibile esclusivamente ai soli membri accreditati del GLO d'alunno.",
+      catPei: "Modello PEI",
+      catVerbale: "Verbale GLO",
+      catCertificazione: "Certificazione Medica",
+      catAltro: "Altro Documento",
+      typeFamiglia: "Incontro Famiglia",
+      typeGlo: "Convocazione GLO",
+      typeConsiglio: "Consiglio di Classe",
+      typeAltro: "Altro Impegno",
+      prefixMilestone: "[Milestone Ministeriale]",
+      deadlineNoteTemplate: "Scadenza GLO di fine {month}. Stato completamento PEI: {status}",
+      statusVerificato: "Verificato 🟢",
+      statusInCorso: "In corso d'opera 🟡",
+      altri: "altri",
+      aggiuntoIl: "Aggiunto il:",
+      downloadAlert: "Avvio del download sicuro per il file: {name}",
+      tooltipScarica: "Scarica file",
+      tooltipCancellaFile: "Cancella file",
+      months: ["Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre"],
+      weekDays: ["Lun", "Mar", "Mer", "Gio", "Ven", "Sab", "Dom"]
+    },
+    didacticObservation: {
+      labelDidatticaOsservazione: "DIDATTICA & OSSERVAZIONE",
+      descDidatticaOsservazione: "Griglie d'osservazione e percorsi differenziati per le aree ministeriali d'alunno.",
+      tornaAlMenu: "Torna al Menu",
+      tornaAlleAree: "Torna alle Aree",
+      programmazioneArea: "PROGRAMMAZIONE AREA",
+      salvataggioAttivo: "SALVATAGGIO ATTIVO",
+      sezione01: "Sezione 01",
+      tipoPercorso: "Tipo di Percorso (PEI)",
+      pathA: "Percorso A - Ordinario",
+      pathADesc: "Con verifiche equipollenti e prove d'esame ordinarie.",
+      pathB: "Percorso B - Semplificato",
+      pathBDesc: "Verifiche adattate, obiettivi ridotti o dispense mirate.",
+      pathC: "Percorso C - Differenziato",
+      pathCDesc: "Obiettivi didattici non riconducibili a quelli ministeriali.",
+      sezione02: "Sezione 02",
+      grigliaOsservazione: "Griglia di Osservazione Qualitativa",
+      indicatore: "Indicatore",
+      valutazioneQualificatore: "Valutazione dell'allineamento (Qualificatore ICF):",
+      contestoNote: "Contesto / Note:",
+      placeholderNote: "Fasce d'aiuto, compensazione, facilitatori installati...",
+      obiettiviPersonalizzati: "Obiettivi ed Attività Personalizzate",
+      placeholderObiettivi: "Traguardi di competenza specifici, abilità attese da raggiungere e facilitazioni stabilite...",
+      criteriValutazione: "Criteri di Verifica e Valutazione",
+      placeholderVerifica: "Misure dispensative, tempi aggiuntivi per verifiche, prove adattate concordate prima quadrimestre...",
+      salvaTornaAree: "Salva e Torna alle Aree",
+      salvataTempoReale: "Modifica Salvata in Tempo Reale",
+      evalLevels: {
+        forza: "Punto di forza",
+        nessuna: "NESSUNA",
+        lieve: "LIEVE",
+        media: "MEDIA",
+        grave: "GRAVE",
+        completa: "COMPLETA",
+        criticita: "Criticità"
+      },
+      areas: {
+        humanities: {
+          title: "AREA UMANISTICA",
+          desc: "Italiano, Storia, Geografia. Questa sezione raccoglie le funzioni cognitive superiori, la memoria storica/geografica e l'intero asse del linguaggio e della comunicazione scritta e letta.",
+          indicators: {
+            b1140: { title: "b1140 – Orientamento rispetto al tempo", desc: "Consapevolezza di oggi, domani, ieri, della data, del mese e dell'anno (fondamentale per la collocazione degli eventi storici)." },
+            b1141: { title: "b1141 – Orientamento rispetto al luogo", desc: "Consapevolezza di dove ci si trova, della città, dello Stato e dei dintorni (fondamentale per la geografia)." },
+            b1441: { title: "b1441 – Memoria a lungo termine", desc: "Permette di immagazzinare le informazioni autobiografiche e semantiche." },
+            b1670: { title: "b1670 – Recepire il linguaggio", desc: "Decodifica di messaggi in forma orale, scritta o altra per ottenere il loro significato." },
+            b1671: { title: "b1671 – Espressione del linguaggio", desc: "Produrre messaggi significativi in forma orale, scritta o altre forme." },
+            d1400: { title: "d1400 – Acquisire le abilità di riconoscimento di simboli", desc: "Decodifica di figure, icone, caratteri, lettere dell'alfabeto e parole." },
+            d1402: { title: "d1402 – Acquisire le abilità di comprensione di parole e frasi scritte", desc: "Comprensione del significato di testi scritti." },
+            d1661: { title: "d1661 – Comprendere il linguaggio scritto", desc: "Afferrare la natura e il significato del linguaggio nella lettura." },
+            d1700: { title: "d1700 – Utilizzare le abilità e le strategie generali del processo di scrittura", desc: "Adoperare parole che trasmettono il significato appropriato." },
+            d310: { title: "d310 – Comunicare con-ricevere-messaggi verbali", desc: "Comprendere i significati letterali e impliciti nel linguaggio parlato." },
+            d325: { title: "d325 – Comunicare con ricevere messaggi scritti", desc: "Comprendere il significato di messaggi comunicati tramite linguaggio scritto." }
+          }
+        },
+        scientific: {
+          title: "AREA SCIENTIFICO-TECNOLOGICA",
+          desc: "Matematica, Scienze, Tecnologia. Include i processi di calcolo, l'alfabetismo numerico, le abilità logiche di astrazione e la risoluzione di problemi basati su sequenze e procedure.",
+          indicators: {
+            b163: { title: "b163 – Funzioni cognitive di base", desc: "Acquisizione di base delle conoscenze riguardo agli oggetti, agli eventi e alle esperienze." },
+            b1640: { title: "b1640 – Astrazione", desc: "Creare idee, qualità o caratteristiche generali a partire da realtà concrete o casi effettivi." },
+            b1720: { title: "b1720 – Calcolo semplice", desc: "Computare con numeri (addizione, sottrazione, moltiplicazione, divisione)." },
+            b1721: { title: "b1721 – Calcolo complesso", desc: "Tradurre problemi in parole e formule matematiche in procedure aritmetiche." },
+            d1370: { title: "d1370 – Acquisire concetti di base", desc: "Dimensione, forma, quantità, lunghezza, uguale, opposto." },
+            d1371: { title: "d1371 – Acquisire concetti complessi", desc: "Concetti di classificazione, raggruppamento, reversibilità, seriazione." },
+            d1500: { title: "d1500 – Acquisire le abilità di riconoscimento di numeri, simboli e segni aritmetici", desc: "Riconoscimento e utilizzo." },
+            d1501: { title: "d1501 – Acquisire abilità di alfabetismo numerico come contare e ordinare", desc: "Concetto di alfabetismo numerico e degli insiemi." },
+            d1502: { title: "d1502 – Acquisire abilità nell'uso delle operazioni elementari", desc: "Addizione, sottrazione, moltiplicazione, divisione." },
+            d1720: { title: "d1720 – Utilizzare le abilità e le strategie semplici del processo di calcolo", desc: "Applicare i concetti per eseguire calcoli." },
+            d1721: { title: "d1721 – Utilizzare le abilità e le strategie complesse del processo di calcolo", desc: "Adoperare procedure e metodi matematici (algebra, calcolo, geometria)." },
+            d1750: { title: "d1750 – Risoluzione di problemi semplici", desc: "Identificare e analizzare una singola questione, sviluppando soluzioni e mettendole in atto." }
+          }
+        },
+        foreignLanguages: {
+          title: "LINGUE STRANIERE",
+          desc: "Inglese, Spagnolo",
+          indicators: {
+            lang_comp: { title: "Ascolto e Comprensione (L2)", desc: "Comprende istruzioni, formule di saluto e semplici frasi in lingua." },
+            lang_prod: { title: "Lettura e Risposta", desc: "Associa messaggi scritti semplici ad immagini o risponde a brevi domande." },
+            lang_vocab: { title: "Produzione Vocale/Mimica", desc: "Si esprime o saluta usando vocaboli fondamentali della L2." }
+          }
+        },
+        artsMusicSports: {
+          title: "AREA ARTISTICA/MUSICALE/MOTORIA",
+          desc: "Arte e immagine, Musica, Scienze motorie",
+          indicators: {
+            art_regole: { title: "Coordinazione Motoria e Spaziale", desc: "Si orienta nello spazio palestra, esegue percorsi e controlla la postura." },
+            art_coordin: { title: "Rispetto delle Regole del Gioco", desc: "Partecipa ad attività motorie di gruppo rispettando compagni e arbitro." },
+            art_creativ: { title: "Espressione Artistica e Manualità", desc: "Utilizza linguaggi grafici, plastici e controlla la motricità fine." },
+            art_music: { title: "Linguaggio Musicale", desc: "Riconosce ritmi, suoni, canta o riproduce suoni con piccoli strumenti." }
+          }
+        },
+        civics: {
+          title: "INSEGNAMENTI TRASVERSALI",
+          desc: "Educazione Civica, Alternativa alla religione ed L1/L2",
+          indicators: {
+            civ_regole: { title: "Cittadinanza e Relazioni", desc: "Dimostra attitudine alla convivenza civile e solidale con il gruppo classe." },
+            civ_amb: { title: "Rispetto dell'Ambiente", desc: "Rispetta e conserva gli arredi, i materiali scolastici e differenzia i rifiuti." },
+            civ_digit: { title: "Consapevolezza Digitale", desc: "Utilizza i dispositivi tecnologici con rispetto delle regole comportamentali (Netiquette)." }
+          }
+        },
+        educationalSupport: {
+          title: "EDUCATIVA SCOLASTICA",
+          desc: "Supporto educativo e assistenza all'autonomia",
+          indicators: {
+            edu_auton: { title: "Autonomia Personale", desc: "Cura l'igiene del sé, l'alimentazione e la vestizione in modo indipendente." },
+            edu_gestione: { title: "Organizzazione dei Materiali", desc: "Prepara l'astuccio, il diario e i quaderni secondo l'orario delle lezioni." },
+            edu_relaz: { title: "Gestione dei Tempi e delle Frustrazioni", desc: "Tollera l'attesa, gestisce la frustrazione e chiede aiuto opportunamente." }
+          }
+        }
+      }
+    },
+    disciplineEditor: {
+      programmaClasse: "Programma scolastico della classe",
+      programmaClasseDesc: "Specifica se l'alunno segue la programmazione didattica ministeriale prevista per il gruppo classe o se ha un percorso disciplinare individualizzato.",
+      segueProgramma: "Sì, segue il programma",
+      segueProgrammaDesc: "L'alunno segue le linee guida ministeriali ordinarie della classe.",
+      nonSegueProgramma: "No, non segue il programma",
+      nonSegueProgrammaDesc: "L'alunno segue una programmazione didattica semplificata o differenziata.",
+      obiettiviMateria: "Obiettivi da raggiungere per questa materia",
+      obiettiviMateriaDesc: "Indica le competenze e i traguardi d'apprendimento specifici previsti in questo anno per l'alunno:",
+      placeholderObiettivi: "Inserisci traguardi di competenza, abilità minime, facilitatori ed eventuali obiettivi intermedi...",
+      valutazioneQuadrimestrale: "Valutazione & Verifiche Quadrimestrali",
+      primoQuadrimestre: "Primo Quadrimestre",
+      placeholderPrimo: "Inserisci modalità di verifica, esiti ed eventuale livello di autonomia del primo quadrimestre...",
+      secondoQuadrimestre: "Secondo Quadrimestre",
+      placeholderSecondo: "Inserisci modalità di verifica, esiti finali conseguiti ed eventuale livello di autonomia a fine anno scolastico...",
+      salvaEContinua: "Salva area e continua"
+    },
+    relaxGames: {
+      cosaTiFaStareBene: "Cosa ti fa stare bene?",
+      caricaFotoVideo: "Carica foto o video rilassanti"
+    }
   },
   ar: {
     title: "my/our PEI",
     subtitle: "المشاركة النشطة بين المدرسة والأسرة",
     welcome: "my/our PEI",
     choose: "اختر من أي جهة نبدأ بإخبارنا عنكم",
+    chooseRole: "اختر مسارك",
     appRules: "قواعد التطبيق",
     peiExplanation: "ما هو PEI؟",
+    progettoVita: "مشروع الحياة",
+    progettoVitaContent: "مشروع الحياة (القانون 328/00) هو وثيقة ترافق خطة التعليم الفردية (PEI)، ولكن برؤية أوسع: يتعلق بمستقبل الطالب خارج المدرسة. يهدف إلى تحديد أهداف الاستقلالية، والاندماج الاجتماعي والمهني.\n\nاللوائح: يحدد المرسوم التشريعي 66/2017 والمرسوم الوزاري 182/2020 طرق صياغة خطة التعليم الفردية على أساس تصنيف ICF، مع دمج مشروع الحياة كأفق للمغزى لكل تدخل تعليمي.\n\nفائدته للطالب: يساعد في بناء مسار يحترم رغباته وشغفه ويعده ليكون مواطناً فعالاً ومستقلاً.",
     appRulesContent:
-      "مرحباً بكم في myPEI! إليكم كيفية استخدام التطبيق:\n1. اختر قسماً من الصفحة الرئيسية.\n2. املأ الحقول المطلوبة (يمكنك استخدام مساعدة الذكاء الاصطناعي للمصطلحات الصعبة).\n3. احفظ المسودة حتى لا تفقد البيانات.\n4. أكمل جميع الأقسام للحصول على صورة كاملة.",
+      "مرحباً بكم in myPEI! إليكم كيفية استخدام التطبيق:\n1. اختر قسماً من الصفحة الرئيسية.\n2. املأ الحقول المطلوبة (يمكنك استخدام مساعدة الذكاء الاصطناعي للمصطلحات الصعبة).\n3. احفظ المسودة حتى لا تفقد البيانات.\n4. أكمل جميع الأقسام للحصول على صورة completa.",
     caaTitle: "ما هو CAA؟",
     caaContent:
       "CAA (التواصل المعزز والبديل) هو مجموعة من الأدوات والاستراتيجيات التي تساعد من يجدون صعوبة في التحدث أو فهم اللغة. تُستخدم الصور للتعبير عن الاحتياجات والرغبات والأفكار.\n\nمثال: استخدام صورة كتاب لقول 'أريد أن أقرأ'.",
@@ -305,6 +654,19 @@ const translations = {
     next: "التالي",
     prev: "السابق",
     complete: "إكمال",
+    family: "العائلة",
+    schoolLabel: "المدرسة",
+    schoolFamily: "المدرسة-العائلة",
+    confirmAndClose: "تأكيد وإغلاق PEI",
+    tornaAlleAree: "العودة للمجالات",
+    tornaAllaScelta: "العودة للاختيار",
+    sezioneDedicataInsegnanti: "قسم مخصص للمعلمين والموظفين بالمدرسة.",
+    stiamoPreparando: "نحن نجهز هذا النشاط من أجلك!",
+    backToHome: "العودة إلى الصفحة الرئيسية",
+    backToChoice: "العودة للاختيار",
+    back: "رجوع",
+    familyDesc: "أخبرنا عن تاريخ الطالب وااحتياجاته من وجهة نظرك.",
+    schoolDesc: "الوصول إلى قسم الملاحظة والمراقبة المدرسية.",
     helpTitle: "مساعدة لغوية",
     helpDesc: "هل لديك شكوك حول مصطلح ما؟ انقر على أيقونة المعلومات لشرح بسيط.",
     whatIsPei: "ما هو PEI؟",
@@ -331,11 +693,99 @@ const translations = {
     autonomy: "الاستقلالية",
     learning: "التعلم",
     relation: "العلاقة",
+    communicationPlaceholder: "كيف يتواصل الطالب؟",
+    autonomyPlaceholder: "ماذا يمكنه أن يفعل بمفرده؟",
+    learningPlaceholder: "كيف يتعلم أشياء جديدة؟",
+    relationPlaceholder: "كيف يتفاعل مع الآخرين؟",
     deaf: "الطالب أصم",
     blind: "الطالب كفيف",
     studentRole: {
       title: "الطالب",
       description: "عبر عن نفسك وتواصل باحتياجاتك من خلال الرموز.",
+    },
+    student: {
+      chooseAction: "مرحباً! اختر ماذا تريد أن تفعل:",
+      myDay: "يومي",
+      myBag: "حقيبتي",
+      passport: "جواز السفر للتواصل",
+      choices: "خياراتي",
+      needs: "احتياجاتي",
+      feelings: "مشاعري",
+      autonomyDiary: "دفتر يوميات الاستقلالية",
+      relaxArea: "منطقة الاسترخاء",
+      myProgettoVita: "مشروع حياتي",
+      relaxBubbleTitle: "فقاعة الاسترخاء الخاصة بي",
+      relaxBubbleSub: "لحظات الهدوء الخاصة بي",
+      addActivity: "إضافة نشاط",
+      calmingExercises: "تمارين وأنشطة مهدئة",
+      soapBubblesBtn: "فقاعات الصابون",
+      stressBallBtn: "اضغط الكرة",
+      memoryBtn: "لعبة الذاكرة",
+      passportTitle: "جواز سفر التواصل myPEI",
+      passportCode: "الرمز: ID-",
+      createdWith: "تم إنشاؤه بواسطة myPEI",
+      activitiesSaved: "بطاقات محفوظة",
+      goBackToAutonomies: "العودة للاستقلالية",
+      myDiary: "دفتر يومياتي",
+      myConquests: "إنجازاتي",
+      addPhoto: "إضافة صورة",
+      uploadPhotoForObjective: "حمل صورة لهذا الهدف!",
+      subjectIgiene: "النظافة الشخصية",
+      subjectAbbigliamento: "الملابس",
+      subjectAlimentazione: "التغذية",
+      rewardCostruzioni: "ألعاب تركيب",
+      rewardBiscotti: "بسكويت",
+      rewardTablet: "جهاز لوحي",
+      visualAgenda: "الجدول البصري",
+      tokenActivity: "رمز النشاط",
+      dayDiary: "يوميات اليوم",
+      removeSquare: "إزالة مربع",
+      addSquare: "إضافة مربع",
+      activityArchive: "أرشيف الأنشطة",
+      whomArchive: "أرشيف مع من؟",
+      uploadOrSelectImages: "تحميل أو اختيار صور للجدول البصري",
+      uploadImages: "تحميل الصور",
+      archiveEmpty: "الأرشيف فارغ",
+      pauseYellow: "استراحة (أصفر)",
+      workBlue: "عمل (أزرق)",
+      hourColor: "الساعة / اللون",
+      choose: "اختر",
+      newImage: "صورة جديدة",
+      fromArchive: "من الأرشيف:",
+      deleteFromArchive: "حذف من الأرشيف",
+      activity: "النشاط",
+      withWhom: "مع من؟",
+      tokenEconomyTitle: "لوحة تحصيل رموز الأنشطة",
+      customizeToken: "تخصيص الرمز",
+      tokenArchive: "أرشيف الرموز",
+      selectOrCreateToken: "اختر أو حمل صورة الرمز",
+      removeToken: "إزالة الرمز",
+      chooseReward: "اختر جائزتك",
+      tapRewardToSelect: "اضغط على صورة لتحديدها كجائزة نهائية",
+      deleteReward: "حذف الجائزة المحملة",
+      uploadMore: "تحميل المزيد",
+      dailyDiaryTitle: "الدفتر اليومي",
+      diarySub: "احكِ يومك بالصور والتعليقات",
+      newEntry: "إدخال جديد",
+      uploadPhoto: "تحميل صورة",
+      date: "التاريخ",
+      weatherSereno: "صافٍ",
+      weatherNuvoloso: "غائم",
+      weatherPioggia: "مطر",
+      weatherVento: "رياح",
+      weatherNeve: "ثلج",
+      objectivesTitle: "أهداف اليوم",
+      addObjectivePlaceholder: "إضافة هدف...",
+      newContact: "جهات اتصال جديدة",
+      playWithSymbols: "استخدم الرموز للتواصل",
+      backToChoice: "العودة للاختيار",
+      goForward: "أمام",
+      backToHome: "العودة للرئيسية",
+      instructions: "تعليمات",
+      hideInfo: "إخفاء المعلومات",
+      notesForFamily: "ملاحظات للعائلة",
+      weGrowTogether: "نكبر معاً",
+      progettoVitaSub: "هنا يمكنك كتابة وتخيل مستقبلك، واستقلاليتك وكل ما ترغب في تعلمه أو القيام به بشكل أفضل عاماً بعد عام!",
     },
     school: {
       welcome: "مرحباً Cdc",
@@ -347,25 +797,81 @@ const translations = {
       educationalSupport: "الدعم التعليمي",
       placeholder: "أدخل هنا الملاحظات والأهداف لهذا المجال...",
     },
+    clickForInfo: "انقر فوق الرمز للحصول على معلومات",
+    photoAlbum: "ألبوم صور مهاراته/مهاراتها",
+    photoAlbumDesc: "قم بتحميل صور الأنشطة أو الرسومات أو الأعمال التي قام بها الطالب لمشاهدة وتوثيق ما يمكنه فعله!",
+    noPhotos: "لا توجد صور. قم بتحميل صورة لإنشاء الألبوم!",
+    uploadPhotoBtn: "تحميل صورة",
+    classFirst: "الصف الأول",
+    classSecond: "الصف الثاني",
+    classThird: "الصف الثالث",
+    progettoVitaTitle: "معلومات مشروع الحياة",
+    strengthsInstructionsTitle: "تعليمات نقاط القوة",
+    needsInstructionsTitle: "تعليمات الاحتياجات والصعوبات",
+    helpModals: {
+      guideTitle: "دليل ملء الاستمارة",
+      meaningTitle: "معنى هذا القسم:",
+      actionTitle: "ماذا تفعل / كيف تملأ الاستمارة:",
+      familyNoteTitle: "ملاحظات للأسرة:",
+      progettoVitaPerspectiveTitle: "من منظور مشروع الحياة:",
+      understandBtn: "لقد فهمت، متابعة",
+      strengths: {
+        meaning: "تمثل نقاط القوة المهارات والاهتمامات والأشياء التي يتفوق فيها الطالب أو التي يقوم بها بكل سرور ودافعية.",
+        action: "صف ما يجيد فعله بشكل أفضل، والسياقات التي يشعر فيها بالارتياح، ومواهبه الطبيعية، والطرق التي يمكن للمعلم من خلالها تعزيز هذه المهارات في المسار التعليمي اليومي."
+      },
+      needs: {
+        meaning: "تصف الاحتياجات والصعوبات الحواجز أو مجالات الضعف أو الأنشطة المحددة التي يحتاج فيها الطالب إلى المساعدة أو الوساطة أو الدعم المخصص.",
+        action: "حدد المواقف والمهام التي يواجه فيها الطالب أكبر العقبات، والمواضع التي يحتاج فيها بشدة إلى شخص داعم/مرشد، وحدد قنوات الاتصال أو الأدوات الملموسة التي تسهل التغلب على هذه الحواجز."
+      },
+      progettoVita: {
+        meaning: "يجمع هذا القسم توقعاتكم ورغباتكم ورؤيتكم لمستقبل ابنكم/ابنتكم.",
+        action: "ندعوكم لتحديد الأهداف التعليمية، أو الاستقلالية الشخصية، أو الأهداف الاجتماعية والعلائقية التي ترغبون في أن يحققها الطالب، مقسمة على كل سنة من السنوات الثلاث للمدرسة الإعدادية (المدرسة المتوسطة)."
+      }
+    },
     genogram: {
       title: "تاريخ العائلة",
+      desc: "اسحب الأعضاء لنقلهم. يتم إنشاء العلاقات تلقائيًا.",
+      addMember: "إضافة قريب",
       details: "تفاصيل العضو",
       name: "الاسم واللقب",
       relation: "العلاقة",
       age: "العمر",
+      job: "العمل",
+      gender: "الجنس",
+      male: "رجل",
+      female: "امرأة",
+      other: "آخر",
+      uploadPhoto: "تحميل صورة",
+      placeholderSelect: "اختر قريب",
+      emptyState: "حدد عضوًا في المخطط لتعديل تفاصيله أو إنشاء علاقات.",
+      createRelation: "إنشاء علاقة",
+      cancelRelation: "إلغاء العلاقة",
+      selectToConnect: "حدد عضوًا آخر لإنشاء علاقة",
       relations: {
         student: "الطالب/ة",
         mother: "الأم",
         father: "الأب",
-        sister: "أخت",
-        brother: "أخ",
+        sister: "الأخت",
+        brother: "الأخ",
+        gmother_m: "الجدة لأم",
+        gfather_m: "الجد لأم",
+        gmother_p: "الجدة لأب",
+        gfather_p: "الجد لأب",
+        uncle: "الخال/العم",
+        aunt: "الخالة/العمة",
+        cousin: "ابن العم/الخال",
       },
     },
     sections: [
       {
         id: "info_history",
         title: "تاريخ الطالب",
-        description: "المعلومات الأساسية والمسار المدرسي",
+        description: "المعلومات الأساسية، المسار المدرسي، الاحتياجات والموارد",
+        rules: [
+          "أدخل البيانات الشخصية الصحيحة",
+          "حدد المدارس التي تم الالتجاق بها بالترتيب",
+          "حدد نقاط القوة والاحتياجات العامة",
+        ],
         color: "bg-blue-600",
         textColor: "text-blue-600",
         image: "/alunno.png",
@@ -374,6 +880,11 @@ const translations = {
         id: "family",
         title: "تاريخ العائلة",
         description: "خريطة القرابة والعائلة",
+        rules: [
+          "أضف أفراد العائلة الرئيسيين",
+          "يتم إنشاء الروابط تلقائيًا",
+          "يمكنك تحميل صور أفراد العائلة",
+        ],
         color: "bg-blue-600",
         textColor: "text-blue-600",
         image: "/famiglia.png",
@@ -381,7 +892,12 @@ const translations = {
       {
         id: "needs_strengths",
         title: "الاحتياجات والموارد",
-        description: "التواصل والاستقلالية والتعلم",
+        description: "التواصل، الاستقلالية، التعلم والعلاقات",
+        rules: [
+          "صف كيف يتواصل الطالب",
+          "حدد مستوى الاستقلالية",
+          "حدد كيف يتعلم ويتفاعل مع الآخرين",
+        ],
         color: "bg-emerald-600",
         textColor: "text-blue-600",
         image: "/imparare.png",
@@ -398,14 +914,228 @@ const translations = {
         image: "/sentimenti.png",
       },
     ],
+    
+    schoolManager: {
+      gestioneDidatticaClasse: "إدارة التدريس والصف",
+      milestoneApprovazione: "اعتماد خطة PEI",
+      milestoneVerificaIntermedia: "التحقق المرحلي (مراجعة PEI)",
+      milestoneVerificaFinale: "التحقق النهائي (PEI)",
+      didatticaOsservazione: "التدريس والملاحظة",
+      didatticaOsservazioneDesc: "أدوات الملاحظة والمنهجيات التعليمية",
+      disciplineScolastiche: "المواد الدراسية",
+      disciplineScolasticheDesc: "المهارات المعرفية والمواد الدراسية وشبكات الملاحظة",
+      calendarioAppuntamenti: "تقويم المواعيد",
+      calendarioAppuntamentiDesc: "مجالس المعهد، اجتماعات الصف واجتماعات GLO",
+      archivioDocumenti: "أرشيف المستندات",
+      archivioDocumentiDesc: "ملف محمي لمحاضر الاجتماعات ومسودات PEI",
+      tornaIndietro: "العودة للخلف",
+      sezioneDiscipline: "قسم المواد الدراسية",
+      calendarioGloScuola: "تقويم GLO والمدرسة",
+      agendaIncontriScolastici: "جدول الاجتماعات المدرسية",
+      agendaIncontriDesc: "تنظيم ومتابعة جميع العلاقات مع أولياء الأمور واجتماعات التخطيط التعليمي مع الفريق.",
+      oggi: "اليوم",
+      tooltipMesePrec: "الشهر السابق",
+      tooltipMeseSucc: "الشهر التالي",
+      ministerialeGlo: "وزاري GLO",
+      scuolaFamigliaLabel: "المدرسة-العائلة",
+      teamConsigli: "الفريق والمجالس",
+      impegniGiornalieri: "المواعيد اليومية",
+      nessunImpegno: "لا يوجد موعد مجدول",
+      compilaFormAggiungi: "املأ النموذج أدناه لإضافة اجتماع في هذا اليوم.",
+      scadenzaPei: "موعد PEI النهائي",
+      tooltipCancella: "إلغاء الموعد",
+      annotazioniRelazione: "الملاحظات والتقرير",
+      inserisciVerbali: "أدخل هنا ملخص المحاضر أو قرارات الاجتماع...",
+      aggiungiImpegno: "إضافة موعد",
+      oggettoTitolo: "الموضوع / العنوان",
+      placeholderTitoloImpegno: "مثلاً مقابلة أولياء الأمور أو اجتماع تنسيق",
+      ora: "الساعة",
+      tipologia: "النوع",
+      noteLink: "الملاحظات أو رابط الفيديو",
+      placeholderLinkMeet: "رابط Meet أو تفاصيل الحضور...",
+      salvaInAgenda: "حفظ في جدول المواعيد",
+      sincAnnuale: "المزامنة السنوية",
+      sincAnnualeDesc: "يتم مزامنة التقويم الشهري مع المواعيد النهائية لـ PEI (أكتوبر، يناير، يونيو) المدمجة تلقائيًا من التخطيط الوزاري.",
+      archivioDocumentiAula: "أرشيف مستندات الصف",
+      fascicoloPeiAlunno: "ملف PEI الخاص بالطالب",
+      fascicoloPeiDesc: "مساحة أرشيف محمية لتحميل محاضر GLO والشهادات والوثائق المدرسية.",
+      caricaDocumento: "تحميل مستند",
+      caricaFileFascicolo: "تحميل ملف في المجلد",
+      nomeIdentificativoFile: "الاسم التعريفي للملف",
+      placeholderNomeFile: "مثلاً PEI_الموقع_العائلة_الثانوية",
+      categoria: "الفئة",
+      salvaNelCloud: "حفظ في السحابة",
+      trascinaQuiFile: "اسحب ملف الصف هنا لتحميله",
+      supportaFile: "يدعم ملفات PDF، DOCX، PNG حتى 20 ميجابايت",
+      placeholderFiltraDoc: "تصفية المستندات حسب الاسم...",
+      tutti: "الكل",
+      nessunFileArchiviato: "لا يوجد ملفات مؤرشفة",
+      nessunFileArchiviatoDesc: "اختر فئة واضغط على \"+ تحميل\" لملء الأرشيف.",
+      gdprTitle: "معالجة البيانات الحساسة المتوافقة مع GDPR",
+      gdprDesc: "جميع الوثائق التي تم تحميلها في ملف PEI محمية بالتشفير التام بين الطرفين ومتاحة فقط للأعضاء المعتمدين في GLO الخاص بالطالب.",
+      catPei: "نموذج PEI",
+      catVerbale: "محضر GLO",
+      catCertificazione: "شهادة طبية",
+      catAltro: "مستند آخر",
+      typeFamiglia: "اجتماع العائلة",
+      typeGlo: "دعوة GLO",
+      typeConsiglio: "مجلس الصف",
+      typeAltro: "التزام آخر",
+      prefixMilestone: "[مرحلة وزارية]",
+      deadlineNoteTemplate: "الموعد النهائي لـ GLO في نهاية {month}. حالة إكمال PEI: {status}",
+      statusVerificato: "تم التحقق 🟢",
+      statusInCorso: "قيد العمل 🟡",
+      altri: "آخرين",
+      aggiuntoIl: "أضيف في:",
+      downloadAlert: "بدء التنزيل الآمن للملف: {name}",
+      tooltipScarica: "تنزيل الملف",
+      tooltipCancellaFile: "حذف الملف",
+      months: ["يناير", "فبراير", "مارس", "أبريل", "مايو", "يونيو", "يوليو", "أغسطس", "سبتمبر", "أكتوبر", "نوفمبر", "ديسمبر"],
+      weekDays: ["الإثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"]
+    },
+    didacticObservation: {
+      labelDidatticaOsservazione: "التدريس والملاحظة",
+      descDidatticaOsservazione: "شبكات الملاحظة والمسارات المخصصة للمجالات الوزارية للطالب.",
+      tornaAlMenu: "العودة للقائمة",
+      tornaAlleAree: "العودة للمجالات",
+      programmazioneArea: "برمجة المجال",
+      salvataggioAttivo: "حفظ تلقائي نشط",
+      sezione01: "القسم 01",
+      tipoPercorso: "نوع المسار (PEI)",
+      pathA: "المسار أ - عادي",
+      pathADesc: "مع اختبارات مكافئة وامتحانات عادية.",
+      pathB: "المسار ب - مبسط",
+      pathBDesc: "اختبارات معدلة، أهداف مصغرة أو إعفاءات محددة.",
+      pathC: "المسار ج - مخصص",
+      pathCDesc: "أهداف تعليمية لا ترجع إلى الأهداف الوزارية العامة.",
+      sezione02: "القسم 02",
+      grigliaOsservazione: "شبكة الملاحظة النوعية",
+      indicatore: "المؤشر",
+      valutazioneQualificatore: "تقييم التوافق (مؤهل ICF):",
+      contestoNote: "السياق / ملاحظات:",
+      placeholderNote: "نطاقات المساعدة، التعويض، الميسرات المثبتة...",
+      obiettiviPersonalizzati: "الأهداف والأنشطة المخصصة",
+      placeholderObiettivi: "معايير الكفاءة المحددة، المهارات المتوقع تحقيقها والميسرات المحددة...",
+      criteriValutazione: "معايير التحقق والتقييم",
+      placeholderVerifica: "التدابير التعويضية، وقت إضافي للاختبارات، الاختبارات المعدلة المتفق عليها...",
+      salvaTornaAree: "حفظ والعودة للمجالات",
+      salvataTempoReale: "تم حفظ التعديل في الوقت الفعلي",
+      evalLevels: {
+        forza: "نقطة قوة",
+        nessuna: "لا يوجد",
+        lieve: "خفيفة",
+        media: "متوسطة",
+        grave: "شديدة",
+        completa: "كاملة",
+        criticita: "عقبة/صعوبة"
+      },
+      areas: {
+        humanities: {
+          title: "المجال الإنساني",
+          desc: "اللغة الإيطالية، التاريخ، الجغرافيا. يجمع هذا القسم الوظائف المعرفية العليا، والذاكرة التاريخية/الجغرافية ومحور اللغة والتواصل المكتوب والمقروء بالكامل.",
+          indicators: {
+            b1140: { title: "b1140 – التوجيه الزمني", desc: "الوعي باليوم والغد والأمس والتاريخ والشهر والسنة (أساسي لتحديد الأحداث التاريخية)." },
+            b1141: { title: "b1141 – التوجيه المكاني", desc: "الوعي بمكان التواجد والمدينة والدولة والمحيط (أساسي للجغرافيا)." },
+            b1441: { title: "b1441 – الذاكرة طويلة المدى", desc: "تسمح بتخزين المعلومات الشخصية والدلالية." },
+            b1670: { title: "b1670 – فهم اللغة", desc: "فك رموز الرسائل الشفهية أو المكتوبة أو غيرها للحصول على معناها." },
+            b1671: { title: "b1671 – التعبير اللغوي", desc: "إنتاج رسائل ذات مغزى في شكل شفهي أو مكتوب أو أشكال أخرى." },
+            d1400: { title: "d1400 – اكتساب مهارات التعرف على الرموز", desc: "فك رموز الأشكال والأيقونات والأحرف والحروف الأبجدية والكلمات." },
+            d1402: { title: "d1402 – فهم الكلمات والجمل المكتوبة", desc: "فهم معنى النصوص المكتوبة." },
+            d1661: { title: "d1661 – فهم اللغة المكتوبة", desc: "استيعاب طبيعة ومعنى اللغة في القراءة." },
+            d1700: { title: "d1700 – استخدام مهارات الكتابة العامة", desc: "استخدام الكلمات التي تنقل المعنى المناسب." },
+            d310: { title: "d310 – التواصل وتلقي الرسائل الشفهية", desc: "فهم المعاني الحرفية والضمنية في لغة الكلام." },
+            d325: { title: "d325 – التواصل وتلقي الرسائل المكتوبة", desc: "فهم معنى الرسائل المنقولة عبر لغة الكتابة." }
+          }
+        },
+        scientific: {
+          title: "المجال العلمي التكنولوجي",
+          desc: "الرياضيات، العلوم، التكنولوجيا. يشمل العمليات الحسابية، والمعرفة العددية، والقدرات المنطقية للتجريد وحل المشكلات القائمة على التسلسلات والإجراءات.",
+          indicators: {
+            b163: { title: "b163 – الوظائف المعرفية الأساسية", desc: "اكتساب المعرفة الأساسية حول الأشياء والأحداث والتجارب." },
+            b1640: { title: "b1640 – التجريد", desc: "إنشاء أفكار أو صفات أو خصائص عامة بدءاً من حقائق ملموسة أو حالات فعلية." },
+            b1720: { title: "b1720 – الحساب البسيط", desc: "الحساب بالأرقام (الجمع، الطرح، الضرب، القسمة)." },
+            b1721: { title: "b1721 – الحساب المعقد", desc: "ترجمة المشكلات اللفظية والصيغ الرياضية إلى إجراءات حسابية." },
+            d1370: { title: "d1370 – اكتساب المفاهيم الأساسية", desc: "الحجم، الشكل، الكمية، الطول، التساوي، التضاد." },
+            d1371: { title: "d1371 – اكتساب المفاهيم المعقدة", desc: "مفاهيم التصنيف، التجميع، التراجع، التسلسل." },
+            d1500: { title: "d1500 – التعرف على الأرقام والرموز", desc: "التعرف والاستخدام." },
+            d1501: { title: "d1501 – اكتساب مهارات الثقافة العددية", desc: "مفهوم الأرقام والمجموعات." },
+            d1502: { title: "d1502 – استخدام العمليات الحسابية الأساسية", desc: "الجمع، الطرح، الضرب، القسمة." },
+            d1720: { title: "d1720 – استخدام مهارات الحساب البسيط", desc: "تطبيق المفاهيم لإجراء الحسابات." },
+            d1721: { title: "d1721 – استخدام مهارات الحساب المعقد", desc: "استخدام الإجراءات والطرق الرياضية (الجبر، التفاضل والتكامل، الهندسة)." },
+            d1750: { title: "d1750 – حل المشكلات البسيطة", desc: "تحديد وتحليل مسألة واحدة وتطوير الحلول وتنفيذها." }
+          }
+        },
+        foreignLanguages: {
+          title: "اللغات الأجنبية",
+          desc: "الإنجليزية، الإسبانية",
+          indicators: {
+            lang_comp: { title: "الاستماع والفهم (لغة ثانية)", desc: "فهم التعليمات وصيغ الترحيب والجمل البسيطة باللغة." },
+            lang_prod: { title: "القراءة والاستجابة", desc: "ربط الرسائل المكتوبة البسيطة بالصور أو الإجابة على أسئلة قصيرة." },
+            lang_vocab: { title: "الإنتاج الصوتي/الإيمائي", desc: "التعبير أو إلقاء التحية باستخدام مفردات أساسية في اللغة الثانية." }
+          }
+        },
+        artsMusicSports: {
+          title: "المجال الفني/الموسيقي/الحركي",
+          desc: "الفن والصور, الموسيقى، التربية البدنية",
+          indicators: {
+            art_regole: { title: "التنسيق الحركي والمكاني", desc: "التوجيه في صالة الألعاب الرياضية وتأدية المسارات والتحكم في الوضعية." },
+            art_coordin: { title: "احترام قواعد اللعبة", desc: "المشاركة في الأنشطة الحركية الجماعية مع احترام الزملاء والحكم." },
+            art_creativ: { title: "التعبير الفني واليدوي", desc: "استخدام اللغات الرسومية والمجسمة والتحكم في المهارات الحركية الدقيقة." },
+            art_music: { title: "اللغة الموسيقية", desc: "التعرف على الإيقاعات والأصوات أو الغناء أو إعادة إنتاج الأصوات بآلات صغيرة." }
+          }
+        },
+        civics: {
+          title: "التعليم التفاعلي",
+          desc: "التربية المدنية، بديل الدين، واللغة الأولى والثانية",
+          indicators: {
+            civ_regole: { title: "المواطنة والعلاقات", desc: "إظهار القدرة على التعايش المدني والتضامن مع مجموعة الصف." },
+            civ_amb: { title: "احترام البيئة", desc: "احترام الأثاث والمواد المدرسية والمحافظة عليها وفرز النفايات." },
+            civ_digit: { title: "الوعي الرقمي", desc: "استخدام الأجهزة التكنولوجية مع احترام قواعد السلوك (Netiquette)." }
+          }
+        },
+        educationalSupport: {
+          title: "الدعم التعليمي",
+          desc: "الدعم التعليمي والمساعدة على الاستقلالية",
+          indicators: {
+            edu_auton: { title: "الاستقلالية الشخصية", desc: "العناية بالنظافة الشخصية والتغذية والملابس بشكل مستقل." },
+            edu_gestione: { title: "تنظيم المواد", desc: "إعداد المقلمة والمذكرات والدفاتر وفقاً لجدول الحصص." },
+            edu_relaz: { title: "إدارة الوقت والإحباط", desc: "تحمل الانتظار وإدارة الإحباط وطلب المساعدة بشكل مناسب." }
+          }
+        }
+      }
+    },
+    disciplineEditor: {
+      programmaClasse: "البرنامج الدراسي للصف",
+      programmaClasseDesc: "حدد ما إذا كان الطالب يتبع المنهج الدراسي الوزاري المقرر لمجموعة الصف أو إذا كان لديه مسار تعليمي فردي.",
+      segueProgramma: "نعم، يتبع البرنامج",
+      segueProgrammaDesc: "يتبع الطالب التوجيهات الوزارية العادية للصف.",
+      nonSegueProgramma: "لا، لا يتبع البرنامج",
+      nonSegueProgrammaDesc: "يتبع الطالب منهجاً دراسياً مبسطاً أو مخصصاً.",
+      obiettiviMateria: "الأهداف المراد تحقيقها لهذه المادة",
+      obiettiviMateriaDesc: "حدد الكفاءات وأهداف التعلم المحددة المقررة هذا العام للطالب:",
+      placeholderObiettivi: "أدخل معايير الكفاءة، الحد الأدنى من المهارات، الميسرات والأهداف المرحلية المحتملة...",
+      valutazioneQuadrimestrale: "التقييم والاختبارات الفصلية",
+      primoQuadrimestre: "الفصل الدراسي الأول",
+      placeholderPrimo: "أدخل طرق التقييم والنتائج ومستوى الاستقلالية المحتمل للفصل الأول...",
+      secondoQuadrimestre: "الفصل الدراسي الثاني",
+      placeholderSecondo: "أدخل طرق التقييم والنتائج النهائية المحققة ومستوى الاستقلالية في نهاية العام الدراسي...",
+      salvaEContinua: "حفظ المادة والمتابعة"
+    },
+    relaxGames: {
+      cosaTiFaStareBene: "ما الذي يجعلك تشعر بالراحة؟",
+      caricaFotoVideo: "تحميل صور أو مقاطع فيديو مهدئة"
+    }
   },
   es: {
-    title: "my/our PEI",
-    subtitle: "",
-    welcome: "my/our PEI",
+    title: "my/our/PEI",
+    subtitle: "participación activa escuela-familia para el alumno",
+    welcome: "my/our/PEI",
     choose: "elige por dónde empezar a contarnos sobre ti",
+    chooseRole: "elige tu camino",
     appRules: "Reglas de la App",
     peiExplanation: "¿Qué es el PEI?",
+    progettoVita: "Proyecto de Vida",
+    progettoVitaContent: "El Proyecto de Vida (L. 328/00) es un documento que acompaña al PEI, pero tiene una visión más amplia: se refiere al futuro del alumno más allá de la escuela. Sirve para definir objetivos de autonomía, inclusión social y laboral.\n\nNormativa: El D.Lgs 66/2017 y el D.I. 182/2020 definen las modalidades de redacción del PEI sobre base ICF, integrando el Proyecto de Vida como horizonte de sentido para cada intervención educativa.\n\nDe qué sirve para el alumno: Sirve para construir un camino que respecte sus deseos, sus pasiones y que lo prepare para ser un ciudadano activo e independiente.",
     appRulesContent:
       "¡Bienvenidos a myPEI! Así se usa la app:\n1. Elige una sección en la home.\n2. Completa los campos (usa la IA para términos difíciles).\n3. Guarda para no perder datos.\n4. Completa todo para tener el cuadro completo.",
     caaTitle: "¿Qué es la CAA?",
@@ -417,6 +1147,19 @@ const translations = {
     next: "Siguiente",
     prev: "Atrás",
     complete: "Completar",
+    family: "Familia",
+    schoolLabel: "Escuela",
+    schoolFamily: "Escuela-Familia",
+    confirmAndClose: "CONFIRMAR Y CERRAR PEI",
+    tornaAlleAree: "Volver a las áreas",
+    tornaAllaScelta: "Volver a la selección",
+    sezioneDedicataInsegnanti: "Sección dedicada a los docentes y al personal escolar.",
+    stiamoPreparando: "¡Estamos preparando esta actividad para ti!",
+    backToHome: "Volver al Inicio",
+    backToChoice: "Volver a la selección",
+    back: "Atrás",
+    familyDesc: "Cuéntanos la historia y las necesidades del alumno desde tu punto de vista.",
+    schoolDesc: "Accede a la sección de observación y seguimiento escolar.",
     helpTitle: "Ayuda Lingüística",
     helpDesc: "¿Dudas con un término? Clic en el icono info.",
     whatIsPei: "¿Qué es el PEI?",
@@ -431,19 +1174,112 @@ const translations = {
       media: "Educación Secundaria Inferior",
       superiore: "Educación Secundaria Superior",
     },
+    schoolHistoryPlaceholder: "Nombre de la escuela...",
+    schoolYearsPlaceholder: "Años (ej. 2020-2023)",
     freeTime: "Tiempo Libre",
+    freeTimePlaceholder: "¿Qué hace el alumno en su tiempo libre? (deportes, pasatiempos, amigos...)",
     strengths: "Fortalezas",
     needs: "Necesidades",
+    strengthsPlaceholder: "¿Qué le gusta hacer al alumno?",
+    needsPlaceholder: "¿En qué actividades necesita ayuda?",
     communication: "Comunicación",
     autonomy: "Autonomía",
     learning: "Aprendizaje",
     relation: "Relación",
+    communicationPlaceholder: "¿Cómo se comunica el alumno?",
+    autonomyPlaceholder: "¿Qué sabe hacer por sí mismo?",
+    learningPlaceholder: "¿Cómo aprende cosas nuevas?",
+    relationPlaceholder: "¿Cómo se relaciona con los demás?",
     deaf: "El alumno es sordo",
     blind: "El alumno es ciego",
     studentRole: {
       title: "Alumno",
       description:
         "Exprésate y comunica tus necesidades a través de los símbolos.",
+    },
+    student: {
+      chooseAction: "¡Hola! Elige lo que quieres hacer:",
+      myDay: "Mi día",
+      myBag: "Mi mochila",
+      passport: "Pasaporte comunicativo",
+      choices: "Opciones",
+      needs: "Necesidades",
+      feelings: "Sentimientos",
+      autonomyDiary: "Diario de autonomía",
+      relaxArea: "Área de relax",
+      myProgettoVita: "Mi proyecto de vida",
+      relaxBubbleTitle: "Mi burbuja de relax",
+      relaxBubbleSub: "Mis momentos de tranquilidad",
+      addActivity: "Añadir actividad",
+      calmingExercises: "Ejercicios y Actividades Calmantes",
+      soapBubblesBtn: "Burbujas de Jabón",
+      stressBallBtn: "Aprieta la Pelota",
+      memoryBtn: "Memory",
+      passportTitle: "Pasaporte Comunicativo myPEI",
+      passportCode: "Código: ID-",
+      createdWith: "Creado con myPEI",
+      activitiesSaved: "fichas guardadas",
+      goBackToAutonomies: "Volver a autonomías",
+      myDiary: "Mi Diario",
+      myConquests: "Mis logros",
+      addPhoto: "Añadir Foto",
+      uploadPhotoForObjective: "¡Sube una foto para este objetivo!",
+      subjectIgiene: "Higiene",
+      subjectAbbigliamento: "Vestimenta",
+      subjectAlimentazione: "Alimentación",
+      rewardCostruzioni: "Construcciones",
+      rewardBiscotti: "Galletas",
+      rewardTablet: "Tablet",
+      visualAgenda: "Agenda Visual",
+      tokenActivity: "Token de Actividad",
+      dayDiary: "Diario del día",
+      removeSquare: "Quitar casilla",
+      addSquare: "Añadir casilla",
+      activityArchive: "Archivo de Actividades",
+      whomArchive: "Archivo ¿Con Quién?",
+      uploadOrSelectImages: "Sube o selecciona imágenes para la agenda",
+      uploadImages: "Subir Imágenes",
+      archiveEmpty: "El archivo está vacío",
+      pauseYellow: "Pausa (Amarillo)",
+      workBlue: "Trabajo (Azul)",
+      hourColor: "Hora / Color",
+      choose: "Elegir",
+      newImage: "Nueva Imagen",
+      fromArchive: "Del archivo:",
+      deleteFromArchive: "Eliminar del archivo",
+      activity: "Actividad",
+      withWhom: "¿Con quién?",
+      tokenEconomyTitle: "ECONOMÍA DE TOKENS DE ACTIVIDADES",
+      customizeToken: "Personalizar Token",
+      tokenArchive: "Archivo de Tokens",
+      selectOrCreateToken: "Selecciona o sube la imagen del token",
+      removeToken: "Quitar Token",
+      chooseReward: "Elige tu premio",
+      tapRewardToSelect: "Toca una imagen para seleccionarla como premio final",
+      deleteReward: "Eliminar premio subido",
+      uploadMore: "Subir más",
+      dailyDiaryTitle: "Diario Diario",
+      diarySub: "Cuenta tu día con fotos y comentarios",
+      newEntry: "Nueva Entrada",
+      uploadPhoto: "Subir Foto",
+      date: "Fecha",
+      weatherSereno: "Despejado",
+      weatherNuvoloso: "Nublado",
+      weatherPioggia: "Lluvia",
+      weatherVento: "Viento",
+      weatherNeve: "Nieve",
+      objectivesTitle: "OBJETIVOS DEL DÍA",
+      addObjectivePlaceholder: "Añadir un objetivo...",
+      newContact: "Nuevo Contacto",
+      playWithSymbols: "Usa símbolos para comunicarte",
+      backToChoice: "Volver a la selección",
+      goForward: "Adelante",
+      backToHome: "Volver al inicio",
+      instructions: "Instrucciones",
+      hideInfo: "Ocultar Info",
+      notesForFamily: "Notas para la Familia",
+      weGrowTogether: "Crecemos Juntos",
+      progettoVitaSub: "¡Aquí puedes escribir e imaginar tu futuro, tu autonomía y todo lo que deseas aprender o hacer mejor año tras año!",
     },
     school: {
       welcome: "Bienvenido Cdc",
@@ -455,25 +1291,81 @@ const translations = {
       educationalSupport: "Apoyo Educativo",
       placeholder: "Inserte aquí observaciones y objetivos...",
     },
+    clickForInfo: "Haz clic en el símbolo para información",
+    photoAlbum: "Álbum de fotos de sus habilidades",
+    photoAlbumDesc: "¡Sube fotos de las actividades, dibujos o trabajos realizados por el alumno para ver y documentar lo que sabe hacer!",
+    noPhotos: "No hay fotos presentes. ¡Sube una foto para crear el álbum!",
+    uploadPhotoBtn: "Subir foto",
+    classFirst: "Primer Año",
+    classSecond: "Segundo Año",
+    classThird: "Tercer Año",
+    progettoVitaTitle: "Información del Proyecto de Vida",
+    strengthsInstructionsTitle: "Instrucciones Fortalezas",
+    needsInstructionsTitle: "Instrucciones Necesidades",
+    helpModals: {
+      guideTitle: "Guía de cumplimentación",
+      meaningTitle: "Significado de la sección:",
+      actionTitle: "¿Qué hacer / Cómo rellenar?:",
+      familyNoteTitle: "Notas para la Familia:",
+      progettoVitaPerspectiveTitle: "Desde la perspectiva del Proyecto de Vida:",
+      understandBtn: "Entendido, continuar",
+      strengths: {
+        meaning: "Las fortalezas representan las habilidades, los intereses y las cosas en las que el alumno destaca o que realiza con agrado y motivación.",
+        action: "Describe qué es lo que mejor sabe hacer, los contextos en los que se siente cómodo, sus talentos naturales y de qué maneras el docente puede potenciar estas competencias en el trayecto educativo cotidiano."
+      },
+      needs: {
+        meaning: "Las necesidades y dificultades describen las barreras, las áreas de fragilidad o las actividades específicas en las que el alumno requiere asistencia, mediación o un apoyo personalizado.",
+        action: "Indica en qué situaciones y tareas el alumno encuentra mayores obstáculos, dónde necesita más una figura de apoyo/guía, e indica qué canales de comunicación o herramientas concretas facilitan la superación de las barreras."
+      },
+      progettoVita: {
+        meaning: "Esta sección recoge vuestras expectativas, deseos y visiones sobre el futuro de vuestro hijo/a.",
+        action: "Os invitamos a indicar los objetivos educativos, de autonomía personal, social o relacional que os gustaría que el alumno alcanzara, divididos para cada uno de los tres años de la escuela secundaria de primer grado (escuela media)."
+      }
+    },
     genogram: {
       title: "Historia Familiar",
+      desc: "Arrastra los miembros para moverlos. Los lazos se crean automáticamente.",
+      addMember: "Añadir familiar",
       details: "Detalles del Miembro",
       name: "Nombre y Apellido",
       relation: "Relación",
       age: "Edad",
+      job: "Trabajo",
+      gender: "Género",
+      male: "Hombre",
+      female: "Mujer",
+      other: "Otro",
+      uploadPhoto: "Subir foto",
+      placeholderSelect: "Seleccionar familiar",
+      emptyState: "Selecciona un miembro en el gráfico para modificar sus detalles o crear lazos.",
+      createRelation: "Crear lazo",
+      cancelRelation: "Cancelar lazo",
+      selectToConnect: "Selecciona otro miembro para crear un lazo",
       relations: {
         student: "Alumno/a",
         mother: "Madre",
         father: "Padre",
         sister: "Hermana",
         brother: "Hermano",
+        gmother_m: "Abuela materna",
+        gfather_m: "Abuelo materno",
+        gmother_p: "Abuela paterna",
+        gfather_p: "Abuelo paterno",
+        uncle: "Tío",
+        aunt: "Tía",
+        cousin: "Primo/a",
       },
     },
     sections: [
       {
         id: "info_history",
         title: "Historia Alumno",
-        description: "Información base y trayectoria",
+        description: "Información básica, trayectoria escolar, necesidades y recursos",
+        rules: [
+          "Introduce los datos personales correctos",
+          "Especifica las escuelas a las que asistió en orden",
+          "Indica las fortalezas y necesidades generales",
+        ],
         color: "bg-blue-600",
         textColor: "text-blue-600",
         image: "/alunno.png",
@@ -481,7 +1373,12 @@ const translations = {
       {
         id: "family",
         title: "Historia Familiar",
-        description: "Mapa de parentesco",
+        description: "Mapa de parentesco y familia",
+        rules: [
+          "Añade a los miembros principales de la familia",
+          "Los lazos se crean automáticamente",
+          "Puedes subir fotos de los miembros de la familia",
+        ],
         color: "bg-blue-600",
         textColor: "text-blue-600",
         image: "/famiglia.png",
@@ -489,7 +1386,12 @@ const translations = {
       {
         id: "needs_strengths",
         title: "Necesidades y Recursos",
-        description: "Comunicación y autonomía",
+        description: "Comunicación, autonomía, aprendizaje y relación",
+        rules: [
+          "Describe cómo se comunica el alumno",
+          "Indica el nivel de autonomía",
+          "Especifica cómo aprende y se relaciona",
+        ],
         color: "bg-emerald-600",
         textColor: "text-blue-600",
         image: "/imparare.png",
@@ -506,9 +1408,219 @@ const translations = {
         image: "/sentimenti.png",
       },
     ],
+    
+    schoolManager: {
+      gestioneDidatticaClasse: "Gestión y Didáctica del Aula",
+      milestoneApprovazione: "Aprobación del PEI",
+      milestoneVerificaIntermedia: "Verificación Intermedia (Verificación PEI)",
+      milestoneVerificaFinale: "Verificación Final (PEI)",
+      didatticaOsservazione: "Didáctica y Observación",
+      didatticaOsservazioneDesc: "Herramientas de observación y metodologías didácticas",
+      disciplineScolastiche: "Asignaturas Escolares",
+      disciplineScolasticheDesc: "Habilidades cognitivas, asignaturas y tablas de observación",
+      calendarioAppuntamenti: "Calendario de Citas",
+      calendarioAppuntamentiDesc: "Consejos escolares, reuniones de clase y encuentros GLO",
+      archivioDocumenti: "Archivo de Documentos",
+      archivioDocumentiDesc: "Expediente protegido para actas de reuniones y borradores de PEI",
+      tornaIndietro: "Volver atrás",
+      sezioneDiscipline: "Sección de Asignaturas",
+      calendarioGloScuola: "Calendario GLO y Escuela",
+      agendaIncontriScolastici: "Agenda de Encuentros Escolares",
+      agendaIncontriDesc: "Organice y realice el seguimiento de todas las relaciones con los padres y las reuniones de planificación didáctica con el equipo.",
+      oggi: "Hoy",
+      tooltipMesePrec: "Mes anterior",
+      tooltipMeseSucc: "Mes siguiente",
+      ministerialeGlo: "Ministerial GLO",
+      scuolaFamigliaLabel: "Escuela-Familia",
+      teamConsigli: "Equipo y consejos",
+      impegniGiornalieri: "Tareas Diarias",
+      nessunImpegno: "No hay citas programadas",
+      compilaFormAggiungi: "Complete el siguiente formulario para añadir una reunión en este día.",
+      scadenzaPei: "Fecha límite de PEI",
+      tooltipCancella: "Cancelar cita",
+      annotazioniRelazione: "Anotaciones e Informe",
+      inserisciVerbali: "Inserte aquí las actas resumidas o las decisiones de la reunión...",
+      aggiungiImpegno: "Añadir Cita",
+      oggettoTitolo: "Asunto / Título",
+      placeholderTitoloImpegno: "ej. Entrevista con padres o reunión de coordinación",
+      ora: "Hora",
+      tipologia: "Tipo",
+      noteLink: "Notas o enlace de videoconferencia",
+      placeholderLinkMeet: "Enlace Meet o detalles de asistencia...",
+      salvaInAgenda: "Guardar en Agenda",
+      sincAnnuale: "Sincronización Anual",
+      sincAnnualeDesc: "El calendario mensual está sincronizado con las fechas límite del PEI (octubre, enero, junio) integradas automáticamente a partir de la programación ministerial.",
+      archivioDocumentiAula: "Archivo de Documentos del Aula",
+      fascicoloPeiAlunno: "Expediente PEI del Alumno",
+      fascicoloPeiDesc: "Espacio de archivo protegido para subir actas del GLO, certificaciones y documentación escolar.",
+      caricaDocumento: "Subir Documento",
+      caricaFileFascicolo: "Subir un archivo al expediente",
+      nomeIdentificativoFile: "Nombre de identificación del archivo",
+      placeholderNomeFile: "ej. PEI_Firmado_Familia_Liceo",
+      categoria: "Categoría",
+      salvaNelCloud: "Guardar en la Nube",
+      trascinaQuiFile: "Arrastre aquí el archivo de clase para subirlo",
+      supportaFile: "COMPATIBLE CON PDF, DOCX, PNG de hasta 20MB",
+      placeholderFiltraDoc: "Filtrar documentos por nombre...",
+      tutti: "Todos",
+      nessunFileArchiviato: "Ningún archivo archivado",
+      nessunFileArchiviatoDesc: "Elija una categoría y presione \"+ Subir\" para llenar el archivo.",
+      gdprTitle: "Tratamiento de Datos Sensibles Conforme al RGPD",
+      gdprDesc: "Toda la documentación cargada dentro del expediente PEI está protegida por cifrado de extremo a extremo y es visible exclusivamente para los miembros acreditados del GLO del alumno.",
+      catPei: "Modelo PEI",
+      catVerbale: "Acta GLO",
+      catCertificazione: "Certificación Médica",
+      catAltro: "Otro Documento",
+      typeFamiglia: "Encuentro Familiar",
+      typeGlo: "Convocatoria GLO",
+      typeConsiglio: "Consejo de Clase",
+      typeAltro: "Otra Cita",
+      prefixMilestone: "[Hito Ministerial]",
+      deadlineNoteTemplate: "Fecha límite de GLO a finales de {month}. Estado de finalización de PEI: {status}",
+      statusVerificato: "Verificado 🟢",
+      statusInCorso: "En curso 🟡",
+      altri: "otros",
+      aggiuntoIl: "Añadido el:",
+      downloadAlert: "Inicio de la descarga segura del archivo: {name}",
+      tooltipScarica: "Descargar archivo",
+      tooltipCancellaFile: "Eliminar archivo",
+      months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      weekDays: ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
+    },
+    didacticObservation: {
+      labelDidatticaOsservazione: "DIDÁCTICA Y OBSERVACIÓN",
+      descDidatticaOsservazione: "Tablas de observación y recorridos diferenciados para las áreas ministeriales del alumno.",
+      tornaAlMenu: "Volver al Menú",
+      tornaAlleAree: "Volver a las Áreas",
+      programmazioneArea: "PROGRAMACIÓN DEL ÁREA",
+      salvataggioAttivo: "GUARDADO ACTIVO",
+      sezione01: "Sección 01",
+      tipoPercorso: "Tipo de Recorrido (PEI)",
+      pathA: "Recorrido A - Ordinario",
+      pathADesc: "Con pruebas equivalentes y exámenes ordinarios.",
+      pathB: "Recorrido B - Simplificado",
+      pathBDesc: "Pruebas adaptadas, objetivos reducidos o exenciones específicas.",
+      pathC: "Recorrido C - Diferenciado",
+      pathCDesc: "Objetivos didácticos no reconducibles a los ministeriales.",
+      sezione02: "Sección 02",
+      grigliaOsservazione: "Tabla de Observación Cualitativa",
+      indicatore: "Indicador",
+      valutazioneQualificatore: "Evaluación de alineación (Calificador ICF):",
+      contestoNote: "Contexto / Notas:",
+      placeholderNote: "Grupos de ayuda, compensación, facilitadores instalados...",
+      obiettiviPersonalizzati: "Objetivos y Actividades Personalizadas",
+      placeholderObiettivi: "Metas de competencia específicas, habilidades esperadas a alcanzar y facilitaciones establecidas...",
+      criteriValutazione: "Criterios de Verificación y Evaluación",
+      placeholderVerifica: "Medidas de exención, tiempos adicionales para pruebas, exámenes adaptados acordados...",
+      salvaTornaAree: "Guardar y Volver a las Áreas",
+      salvataTempoReale: "Modificación Guardada en Tiempo Real",
+      evalLevels: {
+        forza: "Fortaleza",
+        nessuna: "NINGUNA",
+        lieve: "LEVE",
+        media: "MEDIA",
+        grave: "GRAVE",
+        completa: "COMPLETA",
+        criticita: "Dificultad crítica"
+      },
+      areas: {
+        humanities: {
+          title: "ÁREA DE HUMANIDADES",
+          desc: "Lengua Castellana, Geografía, Historia. Esta sección reúne las funciones cognitivas superiores, la memoria histórica/geográfica y todo el eje del lenguaje y la comunicación escrita y leída.",
+          indicators: {
+            b1140: { title: "b1140 – Orientación temporal", desc: "Conciencia de hoy, mañana, ayer, de la fecha, del mes y del año (fundamental para la ubicación de los acontecimientos históricos)." },
+            b1141: { title: "b1141 – Orientación espacial", desc: "Conciencia de dónde se encuentra uno, de la ciudad, del país y de los alrededores (fundamental para la geografía)." },
+            b1441: { title: "b1441 – Memoria a largo plazo", desc: "Permite almacenar información autobiográfica y semántica." },
+            b1670: { title: "b1670 – Recepción del lenguaje", desc: "Decodificación de mensajes en forma oral, escrita u otra para obtener su significado." },
+            b1671: { title: "b1671 – Expresión del lenguaje", desc: "Producir mensajes significativos en forma oral, escrita u otras formas." },
+            d1400: { title: "d1400 – Adquirir habilidades de reconocimiento de símbolos", desc: "Decodificación de figuras, iconos, caracteres, letras del alfabeto y palabras." },
+            d1402: { title: "d1402 – Comprensión de palabras y frases escritas", desc: "Comprensión del significado de textos escritos." },
+            d1661: { title: "d1661 – Comprensión del lenguaje escrito", desc: "Comprender la naturaleza y el significado del lenguaje en la lectura." },
+            d1700: { title: "d1700 – Utilizar habilidades generales de escritura", desc: "Emplear palabras que transmitan el significado apropiado." },
+            d310: { title: "d310 – Comunicar y recibir mensajes verbales", desc: "Comprender los significados literales e implícitos en el lenguaje hablado." },
+            d325: { title: "d325 – Comunicar y recibir mensajes escritos", desc: "Comprender el significado de los mensajes comunicados mediante el lenguaje escrito." }
+          }
+        },
+        scientific: {
+          title: "ÁREA CIENTÍFICO-TECNOLÓGICA",
+          desc: "Matemáticas, Ciencias, Tecnología. Incluye los procesos de cálculo, la alfabetización numérica, las habilidades lógicas de abstracción y la resolución de problemas basados en secuencias y procedimientos.",
+          indicators: {
+            b163: { title: "b163 – Funciones cognitivas básicas", desc: "Adquisición básica de conocimientos sobre objetos, eventos y experiencias." },
+            b1640: { title: "b1640 – Abstracción", desc: "Crear ideas, cualidades o características generales a partir de realidades concretas o casos reales." },
+            b1720: { title: "b1720 – Cálculo simple", desc: "Computar con números (suma, resta, multiplicación, división)." },
+            b1721: { title: "b1721 – Cálculo complejo", desc: "Traducir problemas planteados con palabras y fórmulas matemáticas en procedimientos aritméticos." },
+            d1370: { title: "d1370 – Adquirir conceptos básicos", desc: "Dimensión, forma, cantidad, longitud, igual, opuesto." },
+            d1371: { title: "d1371 – Adquirir conceptos complejos", desc: "Conceptos de clasificación, agrupación, reversibilidad, seriación." },
+            d1500: { title: "d1500 – Reconocimiento de números y símbolos", desc: "Reconocimiento y uso." },
+            d1501: { title: "d1501 – Adquirir habilidades de alfabetización numérica", desc: "Concepto de alfabetización numérica y de conjuntos." },
+            d1502: { title: "d1502 – Adquirir habilidades en el uso de operaciones elementales", desc: "Suma, resta, multiplicación, división." },
+            d1720: { title: "d1720 – Utilizar habilidades de cálculo simple", desc: "Aplicar los conceptos para realizar cálculos." },
+            d1721: { title: "d1721 – Utilizar habilidades de cálculo complejo", desc: "Emplear procedimientos y métodos matemáticos (álgebra, cálculo, geometría)." },
+            d1750: { title: "d1750 – Resolución de problemas sencillos", desc: "Identificar y analizar un único problema, desarrollando soluciones y poniéndolas en práctica." }
+          }
+        },
+        foreignLanguages: {
+          title: "LENGUAS EXTRANJERAS",
+          desc: "Inglés, Francés",
+          indicators: {
+            lang_comp: { title: "Escucha y Comprensión (L2)", desc: "Comprende instrucciones, fórmulas de saludo y frases sencillas en el idioma." },
+            lang_prod: { title: "Lectura y Respuesta", desc: "Asocia mensajes escritos sencillos con imágenes o responde a preguntas cortas." },
+            lang_vocab: { title: "Producción Vocal/Mímica", desc: "Se expresa o saluda utilizando vocabulario básico del segundo idioma (L2)." }
+          }
+        },
+        artsMusicSports: {
+          title: "ÁREA DE ARTE/MÚSICA/DEPORTE",
+          desc: "Plástica, Música, Educación Física",
+          indicators: {
+            art_regole: { title: "Coordinación Motora y Espacial", desc: "Se orienta en el espacio del gimnasio, realiza recorridos y controla la postura." },
+            art_coordin: { title: "Respeto de las Reglas del Juego", desc: "Participa en actividades motoras grupales respetando a compañeros y árbitro." },
+            art_creativ: { title: "Expresión Artística y Manualidad", desc: "Utiliza lenguajes gráficos, plásticos y controla la motricidad fina." },
+            art_music: { title: "Lenguaje Musical", desc: "Reconoce ritmos, sonidos, canta o reproduce sonidos con pequeños instrumentos." }
+          }
+        },
+        civics: {
+          title: "EDUCACIÓN CÍVICA",
+          desc: "Educación Cívica, alternativa y lenguas de origen",
+          indicators: {
+            civ_regole: { title: "Ciudadanía y Relaciones", desc: "Demuestra actitud para la convivencia civil y solidaria con el grupo de clase." },
+            civ_amb: { title: "Respeto del Medio Ambiente", desc: "Respeta y conserva el mobiliario, los materiales escolares y clasifica los residuos." },
+            civ_digit: { title: "Conciencia Digital", desc: "Utiliza dispositivos tecnológicos respetando las reglas de comportamiento (Netiquette)." }
+          }
+        },
+        educationalSupport: {
+          title: "APOYO EDUCATIVO",
+          desc: "Soporte educativo y asistencia a la autonomía",
+          indicators: {
+            edu_auton: { title: "Autonomía Personal", desc: "Cuiga la higiene personal, la alimentación y el vestirse de forma independiente." },
+            edu_gestione: { title: "Organización de Materiales", desc: "Prepara el estuche, la agenda y los cuadernos según el horario de clases." },
+            edu_relaz: { title: "Gestión del Tiempo y de la Frustración", desc: "Tolera la espera, gestiona la frustración y pide ayuda de manera oportuna." }
+          }
+        }
+      }
+    },
+    disciplineEditor: {
+      programmaClasse: "Programa escolar de la clase",
+      programmaClasseDesc: "Especifica si el alumno sigue la programación didáctica ministerial prevista para el grupo clase o si tiene un recorrido disciplinario individualizado.",
+      segueProgramma: "Sí, sigue el programa",
+      segueProgrammaDesc: "El alumno sigue las directrices ministeriales ordinarias de la clase.",
+      nonSegueProgramma: "No, no sigue el programa",
+      nonSegueProgrammaDesc: "El alumno sigue una programación didáctica simplificada o diferenciada.",
+      obiettiviMateria: "Objetivos a alcanzar para esta materia",
+      obiettiviMateriaDesc: "Indica las competencias y metas de aprendizaje específicas previstas este año para el alumno:",
+      placeholderObiettivi: "Inserte metas de competencia, habilidades mínimas, facilitadores y posibles objetivos intermedios...",
+      valutazioneQuadrimestrale: "Evaluación y Pruebas Trimestrales",
+      primoQuadrimestre: "Primer Trimestre",
+      placeholderPrimo: "Inserte métodos de evaluación, resultados y nivel eventual de autonomía para el primer trimestre...",
+      secondoQuadrimestre: "Segundo Trimestre",
+      placeholderSecondo: "Inserte métodos de evaluación, resultados finales obtenidos y nivel eventual de autonomía al final del año escolar...",
+      salvaEContinua: "Guardar área y continuar"
+    },
+    relaxGames: {
+      cosaTiFaStareBene: "¿Qué te hace sentir bien?",
+      caricaFotoVideo: "Sube fotos o videos relajantes"
+    }
   },
 };
-
 const predefinedStrengths = [
   "Autonomia",
   "Socializzazione",
@@ -610,41 +1722,64 @@ const HandwritingMyPEI = () => {
   }, []);
 
   return (
-    <div className="relative inline-flex items-center justify-center min-h-[160px] w-full">
-      <div className="relative flex items-center gap-2">
+    <div className="relative inline-flex items-center justify-center min-h-[120px] sm:min-h-[160px] w-full">
+      <div className="relative flex items-center gap-1 sm:gap-2">
+        <motion.div
+          className="mr-2 sm:mr-4 shrink-0"
+          animate={
+            phase === "erasing"
+              ? {
+                  x: [60, 30, 60, 30],
+                  rotate: [0, -20, 20, -20, 0],
+                }
+              : {
+                  y: [0, -10, 0],
+                }
+          }
+          transition={{
+            duration: phase === "erasing" ? 1.5 : 2,
+            repeat: phase === "erasing" ? 0 : Infinity,
+          }}
+        >
+          <img
+            src={phase === "erasing" ? "/gomma.png" : "/matita.png"}
+            alt="Tool"
+            className="w-16 h-16 sm:w-24 sm:h-24 md:w-36 md:h-36 pointer-events-none object-contain"
+          />
+        </motion.div>
+
         <div className="relative flex items-end">
-          <div className="relative w-[120px] md:w-[180px] flex justify-end">
+          <div className="relative w-[80px] sm:w-[120px] md:w-[180px] flex justify-end">
             <AnimatePresence mode="wait">
               {phase === "my" ? (
                 <motion.span
                   key="my"
-                  initial={{ opacity: 0, x: -20, scale: 0.8 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: 20, scale: 0.8 }}
-                  transition={{ duration: 0.5 }}
-                  className="font-sans font-black text-white text-6xl md:text-8xl leading-none"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, filter: "blur(8px)", scale: 1.2 }}
+                  className="font-sans font-black text-white text-4xl sm:text-6xl md:text-8xl leading-none"
                 >
                   my
                 </motion.span>
-              ) : (
+              ) : phase === "our" ? (
                 <motion.span
                   key="our"
-                  initial={{ opacity: 0, x: -20, scale: 0.8, rotate: -5 }}
-                  animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, x: 20, scale: 0.8, rotate: 5 }}
-                  transition={{ duration: 0.5 }}
-                  className="font-cursive italic text-yellow-400 text-7xl md:text-9xl leading-none px-2"
+                  initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  className="font-cursive italic text-yellow-400 text-5xl sm:text-7xl md:text-9xl leading-none px-2"
                 >
                   our
                 </motion.span>
+              ) : (
+                <div className="w-full h-8" />
               )}
             </AnimatePresence>
           </div>
 
-          <span className="font-sans font-black text-white text-6xl md:text-8xl mb-[5px] mx-1">
+          <span className="font-sans font-black text-white text-4xl sm:text-6xl md:text-8xl mb-[2px] sm:mb-[5px] mx-1">
             /
           </span>
-          <span className="font-sans font-black text-white text-6xl md:text-8xl leading-none">
+          <span className="font-sans font-black text-white text-4xl sm:text-6xl md:text-8xl leading-none">
             PEI
           </span>
         </div>
@@ -690,7 +1825,9 @@ const defaultTaskAnalysis: Record<string, { id: string, text: string, done?: boo
 };
 
 export default function App() {
+  const isMobile = useIsMobile();
   const [isStarted, setIsStarted] = useState(false);
+  const [isTtsActive, setIsTtsActive] = useState(false);
   const [role, setRole] = useState<
     "family" | "school" | "school-family" | "student" | null
   >(null);
@@ -1553,7 +2690,12 @@ export default function App() {
   return (
     <div
       className={cn(
-        "min-h-screen transition-colors duration-500 bg-[#0a192f]",
+        "min-h-screen transition-colors duration-500",
+        role === null || role === "student" || currentStep === null
+          ? "bg-[#0a192f]"
+          : currentStep !== null
+            ? steps[currentStep].lightColor
+            : "bg-[#0a192f]",
         lang === "ar" ? "font-sans" : "",
       )}
       dir={lang === "ar" ? "rtl" : "ltr"}
@@ -1561,14 +2703,14 @@ export default function App() {
       {/* Header */}
       {isStarted && (
         <header className="bg-white/10 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="max-w-7xl mx-auto px-3 sm:px-4 h-16 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-4">
               <DropdownMenu>
                 <DropdownMenuTrigger
                   nativeButton={false}
                   render={
-                    <div className="flex items-center gap-3 cursor-pointer group">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white shadow-lg transition-all group-hover:scale-110 overflow-hidden">
+                    <div className="flex items-center gap-2 sm:gap-3 cursor-pointer group">
+                      <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white shadow-lg transition-all group-hover:scale-110 overflow-hidden shrink-0">
                         <img
                           src="/leggere.png"
                           alt="Logo"
@@ -1576,10 +2718,9 @@ export default function App() {
                           referrerPolicy="no-referrer"
                         />
                       </div>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col hidden sm:flex">
                         <h1 className="font-black text-2xl tracking-tighter text-white leading-none">
-                          my/<span className="text-yellow-400 italic">our</span>
-                          /PEI
+                          my/<span className="text-yellow-400 italic">our</span>/PEI
                         </h1>
                         <p className="text-[10px] font-black text-blue-200 uppercase tracking-widest mt-0.5 opacity-60">
                           Menu
@@ -1649,7 +2790,7 @@ export default function App() {
                       />
                     </div>
                     <span className="font-bold text-slate-700">
-                      Scuola-Famiglia
+                      {(t as any).schoolFamily}
                     </span>
                   </DropdownMenuItem>
                   <DropdownMenuItem
@@ -1663,18 +2804,18 @@ export default function App() {
                     <div className="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center">
                       <Home size={18} />
                     </div>
-                    <span className="font-bold">Torna alla Home</span>
+                    <span className="font-bold">{(t as any).backToHome}</span>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            <div className="flex bg-slate-100 p-1 rounded-lg">
+            <div className="flex bg-slate-100 p-1 rounded-lg shrink-0">
               {(["it", "ar", "es"] as const).map((l) => (
                 <button
                   key={l}
                   onClick={() => setLang(l as any)}
                   className={cn(
-                    "px-3 py-1 rounded-md text-[10px] font-black transition-all",
+                    "px-2 sm:px-3 py-1 rounded-md text-[10px] font-black transition-all",
                     lang === l
                       ? "bg-white shadow-sm text-blue-600"
                       : "text-slate-500 hover:text-slate-700",
@@ -1688,11 +2829,12 @@ export default function App() {
               size="sm"
               onClick={() => saveToLocalStorage()}
               className={cn(
-                "gap-2 text-white h-10 px-4 rounded-xl font-black text-xs transition-colors",
+                "gap-1 sm:gap-2 text-white h-10 px-3 sm:px-4 rounded-xl font-black text-xs transition-colors shrink-0 flex items-center justify-center",
                 currentStep !== null ? steps[currentStep].color : "bg-blue-600",
               )}
             >
-              <Save size={16} /> {t.save}
+              <Save size={16} />
+              <span className="hidden sm:inline">{t.save}</span>
             </Button>
           </div>
         </header>
@@ -1706,7 +2848,7 @@ export default function App() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              className="flex flex-col items-center justify-center min-h-screen"
+              className="flex flex-col items-center justify-start pt-32 sm:pt-48 min-h-screen"
             >
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -1717,7 +2859,7 @@ export default function App() {
                 <HandwritingMyPEI />
               </motion.button>
               <p className="mt-8 text-2xl text-blue-100/60 font-black animate-pulse">
-                Tocca per iniziare
+                {lang === "it" ? "Tocca per iniziare" : lang === "ar" ? "المس للبدء" : "Toca para empezar"}
               </p>
             </motion.div>
           ) : role === null ? (
@@ -1726,34 +2868,34 @@ export default function App() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="flex flex-col items-center justify-center min-h-[75vh] py-8 space-y-8 sm:space-y-12 md:space-y-16 lg:space-y-20"
+              className="flex flex-col items-center justify-center min-h-[75vh] py-6 sm:py-8 space-y-6 sm:space-y-12 md:space-y-16 lg:space-y-20"
             >
-              <div className="text-center space-y-4 md:space-y-6 lg:space-y-8">
+              <div className="text-center space-y-3 md:space-y-6 lg:space-y-8">
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 lg:gap-8">
-                  <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-9xl font-black text-white drop-shadow-sm tracking-tight text-center md:text-left">
+                  <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-9xl font-black text-white drop-shadow-sm tracking-tight text-center">
                     my/<span className="text-yellow-400 italic">our</span>/PEI
                   </h2>
                 </div>
-                <div className="py-2 md:py-4 space-y-2 max-w-none md:max-w-4xl mx-auto px-4">
-                  <p className="text-xl sm:text-2xl md:text-3xl text-blue-100 font-medium lowercase tracking-wide text-center leading-relaxed whitespace-nowrap">
-                    partecipazione attiva scuola-famiglia per l'alunno
+                <div className="py-1 md:py-4 space-y-2 max-w-none md:max-w-4xl mx-auto px-4">
+                  <p className="text-lg sm:text-2xl md:text-3xl text-blue-100 font-medium lowercase tracking-wide text-center leading-relaxed whitespace-normal">
+                    {t.subtitle}
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-blue-400 font-bold lowercase tracking-wider opacity-80">
-                    scegli il tuo percorso
+                  <p className="text-xs sm:text-base md:text-lg text-blue-400 font-bold lowercase tracking-wider opacity-80">
+                    {(t as any).chooseRole}
                   </p>
                 </div>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-16 w-full max-w-6xl px-4 sm:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-6 lg:gap-16 w-full max-w-6xl px-4 sm:px-8">
                 {/* Famiglia */}
                 <div className="flex flex-col items-center group">
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 md:mb-6 uppercase tracking-tight">
-                    Famiglia
+                  <h3 className="text-xl sm:text-3xl font-black text-white mb-2 md:mb-6 uppercase tracking-tight">
+                    {(t as any).family}
                   </h3>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setRole("family")}
-                    className="w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-white rounded-[32px] md:rounded-[40px] shadow-2xl border-4 border-blue-500/20 overflow-hidden relative shadow-[0_0_50px_rgba(59,130,246,0.2)]"
+                    className="w-36 h-36 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-white rounded-[28px] md:rounded-[40px] shadow-2xl border-4 border-blue-500/20 overflow-hidden relative shadow-[0_0_50px_rgba(59,130,246,0.2)]"
                   >
                     <img
                       src="/casa.png"
@@ -1762,22 +2904,21 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </motion.button>
-                  <p className="mt-4 md:mt-6 text-blue-100/70 font-medium text-center text-xs sm:text-sm md:text-base leading-relaxed max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
-                    Raccontaci la storia e i bisogni dell'alunno dal tuo punto
-                    di vista.
+                  <p className="mt-2 md:mt-6 text-blue-100/70 font-medium text-center text-xs sm:text-sm md:text-base leading-relaxed max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
+                    {(t as any).familyDesc}
                   </p>
                 </div>
 
                 {/* Alunno */}
                 <div className="flex flex-col items-center group">
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 md:mb-6 uppercase tracking-tight">
+                  <h3 className="text-xl sm:text-3xl font-black text-white mb-2 md:mb-6 uppercase tracking-tight">
                     {(t as any).studentRole.title}
                   </h3>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setRole("student")}
-                    className="w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-white rounded-[32px] md:rounded-[40px] shadow-2xl border-4 border-yellow-500/20 overflow-hidden relative shadow-[0_0_50px_rgba(234,179,8,0.2)]"
+                    className="w-36 h-36 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-white rounded-[28px] md:rounded-[40px] shadow-2xl border-4 border-yellow-500/20 overflow-hidden relative shadow-[0_0_50px_rgba(234,179,8,0.2)]"
                   >
                     <img
                       src="/studente.png"
@@ -1786,21 +2927,21 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </motion.button>
-                  <p className="mt-4 md:mt-6 text-blue-100/70 font-medium text-center text-xs sm:text-sm md:text-base leading-relaxed max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
+                  <p className="mt-2 md:mt-6 text-blue-100/70 font-medium text-center text-xs sm:text-sm md:text-base leading-relaxed max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
                     {(t as any).studentRole.description}
                   </p>
                 </div>
 
                 {/* Scuola */}
                 <div className="flex flex-col items-center group">
-                  <h3 className="text-2xl sm:text-3xl font-black text-white mb-4 md:mb-6 uppercase tracking-tight">
-                    Scuola
+                  <h3 className="text-xl sm:text-3xl font-black text-white mb-2 md:mb-6 uppercase tracking-tight">
+                    {(t as any).schoolLabel}
                   </h3>
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setRole("school")}
-                    className="w-44 h-44 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-white rounded-[32px] md:rounded-[40px] shadow-2xl border-4 border-emerald-500/20 overflow-hidden relative shadow-[0_0_50px_rgba(16,185,129,0.2)]"
+                    className="w-36 h-36 sm:w-48 sm:h-48 md:w-52 md:h-52 lg:w-64 lg:h-64 bg-white rounded-[28px] md:rounded-[40px] shadow-2xl border-4 border-emerald-500/20 overflow-hidden relative shadow-[0_0_50px_rgba(16,185,129,0.2)]"
                   >
                     <img
                       src="/scuola secondaria.png"
@@ -1809,8 +2950,8 @@ export default function App() {
                       referrerPolicy="no-referrer"
                     />
                   </motion.button>
-                  <p className="mt-4 md:mt-6 text-blue-100/70 font-medium text-center text-xs sm:text-sm md:text-base leading-relaxed max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
-                    Accedi alla sezione osservazione e monitoraggio scolastico.
+                  <p className="mt-2 md:mt-6 text-blue-100/70 font-medium text-center text-xs sm:text-sm md:text-base leading-relaxed max-w-[200px] sm:max-w-[240px] lg:max-w-[280px]">
+                    {(t as any).schoolDesc}
                   </p>
                 </div>
               </div>
@@ -1826,55 +2967,71 @@ export default function App() {
               {!studentSubSection ? (
                 <>
                   <div className="w-full space-y-6 sm:space-y-12 bg-[#0a192f]/60 backdrop-blur-md p-4 sm:p-8 md:p-12 rounded-[24px] sm:rounded-[40px] md:rounded-[60px] shadow-2xl border border-white/10">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                       <Button
                         variant="ghost"
                         onClick={() => setRole(null)}
-                        className="rounded-2xl h-12 px-6 font-bold text-white hover:bg-white/20 border border-white/20"
+                        className="rounded-2xl h-12 px-6 font-bold text-white hover:bg-white/20 border border-white/20 self-start sm:self-auto"
                       >
-                        <ChevronLeft size={20} className="mr-2" /> Torna
+                        <ChevronLeft size={20} className="mr-2" /> {(t as any).back}
                       </Button>
-                      <h2 className="text-4xl font-black text-white text-center flex-1">
-                        Ciao! Scegli cosa vuoi fare:
+                      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black text-white text-center flex-1 px-2">
+                        {(t as any).student.chooseAction}
                       </h2>
-                      <div className="w-32"></div>
+                      <div className="hidden sm:block w-32"></div>
                     </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto w-full pb-8">
                       {[
                         {
                           id: "day",
-                          title: "La mia giornata",
+                          title: (t as any).student.myDay,
                           color: "bg-blue-500",
                           image: "/io.png",
                         },
                         {
                           id: "diary",
-                          title: "Il mio zaino",
+                          title: (t as any).student.myBag,
                           color: "bg-rose-500",
                           image: "/aprire lo zaino.png",
                         },
                         {
                           id: "passport",
-                          title: "Passaporto comunicativo",
+                          title: (t as any).student.passport,
                           color: "bg-emerald-500",
                           image: "/parlare tutti insieme.png",
                         },
                         {
-                          id: "pulsantiera",
-                          title: "Pulsantiera",
-                          color: "bg-amber-500",
+                          id: "scelte",
+                          title: (t as any).student.choices,
+                          color: "bg-yellow-500",
                           image: "/pulsante.png",
                         },
                         {
+                          id: "bisogni",
+                          title: (t as any).student.needs,
+                          color: "bg-pink-500",
+                        },
+                        {
+                          id: "sentimenti",
+                          title: (t as any).student.feelings,
+                          color: "bg-purple-500",
+                          image: "/sentimenti.png",
+                        },
+                        {
+                          id: "autonomy",
+                          title: (t as any).student.autonomyDiary,
+                          color: "bg-orange-500",
+                        },
+                        {
                           id: "relax",
-                          title: "Area relax",
+                          title: (t as any).student.relaxArea,
                           color: "bg-indigo-500",
                           image: "/zona relax (1).png",
                         },
                         {
                           id: "progetto_vita",
-                          title: "Il mio progetto di vita",
+                          title: (t as any).student.myProgettoVita,
                           color: "bg-yellow-400",
                           image: "/stadi della vita.png",
                         },
@@ -1930,7 +3087,7 @@ export default function App() {
                               />
                             ) : (
                               <span className="text-6xl group-hover:scale-110 transition-transform duration-300 select-none">
-                                {sec.id === "bisogni" ? "🎯" : "📝"}
+                                {sec.id === "bisogni" ? "🎯" : "��"}
                               </span>
                             )}
                           </div>
@@ -1961,33 +3118,14 @@ export default function App() {
                         }}
                         className="rounded-2xl h-14 px-8 font-black text-white hover:bg-white/20 border-2 border-white/20"
                       >
-                        <ChevronLeft size={24} className="mr-2" /> Indietro
+                        <ChevronLeft size={24} className="mr-2" /> {(t as any).back}
                       </Button>
-                      <h2 className="text-4xl font-black text-white capitalize">
-                        <div className="flex gap-2 bg-white/10 p-1.5 rounded-2xl border border-white/15">
-                          <button
-                            onClick={() => setPulsantieraTab("scelte")}
-                            className={cn(
-                              "px-6 py-2 rounded-xl font-black text-xs sm:text-sm uppercase transition-all tracking-wider",
-                              pulsantieraTab === "scelte"
-                                ? "bg-amber-500 text-white shadow-lg"
-                                : "text-slate-300 hover:text-white"
-                            )}
-                          >
-                            Scelte
-                          </button>
-                          <button
-                            onClick={() => setPulsantieraTab("bisogni")}
-                            className={cn(
-                              "px-6 py-2 rounded-xl font-black text-xs sm:text-sm uppercase transition-all tracking-wider",
-                              pulsantieraTab === "bisogni"
-                                ? "bg-pink-500 text-white shadow-lg"
-                                : "text-slate-300 hover:text-white"
-                            )}
-                          >
-                            Bisogni
-                          </button>
-                        </div>
+                      <h2 className="text-2xl sm:text-3xl md:text-4xl font-black text-white capitalize">
+                        {studentSubSection === "scelte"
+                          ? (t as any).student.choices
+                          : studentSubSection === "bisogni"
+                            ? (t as any).student.needs
+                            : (t as any).student.feelings}
                       </h2>
                     </div>
 
@@ -2004,7 +3142,7 @@ export default function App() {
                       }
                       className="rounded-2xl bg-white/10 border-white/20 text-white hover:bg-white/20 font-bold"
                     >
-                      <RotateCcw size={20} className="mr-2" /> Ripristina
+                      <RotateCcw size={20} className="mr-2" /> {lang === "ar" ? "إعادة ضبط" : lang === "es" ? "Restablecer" : "Ripristina"}
                     </Button>
                   </div>
 
@@ -2543,7 +3681,7 @@ export default function App() {
                                       onClick={() => setActiveNeedTaskAnalysis(null)}
                                       className="flex items-center gap-2 bg-pink-500 hover:bg-pink-600 text-white font-extrabold text-sm uppercase px-6 py-3 rounded-full shadow-lg transition-all cursor-pointer"
                                     >
-                                      ← Torna ai Bisogni
+                                      �� Torna ai Bisogni
                                     </button>
                                     <h4 className="text-2xl font-black text-white text-center uppercase tracking-tight">
                                       Task Analysis: {selectedNeed.label}
@@ -2666,7 +3804,7 @@ export default function App() {
                                                 className="text-red-400 hover:text-red-500 hover:bg-red-500/10 p-1.5 rounded-lg transition-all shrink-0 cursor-pointer text-sm"
                                                 title="Elimina passaggio"
                                               >
-                                                🗑️
+                                                🗑��
                                               </button>
                                             </div>
                                           ))}
@@ -2938,21 +4076,21 @@ export default function App() {
                       }}
                       className="rounded-2xl h-14 px-8 font-black text-white hover:bg-white/20 border-2 border-white/20"
                     >
-                      <ChevronLeft size={24} className="mr-2" /> Indietro
+                      <ChevronLeft size={24} className="mr-2" /> {(t as any).back}
                     </Button>
                     <div className="flex items-center gap-6">
                       <h2 className="text-4xl font-black text-white capitalize">
                         {studentSubSection === "day"
-                          ? "La mia giornata"
+                          ? (t as any).student.myDay
                           : studentSubSection === "diary"
-                            ? "Il mio zaino"
+                            ? (t as any).student.myBag
                             : studentSubSection === "passport"
-                              ? "Passaporto comunicativo"
+                              ? (t as any).student.passport
                               : studentSubSection === "autonomy"
-                                ? "Diario delle autonomie"
+                                ? (t as any).student.autonomyDiary
                                 : studentSubSection === "progetto_vita"
-                                  ? "Il mio progetto di vita"
-                                  : "Area relax"}
+                                  ? (t as any).student.myProgettoVita
+                                  : (t as any).student.relaxArea}
                       </h2>
                       {studentSubSection === "day" && (
                         <Button
@@ -2961,7 +4099,7 @@ export default function App() {
                           className="rounded-2xl bg-white/10 border-white/20 text-white hover:bg-white/20"
                         >
                           <Info size={20} className="mr-2" />{" "}
-                          {showAgendaTips ? "Nascondi Info" : "Istruzioni"}
+                          {showAgendaTips ? (t as any).student.hideInfo : (t as any).student.instructions}
                         </Button>
                       )}
                     </div>
@@ -2982,7 +4120,7 @@ export default function App() {
                               : "bg-white/10 text-white border border-white/10 hover:bg-white/20",
                           )}
                         >
-                          <Calendar size={28} /> Agenda Visiva
+                          <Calendar size={28} /> {(t as any).student.visualAgenda}
                         </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
@@ -2995,7 +4133,7 @@ export default function App() {
                               : "bg-white/10 text-white border border-white/10 hover:bg-white/20",
                           )}
                         >
-                          <CircleDot size={28} /> Token Attività
+                          <CircleDot size={28} /> {(t as any).student.tokenActivity}
                         </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
@@ -3008,7 +4146,7 @@ export default function App() {
                               : "bg-white/10 text-white border border-white/10 hover:bg-white/20",
                           )}
                         >
-                          <BookCheck size={28} /> Diario del giorno
+                          <BookCheck size={28} /> {(t as any).student.dayDiary}
                         </motion.button>
                       </div>
 
@@ -3019,8 +4157,8 @@ export default function App() {
                         <div className="lg:col-span-2 flex flex-col md:flex-row gap-6 p-8 rounded-[40px] border border-white/10 backdrop-blur-md bg-white/10 items-center justify-between">
                           <div className="flex flex-col gap-6 w-full">
                             <div>
-                              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-1">📅 Scegli il giorno</h4>
-                              <p className="text-blue-200 text-xs font-medium">Seleziona il giorno della settimana per l'agenda visiva</p>
+                              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-1">📅 {lang === "es" ? "Elige el día" : lang === "ar" ? "اختر اليوم" : "Scegli il giorno"}</h4>
+                              <p className="text-blue-200 text-xs font-medium">{lang === "es" ? "Selecciona el día de la semana para la agenda visual" : lang === "ar" ? "حدد يوم الأسبوع للجدول البصري" : "Seleziona il giorno della settimana per l'agenda visiva"}</p>
                             </div>
                             
                             {/* Day Selection Row */}
@@ -3033,7 +4171,7 @@ export default function App() {
                                 "Ven",
                                 "Sab",
                                 "Dom",
-                              ].map((d) => (
+                              ].map((d, idx) => (
                                 <button
                                   key={d}
                                   onClick={() =>
@@ -3062,18 +4200,15 @@ export default function App() {
                                       : "text-white/60 hover:text-white",
                                   )}
                                 >
-                                  {d}
+                                  {t.schoolManager.weekDays[idx]}
                                 </button>
                               ))}
                             </div>
-
                             <hr className="border-white/10" />
-
                             <div>
-                              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-1 font-sans">🌤️ Scegli il meteo</h4>
-                              <p className="text-blue-200 text-xs font-medium">Seleziona il tempo di oggi</p>
+                              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-1 font-sans">🌤️ {lang === "es" ? "Elige el clima" : lang === "ar" ? "اختر الطقس" : "Scegli il meteo"}</h4>
+                              <p className="text-blue-200 text-xs font-medium">{lang === "es" ? "Selecciona el clima de hoy" : lang === "ar" ? "حدد طقس اليوم" : "Seleziona il tempo di oggi"}</p>
                             </div>
-
                             {/* Weather Selection Row */}
                             <div className="flex items-center gap-2 bg-white/5 p-2 rounded-2xl border border-white/10 w-fit">
                               {[
@@ -3094,7 +4229,17 @@ export default function App() {
                                       ? "bg-blue-600 text-white shadow-lg scale-110"
                                       : "text-slate-300 hover:text-blue-400",
                                   )}
-                                  title={w.id}
+                                  title={
+                                    w.id === "Sereno"
+                                      ? t.student.weatherSereno
+                                      : w.id === "Nuvoloso"
+                                        ? t.student.weatherNuvoloso
+                                        : w.id === "Pioggia"
+                                          ? t.student.weatherPioggia
+                                          : w.id === "Vento"
+                                            ? t.student.weatherVento
+                                            : t.student.weatherNeve
+                                  }
                                 >
                                   {w.icon}
                                 </button>
@@ -3102,10 +4247,9 @@ export default function App() {
                             </div>
                           </div>
                         </div>
-
                         {/* Feeling Thermometer - MOVED HERE! */}
                         <div className="flex flex-col p-6 rounded-[40px] border border-white/10 bg-slate-900/90 shadow-2xl items-center justify-center relative min-h-[320px]">
-                          <span className="text-[11px] font-black uppercase text-indigo-400 tracking-widest mb-3">🌡️ Termometro Emotivo</span>
+                          <span className="text-[11px] font-black uppercase text-indigo-400 tracking-widest mb-3">🌡️ {lang === "es" ? "Termómetro de Ánimo" : lang === "ar" ? "مقياس المزاج" : "Termometro Emotivo"}</span>
                           
                           <div className="flex items-end gap-3 relative pb-2 w-full justify-center">
                             {/* Rule indicators on the left of thermometer */}
@@ -3114,7 +4258,6 @@ export default function App() {
                               <span>50</span>
                               <span>0</span>
                             </div>
-
                             {/* Glass tube */}
                             <div className="w-6 h-48 bg-slate-800 border border-slate-700 rounded-full relative p-0.5 shadow-inner flex flex-col justify-end overflow-hidden">
                               {/* Mercury fluid level */}
@@ -3137,15 +4280,13 @@ export default function App() {
                                 className="w-full rounded-full animate-pulse"
                               />
                             </div>
-
                             {/* Rule indicators on the right of thermometer */}
-                            <div className="flex flex-col justify-between h-48 text-[10px] font-bold text-slate-400 py-1 pl-1 select-none">
-                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "sovraccaricato" ? "text-rose-400 font-black" : "")}> sovraccarico </span>
-                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "agitato" ? "text-amber-400 font-black" : "")}> agitato </span>
-                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "calmo" ? "text-emerald-400 font-black" : "")}> calmo </span>
+                            <div className="flex flex-col justify-between h-48 text-[10px] font-bold text-slate-400 py-1 pl-1 select-none whitespace-nowrap">
+                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "sovraccaricato" ? "text-rose-400 font-black" : "")}> {lang === "es" ? "sobrecarga" : lang === "ar" ? "شحن زائد" : "sovraccarico"} </span>
+                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "agitato" ? "text-amber-400 font-black" : "")}> {lang === "es" ? "agitado" : lang === "ar" ? "مضطرب" : "agitato"} </span>
+                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "calmo" ? "text-emerald-400 font-black" : "")}> {lang === "es" ? "calmo" : lang === "ar" ? "هادئ" : "calmo"} </span>
                             </div>
                           </div>
-
                           {/* Quick Interactive Bulb Face */}
                           <div className="relative mt-2 flex items-center justify-center gap-2">
                             {[
@@ -3223,7 +4364,7 @@ export default function App() {
                                       }
                                     }}
                                     className="text-slate-400 hover:text-blue-600 hover:bg-white rounded-xl"
-                                    title="Togli quadrato"
+                                    title={(t as any).student.removeSquare}
                                   >
                                     <Minus size={18} />
                                   </Button>
@@ -3258,13 +4399,13 @@ export default function App() {
                                       }
                                     }}
                                     className="text-slate-400 hover:text-blue-600 hover:bg-white rounded-xl"
-                                    title="Aggiungi quadrato"
+                                    title={(t as any).student.addSquare}
                                   >
                                     <Plus size={18} />
                                   </Button>
                                 </div>
 
-                                <div className="bg-slate-50 border-2 border-slate-100 rounded-3xl p-2 flex items-center">
+                                <div className="bg-slate-50 border-2 border-slate-100 rounded-3xl p-2 flex items-center overflow-x-auto max-w-full">
                                   {[
                                     "Lunedì",
                                     "Martedì",
@@ -3272,7 +4413,7 @@ export default function App() {
                                     "Giovedì",
                                     "Venerdì",
                                     "Sabato",
-                                  ].map((day) => (
+                                  ].map((day, idx) => (
                                     <button
                                       key={day}
                                       onClick={() =>
@@ -3285,7 +4426,7 @@ export default function App() {
                                           : "text-slate-400 hover:text-slate-600",
                                       )}
                                     >
-                                      {day.slice(0, 3)}
+                                      {t.schoolManager.weekDays[idx]}
                                     </button>
                                   ))}
                                 </div>
@@ -3316,13 +4457,12 @@ export default function App() {
                                             : "Archivio Con Chi?"}
                                         </h4>
                                         <p className="text-white/60 text-xs font-bold uppercase tracking-widest">
-                                          Carica o seleziona le immagini per
-                                          l'agenda
+                                          {(t as any).student.uploadOrSelectImages}
                                         </p>
                                       </div>
                                       <div className="flex gap-2">
                                         <label className="cursor-pointer bg-white text-blue-600 px-6 py-3 rounded-2xl font-black uppercase text-sm flex items-center gap-2 hover:scale-105 transition-transform shadow-lg">
-                                          <Upload size={18} /> Carica Immagini
+                                          <Upload size={18} /> {(t as any).student.uploadImages}
                                           <input
                                             type="file"
                                             className="hidden"
@@ -3422,7 +4562,7 @@ export default function App() {
                                             className="mb-3 opacity-20"
                                           />
                                           <p className="font-black uppercase tracking-tighter">
-                                            L'archivio è vuoto
+                                            {(t as any).student.archiveEmpty}
                                           </p>
                                         </div>
                                       )}
@@ -3502,13 +4642,13 @@ export default function App() {
                                           title={
                                             data.agendaHourColors[idx] ===
                                             "yellow"
-                                              ? "Pausa (Giallo)"
-                                              : "Lavoro (Blu)"
+                                              ? (t as any).student.pauseYellow
+                                              : (t as any).student.workBlue
                                           }
                                         />
                                       </div>
                                       <div className="text-[10px] font-bold uppercase text-slate-500 whitespace-nowrap">
-                                        Ora / Colore
+                                        {(t as any).student.hourColor}
                                       </div>
                                     </div>
 
@@ -3561,7 +4701,7 @@ export default function App() {
                                                         className="text-blue-200 mb-2"
                                                       />
                                                       <span className="text-[10px] font-black text-blue-300 uppercase tracking-tighter">
-                                                        Scegli
+                                                        {(t as any).student.choose}
                                                       </span>
                                                     </>
                                                   )}
@@ -3618,9 +4758,7 @@ export default function App() {
                                                 </label>
 
                                                 {/* Archive items */}
-                                                <div className="col-span-2 text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 mb-1">
-                                                  Dall'archivio:
-                                                </div>
+                                                <div className="col-span-2 text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 mb-1">{(t as any).student.fromArchive}</div>
                                                 {data.agendaActivityArchive.map(
                                                   (archImg, i) => (
                                                     <div
@@ -3661,7 +4799,7 @@ export default function App() {
                                                           }));
                                                         }}
                                                         className="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow cursor-pointer border-none"
-                                                        title="Elimina dall'archivio"
+                                                        title={(t as any).student.deleteFromArchive}
                                                       >
                                                         <Trash2 size={12} />
                                                       </button>
@@ -3673,7 +4811,7 @@ export default function App() {
                                           </DropdownMenu>
                                         </div>
                                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">
-                                          Attività
+                                          {(t as any).student.activity}
                                         </span>
                                       </div>
 
@@ -3723,7 +4861,7 @@ export default function App() {
                                                         className="text-purple-200 mb-2"
                                                       />
                                                       <span className="text-[10px] font-black text-purple-300 uppercase tracking-tighter">
-                                                        Scegli
+                                                        {(t as any).student.choose}
                                                       </span>
                                                     </>
                                                   )}
@@ -3738,9 +4876,7 @@ export default function App() {
                                                     size={24}
                                                     className="mx-auto"
                                                   />
-                                                  <span className="text-xs font-black uppercase">
-                                                    Nuovo Contatto
-                                                  </span>
+                                                  <span className="text-xs font-black uppercase">{(t as any).student.newContact}</span>
                                                   <input
                                                     type="file"
                                                     className="hidden"
@@ -3779,9 +4915,7 @@ export default function App() {
                                                 </label>
 
                                                 {/* Archive items */}
-                                                <div className="col-span-2 text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 mb-1">
-                                                  Dall'archivio:
-                                                </div>
+                                                <div className="col-span-2 text-[10px] font-black text-slate-400 uppercase tracking-widest mt-2 mb-1">{(t as any).student.fromArchive}</div>
                                                 {data.agendaWhomArchive.map(
                                                   (archImg, i) => (
                                                     <div
@@ -3822,7 +4956,7 @@ export default function App() {
                                                           }));
                                                         }}
                                                         className="absolute top-1 right-1 w-6 h-6 bg-red-500 text-white rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20 shadow cursor-pointer border-none"
-                                                        title="Elimina dall'archivio"
+                                                        title={(t as any).student.deleteFromArchive}
                                                       >
                                                         <Trash2 size={12} />
                                                       </button>
@@ -3834,7 +4968,7 @@ export default function App() {
                                           </DropdownMenu>
                                         </div>
                                         <span className="text-[10px] font-black uppercase tracking-widest text-slate-500">
-                                          Con Chi?
+                                          {(t as any).student.withWhom}
                                         </span>
                                       </div>
                                     </div>
@@ -3884,9 +5018,7 @@ export default function App() {
                                   variant="ghost"
                                   className="w-full flex justify-between items-center bg-slate-50 p-6 rounded-3xl hover:bg-slate-100 transition-colors"
                                 >
-                                  <span className="text-xl font-black text-slate-800 uppercase tracking-tight">
-                                    OBIETTIVI DELLA GIORNATA
-                                  </span>
+                                  <span className="text-xl font-black text-slate-800 uppercase tracking-tight">{(t as any).student.objectivesTitle}</span>
                                   {showObjectives ? (
                                     <ChevronUp size={24} />
                                   ) : (
@@ -3905,7 +5037,7 @@ export default function App() {
                                         <div className="flex gap-2">
                                           <input
                                             type="text"
-                                            placeholder="Aggiungi un obiettivo..."
+                                            placeholder={(t as any).student.addObjectivePlaceholder}
                                             className="flex-1 bg-slate-50 border-none rounded-xl px-4 py-2 font-medium"
                                             onKeyDown={(e) => {
                                               if (e.key === "Enter") {
@@ -3965,7 +5097,7 @@ export default function App() {
 
                               <div className="flex justify-between items-center mb-8">
                                 <h4 className="text-2xl font-black text-slate-900 uppercase">
-                                  TOKEN ECONOMY DELLE ATTIVITÀ
+                                  {(t as any).student.tokenEconomyTitle}
                                 </h4>
                                 <div className="flex items-center gap-4">
                                   <div className="flex bg-slate-100 p-1 rounded-2xl gap-1">
@@ -3977,8 +5109,7 @@ export default function App() {
                                       }
                                       className="bg-blue-600 text-white hover:bg-blue-700 rounded-xl px-4 py-2 w-auto h-auto flex items-center gap-2 font-black uppercase text-xs"
                                     >
-                                      <PlusCircle size={16} /> Personalizza
-                                      Gettone
+                                      <PlusCircle size={16} /> {(t as any).student.customizeToken}
                                     </Button>
                                     <Button
                                       variant="ghost"
@@ -4035,13 +5166,8 @@ export default function App() {
                                     <div className="bg-white rounded-[40px] p-8 mb-8 shadow-2xl border-4 border-blue-100">
                                       <div className="flex items-center justify-between mb-6">
                                         <div>
-                                          <h5 className="text-2xl font-black text-slate-900 uppercase italic">
-                                            Archivio Gettoni
-                                          </h5>
-                                          <p className="text-slate-500 font-bold">
-                                            Seleziona o carica l'immagine del
-                                            gettone
-                                          </p>
+                                          <h5 className="text-2xl font-black text-slate-900 uppercase italic">{(t as any).student.tokenArchive}</h5>
+                                          <p className="text-slate-500 font-bold">{(t as any).student.selectOrCreateToken}</p>
                                         </div>
                                         <div className="flex items-center gap-2">
                                           {data.tokenSymbol && (
@@ -4056,7 +5182,7 @@ export default function App() {
                                               }}
                                               className="border-rose-200 text-rose-600 hover:bg-rose-50 rounded-2xl font-black text-xs uppercase"
                                             >
-                                              Rimuovi Gettone
+                                              {(t as any).student.removeToken}
                                             </Button>
                                           )}
                                           <Button
@@ -4113,7 +5239,7 @@ export default function App() {
                                                 });
                                               }}
                                               className="absolute -top-2 -right-2 w-8 h-8 bg-rose-500 hover:bg-rose-600 text-white rounded-xl flex items-center justify-center shadow-lg z-10 transition-transform active:scale-95"
-                                              title="Rimuovi gettone"
+                                              title={(t as any).student.removeToken}
                                             >
                                               <Trash2 size={16} />
                                             </button>
@@ -4290,11 +5416,10 @@ export default function App() {
                                     <div className="flex items-center justify-between mb-8">
                                       <div>
                                         <h5 className="text-2xl font-black text-slate-900 uppercase">
-                                          Scegli il tuo premio
+                                          {(t as any).student.chooseReward}
                                         </h5>
                                         <p className="text-slate-500 font-bold">
-                                          Tocca un'immagine per selezionarla
-                                          come premio finale
+                                          {(t as any).student.tapRewardToSelect}
                                         </p>
                                       </div>
                                       <Button
@@ -4313,17 +5438,17 @@ export default function App() {
                                         {
                                           id: "costruzioni",
                                           img: "/costruzioni.png",
-                                          label: "Costruzioni",
+                                          label: (t as any).student.rewardCostruzioni || "Costruzioni",
                                         },
                                         {
                                           id: "biscotti",
                                           img: "/biscotti.png",
-                                          label: "Biscotti",
+                                          label: (t as any).student.rewardBiscotti || "Biscotti",
                                         },
                                         {
                                           id: "tablet",
                                           img: "/tablet.png",
-                                          label: "Tablet",
+                                          label: (t as any).student.rewardTablet || "Tablet",
                                         },
                                       ].map((reward) => (
                                         <motion.button
@@ -4401,7 +5526,7 @@ export default function App() {
                                                 });
                                               }}
                                               className="absolute top-2 right-2 w-10 h-10 bg-rose-600 text-white rounded-2xl flex items-center justify-center shadow-2xl z-20 hover:bg-rose-700 transition-colors pointer-events-auto"
-                                              title="Elimina premio caricato"
+                                              title={(t as any).student.deleteReward}
                                             >
                                               <Trash2 size={20} />
                                             </button>
@@ -4413,9 +5538,7 @@ export default function App() {
                                         <div className="w-12 h-12 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400">
                                           <Plus size={24} />
                                         </div>
-                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">
-                                          Carica altro
-                                        </span>
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">{(t as any).student.uploadMore}</span>
                                         <input
                                           type="file"
                                           className="hidden"
@@ -4452,12 +5575,8 @@ export default function App() {
                           <div className="bg-white/95 rounded-[40px] p-10 shadow-2xl space-y-8">
                             <div className="flex justify-between items-center bg-slate-50 p-6 rounded-3xl border-4 border-slate-100">
                               <div>
-                                <h4 className="text-3xl font-black text-slate-900 uppercase">
-                                  Diario Giornaliero
-                                </h4>
-                                <p className="text-slate-500 font-bold">
-                                  Racconta la tua giornata con foto e commenti
-                                </p>
+                                <h4 className="text-3xl font-black text-slate-900 uppercase">{(t as any).student.dailyDiaryTitle}</h4>
+                                <p className="text-slate-500 font-bold">{(t as any).student.diarySub}</p>
                               </div>
                               <Button
                                 onClick={() => {
@@ -4482,7 +5601,7 @@ export default function App() {
                                 }}
                                 className="h-16 px-8 rounded-3xl bg-blue-600 text-white hover:bg-blue-700 font-black uppercase shadow-xl flex items-center gap-3"
                               >
-                                <Plus size={24} /> Nuovo Inserimento
+                                <Plus size={24} /> {(t as any).student.newEntry}
                               </Button>
                             </div>
 
@@ -4563,9 +5682,7 @@ export default function App() {
                                               size={48}
                                               className="mb-2"
                                             />
-                                            <span className="font-black uppercase text-xs">
-                                              Carica Foto
-                                            </span>
+                                            <span className="font-black uppercase text-xs">{(t as any).student.uploadPhoto}</span>
                                             <input
                                               type="file"
                                               className="absolute inset-0 opacity-0 cursor-pointer"
@@ -4603,7 +5720,7 @@ export default function App() {
                                       <div className="space-y-4">
                                         <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
                                           <div className="flex items-center gap-2 text-[10px] font-black text-slate-400 uppercase tracking-widest mb-1">
-                                            <Calendar size={12} /> Data
+                                            <Calendar size={12} /> {(t as any).student.date}
                                           </div>
                                           <input
                                             type="text"
@@ -4865,7 +5982,7 @@ export default function App() {
                                         onClick={() => setActiveSubjectId(null)}
                                         className="bg-white/20 hover:bg-white/40 text-white rounded-2xl font-black uppercase text-xs px-6"
                                       >
-                                        ← Torna allo zaino
+                                        �� Torna allo zaino
                                       </Button>
                                       <div className="px-4 py-1 bg-black/10 rounded-full text-[10px] font-black uppercase tracking-widest">
                                         Area Alunno
@@ -5571,16 +6688,16 @@ export default function App() {
                         </div>
 
                         <div className="bg-emerald-500 py-3 px-10 flex justify-between items-center text-white/90 font-black text-[10px] uppercase tracking-widest">
-                          <span>Passaporto Comunicativo myPEI</span>
+                          <span>{(t as any).student.passportTitle}</span>
                           <div className="flex gap-4">
                             <span>
-                              Codice: ID-
+                              {(t as any).student.passportCode}
                               {Math.random()
                                 .toString(36)
                                 .substr(2, 6)
                                 .toUpperCase()}
                             </span>
-                            <span>Creato con myPEI</span>
+                            <span>{(t as any).student.createdWith}</span>
                           </div>
                         </div>
                       </div>
@@ -5619,7 +6736,7 @@ export default function App() {
                                   {subject.name}
                                 </h3>
                                 <div className="z-10 px-6 py-2 bg-white/10 rounded-full text-white/80 font-bold text-sm backdrop-blur-sm">
-                                  {subject.activities.length} schede salvate
+                                  {subject.activities.length} {((t as any).student as any).activitiesSaved}
                                 </div>
                               </motion.button>
                             );
@@ -5655,11 +6772,9 @@ export default function App() {
                                         onClick={() => setActiveSubjectId(null)}
                                         className="bg-white/20 hover:bg-white/40 text-white rounded-2xl font-black uppercase text-xs px-6"
                                       >
-                                        ← Torna alle autonomie
+                                        ← {((t as any).student as any).goBackToAutonomies}
                                       </Button>
-                                      <div className="px-4 py-1 bg-black/10 rounded-full text-[10px] font-black uppercase tracking-widest">
-                                        Il mio Diario
-                                      </div>
+                                      <div className="px-4 py-1 bg-black/10 rounded-full text-[10px] font-black uppercase tracking-widest">{((t as any).student as any).myDiary}</div>
                                     </div>
                                     <div className="flex items-end justify-between mt-6">
                                       <div className="flex items-center gap-6">
@@ -5670,9 +6785,7 @@ export default function App() {
                                           <h3 className="text-5xl font-black uppercase tracking-tighter">
                                             {subject.name}
                                           </h3>
-                                          <p className="text-white/70 font-bold uppercase tracking-widest text-sm">
-                                            Le mie conquiste
-                                          </p>
+                                          <p className="text-white/70 font-bold uppercase tracking-widest text-sm">{((t as any).student as any).myConquests}</p>
                                         </div>
                                       </div>
                                       <div className="relative group">
@@ -5680,7 +6793,7 @@ export default function App() {
                                           size="lg"
                                           className="h-16 px-8 rounded-3xl bg-white text-slate-900 hover:bg-white/90 font-black uppercase shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3"
                                         >
-                                          <Plus size={24} /> Aggiungi Foto
+                                          <Plus size={24} /> {((t as any).student as any).addPhoto}
                                         </Button>
                                         <input
                                           type="file"
@@ -5736,7 +6849,7 @@ export default function App() {
                                           <Icon size={48} />
                                         </div>
                                         <p className="text-xl font-black uppercase tracking-widest text-center leading-relaxed">
-                                          Carica una foto per questo obiettivo!
+                                          {((t as any).student as any).uploadPhotoForObjective}
                                           <br />
                                         </p>
                                       </div>
@@ -5812,10 +6925,10 @@ export default function App() {
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 sm:mb-12">
                           <div>
                             <h3 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tighter">
-                              La mia bolla relax
+                              {((t as any).student as any).relaxBubbleTitle}
                             </h3>
                             <p className="text-indigo-200 font-bold uppercase tracking-widest text-xs sm:text-sm mt-1 sm:mt-2">
-                              I miei momenti di tranquillità
+                              {((t as any).student as any).relaxBubbleSub}
                             </p>
                           </div>
                           <div className="relative group">
@@ -5823,7 +6936,7 @@ export default function App() {
                               size="lg"
                               className="h-16 px-8 rounded-3xl bg-indigo-500 text-white hover:bg-indigo-600 font-black uppercase shadow-2xl flex items-center gap-3"
                             >
-                              <Plus size={24} /> Aggiungi attività
+                              <Plus size={24} /> {((t as any).student as any).addActivity}
                             </Button>
                             <input
                               type="file"
@@ -5861,7 +6974,7 @@ export default function App() {
                         {/* Interactive Calming Tools Row */}
                         <div className="mb-12 bg-white/5 p-4 sm:p-8 rounded-[24px] sm:rounded-[40px] border-2 border-white/5 shadow-inner">
                           <h4 className="text-lg font-black text-white uppercase tracking-wider mb-6 text-center md:text-left">
-                            Esercizi e Attività Calmanti
+                            {((t as any).student as any).calmingExercises}
                           </h4>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {/* Option 1: Soap Bubbles */}
@@ -5884,9 +6997,7 @@ export default function App() {
                             >
                               <span className="text-4xl">🫧</span>
                               <span className="font-black text-sm uppercase tracking-tight">
-                                Bolle di Sapone
-                              </span>
-                            </motion.button>
+                                {((t as any).student as any).soapBubblesBtn}</span></motion.button>
 
                             {/* Option 2: Stress Ball */}
                             <motion.button
@@ -5908,9 +7019,7 @@ export default function App() {
                             >
                               <span className="text-4xl">🔴</span>
                               <span className="font-black text-sm uppercase tracking-tight">
-                                Schiaccia la Pallina
-                              </span>
-                            </motion.button>
+                                {((t as any).student as any).stressBallBtn}</span></motion.button>
 
                             {/* Option 3: Memory */}
                             <motion.button
@@ -5930,11 +7039,9 @@ export default function App() {
                                   : "bg-slate-900/40 hover:bg-slate-900/60 border-white/10 text-slate-200",
                               )}
                             >
-                              <span className="text-4xl">🃏</span>
+                              <span className="text-4xl">��</span>
                               <span className="font-black text-sm uppercase tracking-tight">
-                                Memory
-                              </span>
-                            </motion.button>
+                                {((t as any).student as any).memoryBtn}</span></motion.button>
                           </div>
 
                           {/* Active Game Display Panel */}
@@ -5945,12 +7052,12 @@ export default function App() {
                               className="mt-8 max-w-2xl mx-auto w-full"
                             >
                               {activeRelaxTool === "bubbles" && (
-                                <SoapBubblesGame />
+                                <SoapBubblesGame lang={lang} />
                               )}
                               {activeRelaxTool === "stressball" && (
-                                <StressBallGame />
+                                <StressBallGame lang={lang} />
                               )}
-                              {activeRelaxTool === "memory" && <MemoryGame />}
+                              {activeRelaxTool === "memory" && <MemoryGame lang={lang} />}
                             </motion.div>
                           )}
                         </div>
@@ -5961,10 +7068,10 @@ export default function App() {
                               <Coffee size={64} />
                             </div>
                             <p className="text-2xl font-black uppercase text-center">
-                              Cosa ti fa stare bene?
+                              {t.relaxGames.cosaTiFaStareBene}
                               <br />
                               <span className="text-sm font-bold opacity-60">
-                                Carica foto o video rilassanti
+                                {t.relaxGames.caricaFotoVideo}
                               </span>
                             </p>
                           </div>
@@ -6018,17 +7125,9 @@ export default function App() {
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 bg-yellow-400 text-slate-900 p-8 rounded-[40px] shadow-lg relative overflow-hidden">
                           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full translate-x-1/4 -translate-y-1/4 pointer-events-none" />
                           <div className="space-y-2">
-                            <span className="text-[11px] font-black uppercase tracking-widest bg-yellow-950/20 px-3 py-1 rounded-full text-yellow-900">
-                              Cresciamo Insieme
-                            </span>
-                            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
-                              Il mio progetto di vita
-                            </h3>
-                            <p className="text-sm font-medium opacity-90 max-w-xl">
-                              Qui puoi scrivere e immaginare il tuo futuro, la
-                              tua autonomia e tutto ciò che desideri imparare o
-                              fare meglio anno dopo anno!
-                            </p>
+                            <span className="text-[11px] font-black uppercase tracking-widest bg-yellow-950/20 px-3 py-1 rounded-full text-yellow-900">{(t as any).student.weGrowTogether}</span>
+                            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">{(t as any).student.myProgettoVita}</h3>
+                            <p className="text-sm font-medium opacity-90 max-w-xl">{(t as any).student.progettoVitaSub}</p>
                           </div>
 
                           <button
@@ -6038,7 +7137,7 @@ export default function App() {
                             }
                             className="bg-yellow-950/10 hover:bg-yellow-950/20 border border-yellow-950/20 px-5 py-3 rounded-2xl text-xs font-black flex items-center gap-2 transition-transform hover:scale-105 active:scale-95"
                           >
-                            <Info size={16} /> Note per la Famiglia
+                            <Info size={16} /> {(t as any).student.notesForFamily}
                           </button>
                         </div>
 
@@ -6103,7 +7202,7 @@ export default function App() {
                             {/* Comunicazione */}
                             <div className="space-y-4 p-6 rounded-3xl bg-blue-500/10 border border-blue-500/20 shadow-sm relative overflow-hidden group">
                               <div className="flex items-center gap-3">
-                                <span className="text-2xl">🗣️</span>
+                                <span className="text-2xl">🗣��</span>
                                 <Label className="text-lg font-black text-white block">
                                   La mia Comunicazione
                                 </Label>
@@ -6191,7 +7290,7 @@ export default function App() {
                             {/* Relazioni */}
                             <div className="space-y-4 p-6 rounded-3xl bg-rose-500/10 border border-rose-500/20 shadow-sm relative overflow-hidden group">
                               <div className="flex items-center gap-3">
-                                <span className="text-2xl">🤝</span>
+                                <span className="text-2xl">��</span>
                                 <Label className="text-lg font-black text-white block">
                                   Le mie Relazioni
                                 </Label>
@@ -6241,7 +7340,7 @@ export default function App() {
                             Sezione in arrivo
                           </h3>
                           <p className="text-xl text-slate-500">
-                            Stiamo preparando questa attività per te!
+                            {(t as any).stiamoPreparando}
                           </p>
                         </div>
                       </Card>
@@ -6256,7 +7355,7 @@ export default function App() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
             >
-              <CAACommunicator onBack={() => setRole(null)} />
+              <CAACommunicator onBack={() => setRole(null)} lang={lang} />
             </motion.div>
           ) : role === "school" ? (
             <motion.div
@@ -6273,8 +7372,7 @@ export default function App() {
                       {t.school.welcome}
                     </h2>
                     <p className="text-xl text-blue-100">
-                      Sezione dedicata agli insegnanti e al personale
-                      scolastico.
+                      {(t as any).sezioneDedicataInsegnanti}
                     </p>
                   </div>
                   <Button
@@ -6290,7 +7388,7 @@ export default function App() {
                     className="md:absolute md:right-0 rounded-2xl h-14 px-8 font-bold bg-white/10 border-white/20 text-white hover:bg-white/20"
                   >
                     <ChevronLeft size={20} className="mr-2" />{" "}
-                    {activeSchoolArea ? "Torna alle aree" : "Torna alla scelta"}
+                    {activeSchoolArea ? (t as any).tornaAlleAree : (t as any).tornaAllaScelta}
                   </Button>
                 </div>
               </div>
@@ -6303,7 +7401,8 @@ export default function App() {
                     saveToLocalStorage(newData);
                   }}
                   onSelectArea={(areaKey) => setActiveSchoolArea(areaKey)}
-                  translations={translations[lang]}
+                  t={t}
+                  lang={lang}
                 />
               ) : (
                 <div className="max-w-4xl mx-auto">
@@ -6354,10 +7453,10 @@ export default function App() {
                           {/* Sezione Programma di Classe */}
                           <div className="bg-slate-50 p-6 rounded-3xl border border-slate-100 space-y-4">
                             <h4 className="text-lg font-black text-slate-900 border-l-4 border-blue-500 pl-4 uppercase tracking-tight">
-                              Programma scolastico della classe
+                              {t.disciplineEditor.programmaClasse}
                             </h4>
                             <p className="text-xs text-slate-500 font-medium leading-relaxed">
-                              Specifica se l'alunno segue la programmazione didattica ministeriale prevista per il gruppo classe o se ha un percorso disciplinare individualizzato.
+                              {t.disciplineEditor.programmaClasseDesc}
                             </p>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                               <button
@@ -6371,8 +7470,8 @@ export default function App() {
                                 )}
                               >
                                 <div className="pr-4 font-normal text-slate-700">
-                                  <span className="block text-base font-black uppercase text-slate-900 tracking-tight">Sì, segue il programma</span>
-                                  <span className="block text-[11px] font-medium text-slate-400 mt-1">L'alunno segue le linee guida ministeriali ordinarie della classe.</span>
+                                  <span className="block text-base font-black uppercase text-slate-900 tracking-tight">{t.disciplineEditor.segueProgramma}</span>
+                                  <span className="block text-[11px] font-medium text-slate-400 mt-1">{t.disciplineEditor.segueProgrammaDesc}</span>
                                 </div>
                                 <div className={cn(
                                   "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-2",
@@ -6393,8 +7492,8 @@ export default function App() {
                                 )}
                               >
                                 <div className="pr-4 font-normal text-slate-700">
-                                  <span className="block text-base font-black uppercase text-slate-900 tracking-tight">No, non segue il programma</span>
-                                  <span className="block text-[11px] font-medium text-slate-400 mt-1">L'alunno segue una programmazione didattica semplificata o differenziata.</span>
+                                  <span className="block text-base font-black uppercase text-slate-900 tracking-tight">{t.disciplineEditor.nonSegueProgramma}</span>
+                                  <span className="block text-[11px] font-medium text-slate-400 mt-1">{t.disciplineEditor.nonSegueProgrammaDesc}</span>
                                 </div>
                                 <div className={cn(
                                   "w-6 h-6 rounded-full border-2 flex items-center justify-center shrink-0 ml-2",
@@ -6410,35 +7509,53 @@ export default function App() {
                           <div className="space-y-3">
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-l-4 border-blue-500 pl-4">
                               <h4 className="text-lg font-black text-slate-900 uppercase tracking-tight">
-                                Obiettivi da raggiungere per questa materia
+                                {t.disciplineEditor.obiettiviMateria}
                               </h4>
                               <button
                                 type="button"
                                 onClick={() => {
-                                  setModalTitle("Modello SMART per gli Obiettivi");
+                                  setModalTitle(lang === "es" ? "Modelo SMART para Objetivos" : lang === "ar" ? "نموذج SMART للأهداف" : "Modello SMART per gli Obiettivi");
                                   setAiExplanation(
-                                    `La formulazione degli obiettivi secondo il modello <strong>S.M.A.R.T.</strong> garantisce la chiarezza e l'efficacia del percorso didattico personalizzato:<br/><br/>` +
-                                    `• <strong>S - Specific (Specifico):</strong> L'obiettivo descrive esattamente cosa l'alunno deve essere in grado di fare, senza ambiguità. Usa verbi d'azione osservabili (es. scrivere, identificare, scegliere, eseguire), evitando termini vaghi (es. comprendere, migliorare).<br/><br/>` +
-                                    `• <strong>M - Measurable (Misurabile):</strong> Deve essere possibile determinare oggettivamente se l'obiettivo è stato raggiunto. Definisci criteri quantitativi o percentuali (es. 'correttamente in 4 casi su 5', 'con un aiuto visivo massimo', 'almeno 3 parole').<br/><br/>` +
-                                    `• <strong>A - Achievable (Raggiungibile):</strong> Definisci traguardi realistici basati sulle potenzialità reali dell'alunno, considerando i suoi punti di forza e barriere (un traguardo troppo ambizioso genera frustrazione).<br/><br/>` +
-                                    `• <strong>R - Relevant (Rilevante):</strong> L'obiettivo ha importanza concreta per la vita dell'alunno, la sua autonomia scolastica e sociale o per lo sviluppo di abilità funzionali collegate alla sua quotidianità.<br/><br/>` +
-                                    `• <strong>T - Time-bound (Temporizzato):</strong> Stabilisci scadenze precise entro cui verificare il traguardo (es. 'entro il primo quadrimestre', 'entro la fine dell'anno scolastico', 'nell'arco di 3 mesi').<br/><br/>` +
-                                    `<strong>Esempio SMART:</strong><br/>` +
-                                    `<em>«Entro marzo [T], l'alunno identificherà autonomamente [S] i giorni della settimana su un calendario illustrato [A, R] con una precisione di almeno 5 risposte corrette su 7 tentativi [M].»</em>`
+                                    lang === "es"
+                                      ? `La formulación de objetivos según el modelo <strong>S.M.A.R.T.</strong> garantiza la claridad y eficacia del plan de aprendizaje personalizado:<br/><br/>` +
+                                        `• <strong>S - Specific (Especifico):</strong> El objetivo describe exactamente qué debe ser capaz de hacer el alumno, sin ambigüedades. Usa verbos de acción observables (ej. escribir, identificar, elegir, realizar), evitando términos vagos (ej. comprender, mejorar).<br/><br/>` +
+                                        `• <strong>M - Measurable (Medible):</strong> Debe ser posible determinar objetivamente si el objetivo se ha alcanzado. Define criterios cuantitativos o porcentajes (ej. 'correctamente en 4 de 5 casos', 'con máximo apoyo visual', 'al menos 3 palabras').<br/><br/>` +
+                                        `• <strong>A - Achievable (Alcanzable):</strong> Define metas realistas basadas en el potencial real del alumno, considerando sus fortalezas y barreras (una meta demasiado ambiciosa genera frustración).<br/><br/>` +
+                                        `• <strong>R - Relevant (Relevante):</strong> El objetivo tiene una importancia concreta para la vida del alumno, su autonomía escolar y social o para el desarrollo de habilidades funcionales conectadas con su día a día.<br/><br/>` +
+                                        `• <strong>T - Time-bound (Temporalizado):</strong> Establece plazos precisos para verificar la meta (ej. 'dentro del primer semestre', 'al final del año escolar', 'en un plazo de 3 meses').<br/><br/>` +
+                                        `<strong>Ejemplo SMART:</strong><br/>` +
+                                        `<em>«Para marzo [T], el alumno identificará autónomamente [S] los días de la semana en un calendario ilustrado [A, R] con una precisión de al menos 5 respuestas correctas de 7 intentos [M].»</em>`
+                                      : lang === "ar"
+                                        ? `تضمن صياغة الأهداف وفقاً لنموذج <strong>S.M.A.R.T.</strong> وضوح وفعالية المسار التعليمي المخصص:<br/><br/>` +
+                                          `• <strong>S - Specific (محدد):</strong> يصف الهدف بدقة ما يجب أن يكون الطالب قادراً على فعله، دون غموض. استخدم أفعال حركة قابلة للملاحظة (مثل: يكتب، يحدد، يختار، ينفذ)، متجنباً المصطلحات الغامضة (مثل: يفهم، يتحسن).<br/><br/>` +
+                                          `• <strong>M - Measurable (قابل للقياس):</strong> يجب أن يكون ممكناً تحديد ما إذا كان الهدف قد تحقق بشكل موضوعي. حدد معايير كمية أو نسب مئوية (مثل: 'بشكل صحيح في 4 من 5 حالات'، 'بأقصى دعم بصري'، '3 كلمات على الأقل').<br/><br/>` +
+                                          `• <strong>A - Achievable (قابل للتحقيق):</strong> حدد غايات واقعية بناءً على القدرات الحقيقية للطالب، مع مراعاة نقاط قوته وعوائقه (الغاية الطموحة جداً تولد الإحباط).<br/><br/>` +
+                                          `• <strong>R - Relevant (ذو صلة):</strong> الهدف له أهمية ملموسة لحياة الطالب، واستقلاليته المدرسية والاجتماعية أو لتطوير مهارات وظيفية مرتبطة بيوميته.<br/><br/>` +
+                                          `• <strong>T - Time-bound (محدد بزمن):</strong> حدد مواعيد نهائية دقيقة للتحقق من الغاية (مثل: 'خلال الفصل الدراسي الأول'، 'بحلول نهاية العام الدراسي'، 'خلال 3 أشهر').<br/><br/>` +
+                                          `<strong>مثال SMART:</strong><br/>` +
+                                          `<em>«بحلول شهر مارس [T]، سيحدد الطالب بشكل مستقل [S] أيام الأسبوع على تقويم مصور [A, R] بدقة لا تقل عن 5 إجابات صحيحة من أصل 7 محاولات [M].»</em>`
+                                        : `La formulazione degli obiettivi secondo il modello <strong>S.M.A.R.T.</strong> garantisce la chiarezza e l'efficacia del percorso didattico personalizzato:<br/><br/>` +
+                                          `• <strong>S - Specific (Specifico):</strong> L'obiettivo descrive esattamente cosa l'alunno deve essere in grado di fare, senza ambiguità. Usa verbi d'azione osservabili (es. scrivere, identificare, scegliere, eseguire), evitando termini vaghi (es. comprendere, migliorare).<br/><br/>` +
+                                          `• <strong>M - Measurable (Misurabile):</strong> Deve essere possibile determinare oggettivamente se l'obiettivo è stato raggiunto. Definisci criteri quantitativi o percentuali (es. 'correttamente in 4 casi su 5', 'con un aiuto visivo massimo', 'almeno 3 parole').<br/><br/>` +
+                                          `• <strong>A - Achievable (Raggiungibile):</strong> Definisci traguardi realistici basati sulle potenzialità reali dell'alunno, considerando i suoi punti di forza e barriere (un traguardo troppo ambizioso genera frustrazione).<br/><br/>` +
+                                          `• <strong>R - Relevant (Rilevante):</strong> L'obiettivo ha importanza concreta per la vita dell'alunno, la sua autonomia scolastica e sociale o per lo sviluppo di abilità funzionali collegate alla sua quotidianità.<br/><br/>` +
+                                          `• <strong>T - Time-bound (Temporizzato):</strong> Stabilisci scadenze precise entro cui verificare il traguardo (es. 'entro il primo quadrimestre', 'entro la fine dell'anno scolastico', 'nell'arco di 3 mesi').<br/><br/>` +
+                                          `<strong>Esempio SMART:</strong><br/>` +
+                                          `<em>«Entro marzo [T], l'alunno identificherà autonomamente [S] i giorni della settimana su un calendario illustrato [A, R] con una precisione di almeno 5 risposte corrette su 7 tentativi [M].»</em>`
                                   );
                                 }}
                                 className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full text-xs font-black uppercase tracking-wider self-start sm:self-center shadow-md shadow-indigo-200 hover:shadow-indigo-300 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
                               >
-                                <Sparkles size={12} /> Guida SMART
+                                <Sparkles size={12} /> {lang === "es" ? "Guía SMART" : lang === "ar" ? "دليل SMART" : "Guida SMART"}
                               </button>
                             </div>
                             <p className="text-xs text-slate-500 font-medium pl-4">
-                              Indica le competenze e i traguardi d'apprendimento specifici previsti in questo anno per l'alunno:
+                              {t.disciplineEditor.obiettiviMateriaDesc}
                             </p>
                             <textarea
                               value={currentDetail.obiettivi || ""}
                               onChange={(e) => handleUpdateDetail("obiettivi", e.target.value)}
-                              placeholder="Inserisci traguardi di competenza, abilità minime, facilitatori ed eventuali obiettivi intermedi..."
+                              placeholder={t.disciplineEditor.placeholderObiettivi}
                               className="w-full min-h-[140px] p-5 rounded-[24px] border-2 border-blue-100 bg-blue-50/20 focus:ring-4 focus:ring-blue-100 outline-none transition-all text-base text-slate-900 placeholder-slate-400"
                             />
                           </div>
@@ -6446,29 +7563,29 @@ export default function App() {
                           {/* Sezione Verifiche Quadrimestrali */}
                           <div className="space-y-4">
                             <h4 className="text-lg font-black text-slate-900 border-l-4 border-blue-500 pl-4 uppercase tracking-tight">
-                              Valutazione & Verifiche Quadrimestrali
+                              {t.disciplineEditor.valutazioneQuadrimestrale}
                             </h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                               <div className="space-y-2">
                                 <label className="text-sm font-black text-slate-700 uppercase tracking-tight block">
-                                  Primo Quadrimestre
+                                  {t.disciplineEditor.primoQuadrimestre}
                                 </label>
                                 <textarea
                                   value={currentDetail.verificaPrimoQuadrimestre || ""}
                                   onChange={(e) => handleUpdateDetail("verificaPrimoQuadrimestre", e.target.value)}
-                                  placeholder="Inserisci modalità di verifica, esiti ed eventuale livello di autonomia del primo quadrimestre..."
+                                  placeholder={t.disciplineEditor.placeholderPrimo}
                                   className="w-full min-h-[160px] p-5 rounded-[24px] border-2 border-slate-200 bg-slate-50/50 focus:border-blue-500 outline-none transition-all text-sm text-slate-900 placeholder-slate-400"
                                 />
                               </div>
 
                               <div className="space-y-2">
                                 <label className="text-sm font-black text-slate-700 uppercase tracking-tight block">
-                                  Secondo Quadrimestre
+                                  {t.disciplineEditor.secondoQuadrimestre}
                                 </label>
                                 <textarea
                                   value={currentDetail.verificaSecondoQuadrimestre || ""}
                                   onChange={(e) => handleUpdateDetail("verificaSecondoQuadrimestre", e.target.value)}
-                                  placeholder="Inserisci modalità di verifica, esiti finali conseguiti ed eventuale livello di autonomia a fine anno scolastico..."
+                                  placeholder={t.disciplineEditor.placeholderSecondo}
                                   className="w-full min-h-[160px] p-5 rounded-[24px] border-2 border-slate-200 bg-slate-50/50 focus:border-blue-500 outline-none transition-all text-sm text-slate-900 placeholder-slate-400"
                                 />
                               </div>
@@ -6483,7 +7600,7 @@ export default function App() {
                               }}
                               className="bg-blue-600 hover:bg-blue-700 text-white rounded-[24px] h-14 px-12 font-bold text-lg shadow-xl transition-all"
                             >
-                              Salva area e continua
+                              {t.disciplineEditor.salvaEContinua}
                             </Button>
                           </div>
                         </div>
@@ -6501,7 +7618,7 @@ export default function App() {
                   }}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white rounded-[32px] h-20 px-20 font-black text-2xl shadow-2xl shadow-emerald-200/50 transition-all hover:scale-105 active:scale-95"
                 >
-                  CONFERMA E CHIUDI PEI
+                  {(t as any).confirmAndClose}
                 </Button>
               </div>
             </motion.div>
@@ -6519,7 +7636,7 @@ export default function App() {
                   onClick={() => setRole(null)}
                   className="rounded-2xl h-12 px-6 font-bold text-white hover:bg-white/10"
                 >
-                  <ChevronLeft size={20} className="mr-2" /> Torna alla scelta
+                  <ChevronLeft size={20} className="mr-2" /> {(t as any).tornaAllaScelta}
                 </Button>
               </div>
               <div className="text-center space-y-4">
@@ -6958,7 +8075,7 @@ export default function App() {
                                 setActiveInstructionsModal("strengths")
                               }
                             >
-                              Clicca il simbolo per Info
+                              {t.clickForInfo || "Clicca il simbolo per Info"}
                             </span>
                           </div>
                         </div>
@@ -7016,7 +8133,7 @@ export default function App() {
                                 }
                                 className="rounded-xl border-blue-200 text-blue-600 hover:bg-blue-50 text-xs font-bold gap-2"
                               >
-                                <Plus size={14} /> Carica Foto
+                                <Plus size={14} /> {t.uploadPhotoBtn || "Carica Foto"}
                               </Button>
                             </div>
                           </div>
@@ -7057,8 +8174,7 @@ export default function App() {
                             ))}
                             {(data.strengthsPhotos || []).length === 0 && (
                               <div className="col-span-full py-8 text-center border-2 border-dashed border-slate-100 rounded-3xl text-xs text-slate-400 font-bold">
-                                Nessuna foto presente. Carica una foto per
-                                creare l'album!
+                                {t.noPhotos || "Nessuna foto presente. Carica una foto per creare l'album!"}
                               </div>
                             )}
                           </div>
@@ -7096,7 +8212,7 @@ export default function App() {
                                 setActiveInstructionsModal("needs")
                               }
                             >
-                              Clicca il simbolo per Info
+                              {t.clickForInfo || "Clicca il simbolo per Info"}
                             </span>
                           </div>
                         </div>
@@ -7137,7 +8253,7 @@ export default function App() {
                           <Compass className="animate-spin-slow" size={28} />
                         </div>
                         <Label className="text-2xl font-black text-slate-900">
-                          Progetto di Vita
+                          {t.progettoVita || "Progetto di Vita"}
                         </Label>
                         <button
                           type="button"
@@ -7145,7 +8261,7 @@ export default function App() {
                             setActiveInstructionsModal("progetto_vita")
                           }
                           className="flex items-center justify-center w-8 h-8 rounded-full bg-emerald-100 hover:bg-emerald-200 text-emerald-600 transition-all cursor-pointer hover:scale-105 active:scale-95 border border-emerald-200"
-                          title="Informazioni Progetto di Vita"
+                          title={t.progettoVitaTitle || "Informazioni Progetto di Vita"}
                         >
                           <Info size={16} />
                         </button>
@@ -7177,7 +8293,7 @@ export default function App() {
                             1°
                           </span>
                           <span className="text-lg font-black text-slate-800">
-                            Classe Prima
+                            {t.classFirst || "Classe Prima"}
                           </span>
                         </div>
                       </button>
@@ -7206,7 +8322,7 @@ export default function App() {
                             2°
                           </span>
                           <span className="text-lg font-black text-slate-800">
-                            Classe Seconda
+                            {t.classSecond || "Classe Seconda"}
                           </span>
                         </div>
                       </button>
@@ -7235,7 +8351,7 @@ export default function App() {
                             3°
                           </span>
                           <span className="text-lg font-black text-slate-800">
-                            Classe Terza
+                            {t.classThird || "Classe Terza"}
                           </span>
                         </div>
                       </button>
@@ -7507,22 +8623,27 @@ export default function App() {
                   <Button
                     variant="ghost"
                     onClick={() => {
-                      if (currentStep === 0) setRole(null);
+                      if (currentStep === 0) {
+                        setRole(null);
+                        setCurrentStep(null);
+                      }
                       else handlePrev();
                     }}
-                    className="gap-2 rounded-2xl px-8 h-14 font-bold text-slate-400 hover:text-slate-900"
+                    className="gap-1 sm:gap-2 rounded-2xl px-3 sm:px-8 h-12 sm:h-14 font-bold text-slate-400 hover:text-slate-900"
+                    title={(t as any).backToChoice}
                   >
-                    <ChevronLeft size={20} /> Torna alla scelta
+                    <ChevronLeft size={20} />
+                    <span className="hidden sm:inline">{(t as any).backToChoice}</span>
                   </Button>
 
-                  <div className="flex gap-3">
+                  <div className="flex gap-1.5 sm:gap-3">
                     {steps.map((_, i) => (
                       <div
                         key={i}
                         className={cn(
                           "h-2 rounded-full transition-all duration-500",
                           currentStep === i
-                            ? cn("w-12", steps[currentStep].color)
+                            ? cn("w-6 sm:w-12", steps[currentStep].color)
                             : "w-2 bg-slate-200",
                         )}
                       />
@@ -7532,18 +8653,22 @@ export default function App() {
                   <Button
                     onClick={handleNext}
                     className={cn(
-                      "gap-2 rounded-2xl px-10 h-14 font-bold text-white shadow-xl transition-all hover:scale-105 active:scale-95",
+                      "gap-1 sm:gap-2 rounded-2xl px-4 sm:px-10 h-12 sm:h-14 font-bold text-white shadow-xl transition-all hover:scale-105 active:scale-95",
                       steps[currentStep].color,
                     )}
+                    title={currentStep === steps.length - 1 ? (t as any).backToHome : t.next}
                   >
-                    {currentStep === steps.length - 1
-                      ? lang === "it"
-                        ? "Home"
-                        : lang === "ar"
-                          ? "الرئيسية"
-                          : "首页"
-                      : t.next}{" "}
-                    <ChevronRight size={20} />
+                    {currentStep === steps.length - 1 ? (
+                      <>
+                        <span className="hidden sm:inline">{(t as any).backToHome}</span>
+                        <Home size={20} />
+                      </>
+                    ) : (
+                      <>
+                        <span className="hidden sm:inline">{t.next}</span>
+                        <ChevronRight size={20} />
+                      </>
+                    )}
                   </Button>
                 </div>
               </Card>
@@ -7571,16 +8696,40 @@ export default function App() {
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="rounded-full w-12 h-12 bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        className={cn(
+                          "rounded-full w-12 h-12 flex items-center justify-center transition-all",
+                          isTtsActive
+                            ? "bg-rose-50 text-rose-600 hover:bg-rose-100"
+                            : "bg-blue-50 text-blue-600 hover:bg-blue-100"
+                        )}
                         onClick={() => {
-                          const utterance = new SpeechSynthesisUtterance(
-                            aiExplanation.replace(/<[^>]*>?/gm, ""),
-                          );
-                          utterance.lang = lang === "ar" ? "ar-SA" : "es-ES";
-                          window.speechSynthesis.speak(utterance);
+                          if (isTtsActive) {
+                            window.speechSynthesis.cancel();
+                            setIsTtsActive(false);
+                          } else {
+                            window.speechSynthesis.cancel();
+                            const voices = window.speechSynthesis.getVoices();
+                            const langPrefix = lang === "ar" ? "ar" : "es";
+                            const hasVoice = voices.some(v => v.lang.toLowerCase().startsWith(langPrefix));
+                            if (voices.length > 0 && !hasVoice) {
+                              alert(lang === "ar"
+                                ? "الصوت باللغة العربية غير مثبت على هذا الجهاز.\n\nكي�ية إضا�ة حزم اللغات على الهات� (تعليمات عملية):\nإذا تلقيت هذه الرسالة على هات�ك الذكي، يمكنك تثبيت اللغة مجانًا �ي بضع ثوان�:\n\nعلى نظام أندرويد (Android):\n1. انتقل إلى الإعدادات -> النظام (أو إعدادات إضا�ية).\n2. اختر اللغة والإدخال -> إخراج تحويل النص إلى كلام (Text-to-Speech).\n3. انقر على أيقونة الترس بجوار المحرك الم�ضل (مثل خدمات الصوت من Google).\n4. اختر تثبيت البيانات الصوتية وتنزيل حزمة اللغة العربية.\n\nعلى نظام iOS (آي�ون/آيباد):\n1. انتقل إلى الإعدادات -> تسهيلات الاستخدام.\n2. اختر المحتوى المقروء -> الأصوات.\n3. اختر اللغة العربية من القائمة وانقر على أيقونة السحابة لتنزيل أحد الأصوات المتاحة."
+                                : "La voz en español no está instalada en este dispositivo.\n\nCómo añadir los paquetes en el teléfono (Instrucciones prácticas):\nSi recibes este mensaje en tu smartphone, puedes instalar el idioma gratis en unos segundos:\n\nEn Android:\n1. Ve a Ajustes -> Sistema (o Ajustes adicionales).\n2. Selecciona Idioma e introducción de texto -> Salida de síntesis de voz (Text-to-Speech).\n3. Haz clic en el icono del engranaje junto a Motor preferido (ej. Servicios de voz de Google).\n4. Selecciona Instalar datos de voz y descarga el paquete para Español.\n\nEn iOS (iPhone/iPad):\n1. Ve a Ajustes -> Accesibilidad.\n2. Selecciona Leer contenido -> Voces.\n3. Elige Español en la lista y toca el icono de la nube para descargar una de las voces disponibles."
+                              );
+                              return;
+                            }
+                            const utterance = new SpeechSynthesisUtterance(
+                              aiExplanation.replace(/<[^>]*>?/gm, ""),
+                            );
+                            utterance.lang = lang === "ar" ? "ar-SA" : "es-ES";
+                            utterance.onend = () => setIsTtsActive(false);
+                            utterance.onerror = () => setIsTtsActive(false);
+                            setIsTtsActive(true);
+                            window.speechSynthesis.speak(utterance);
+                          }
                         }}
                       >
-                        <Globe size={24} />
+                        {isTtsActive ? <VolumeX size={24} /> : <Volume2 size={24} />}
                       </Button>
                     )}
                 </div>
@@ -7604,6 +8753,8 @@ export default function App() {
                           : "bg-blue-600",
                       )}
                       onClick={() => {
+                        window.speechSynthesis.cancel();
+                        setIsTtsActive(false);
                         setAiExplanation(null);
                         setIsGameActive(false);
                       }}
@@ -7612,7 +8763,7 @@ export default function App() {
                         ? "Torna al menu"
                         : lang === "ar"
                           ? "العودة للقائمة"
-                          : "返回菜单"}
+                          : "Volver al menú"}
                     </Button>
                   </>
                 )}
@@ -7650,7 +8801,7 @@ export default function App() {
                       </div>
                       <div>
                         <span className="text-[11px] font-black text-blue-500 uppercase tracking-widest">
-                          Guida alla compilazione
+                          {t.helpModals?.guideTitle || "Guida alla compilazione"}
                         </span>
                         <h3 className="text-2xl font-black text-slate-900 tracking-tight">
                           {t.strengths}
@@ -7661,21 +8812,16 @@ export default function App() {
                     <div className="space-y-4 text-slate-600 text-sm leading-relaxed pt-2">
                       <div className="p-5 bg-blue-50/50 border border-blue-100/50 rounded-3xl">
                         <strong className="text-blue-900 font-bold block mb-1 text-xs uppercase tracking-wider">
-                          Significato della sezione:
+                          {t.helpModals?.meaningTitle || "Significato della sezione:"}
                         </strong>
-                        I punti di forza rappresentano le abilità, gli interessi
-                        e le cose in cui l'alunno eccelle o che svolge con
-                        piacere e motivazione.
+                        {t.helpModals?.strengths?.meaning || "I punti di forza rappresentano le abilità, gli interessi e le cose in cui l'alunno eccelle o che svolge con piacere e motivazione."}
                       </div>
 
                       <div className="p-5 bg-emerald-50/50 border border-emerald-100/50 rounded-3xl">
                         <strong className="text-emerald-900 font-bold block mb-1 text-xs uppercase tracking-wider">
-                          Cosa fare / Come compilare:
+                          {t.helpModals?.actionTitle || "Cosa fare / Come compilare:"}
                         </strong>
-                        Descrivi cosa sa fare meglio, i contesti in cui si sente
-                        a suo agio, i suoi talenti naturali e in quali modi
-                        l'insegnante può valorizzare queste competenze nel
-                        percorso educativo di tutti i giorni.
+                        {t.helpModals?.strengths?.action || "Descrivi cosa sa fare meglio, i contesti in cui si sente a suo agio, i suoi talenti naturali e in quali modi l'insegnante può valorizzare queste competenze nel percorso educativo di tutti i giorni."}
                       </div>
                     </div>
 
@@ -7683,7 +8829,7 @@ export default function App() {
                       className="w-full mt-6 rounded-2xl h-14 text-sm font-black text-white bg-blue-600 hover:bg-blue-700 shadow-lg shadow-blue-600/20"
                       onClick={() => setActiveInstructionsModal(null)}
                     >
-                      Ho capito, continua
+                      {t.helpModals?.understandBtn || "Ho capito, continua"}
                     </Button>
                   </div>
                 ) : activeInstructionsModal === "needs" ? (
@@ -7694,7 +8840,7 @@ export default function App() {
                       </div>
                       <div>
                         <span className="text-[11px] font-black text-amber-500 uppercase tracking-widest">
-                          Guida alla compilazione
+                          {t.helpModals?.guideTitle || "Guida alla compilazione"}
                         </span>
                         <h3 className="text-2xl font-black text-slate-900 tracking-tight">
                           {t.needs}
@@ -7705,23 +8851,16 @@ export default function App() {
                     <div className="space-y-4 text-slate-600 text-sm leading-relaxed pt-2">
                       <div className="p-5 bg-amber-50/50 border border-amber-100/50 rounded-3xl">
                         <strong className="text-amber-900 font-bold block mb-1 text-xs uppercase tracking-wider">
-                          Significato della sezione:
+                          {t.helpModals?.meaningTitle || "Significato della sezione:"}
                         </strong>
-                        I bisogni e le difficoltà descrivono le barriere, le
-                        aree di fragilità o le attività specifiche in cui
-                        l'alunno richiede assistenza, mediazione o un supporto
-                        personalizzato.
+                        {t.helpModals?.needs?.meaning || "I bisogni e le difficoltà descrivono le barriere, le aree di fragilità o le attività specifiche in cui l'alunno richiede assistenza, mediazione o un supporto personalizzato."}
                       </div>
 
                       <div className="p-5 bg-rose-50/50 border border-rose-100/50 rounded-3xl">
                         <strong className="text-rose-900 font-bold block mb-1 text-xs uppercase tracking-wider">
-                          Cosa fare / Come compilare:
+                          {t.helpModals?.actionTitle || "Cosa fare / Come compilare:"}
                         </strong>
-                        Indica in quali situazioni e compiti l'alunno riscontra
-                        maggiori ostacoli, dove ha più bisogno di una figura di
-                        supporto/guida, e indica quali canali comunicativi o
-                        strumenti concreti ne agevolano il superamento delle
-                        barriere.
+                        {t.helpModals?.needs?.action || "Indica in quali situaciones y tareas el alumno encuentra mayores obstáculos, dónde necesita más una figura de apoyo/guía, e indica qué canales de comunicación o herramientas concretas facilitan la superación de las barreras."}
                       </div>
                     </div>
 
@@ -7729,7 +8868,7 @@ export default function App() {
                       className="w-full mt-6 rounded-2xl h-14 text-sm font-black text-white bg-amber-600 hover:bg-amber-700 shadow-lg shadow-amber-600/20"
                       onClick={() => setActiveInstructionsModal(null)}
                     >
-                      Ho capito, continua
+                      {t.helpModals?.understandBtn || "Ho capito, continua"}
                     </Button>
                   </div>
                 ) : (
@@ -7740,10 +8879,10 @@ export default function App() {
                       </div>
                       <div>
                         <span className="text-[11px] font-black text-emerald-500 uppercase tracking-widest">
-                          Guida alla compilazione
+                          {t.helpModals?.guideTitle || "Guida alla compilazione"}
                         </span>
                         <h3 className="text-2xl font-black text-slate-900 tracking-tight">
-                          Progetto di Vita
+                          {t.progettoVita || "Progetto di Vita"}
                         </h3>
                       </div>
                     </div>
@@ -7751,21 +8890,16 @@ export default function App() {
                     <div className="space-y-4 text-slate-600 text-sm leading-relaxed pt-2">
                       <div className="p-5 bg-emerald-50/50 border border-emerald-100/50 rounded-3xl">
                         <strong className="text-emerald-950 font-bold block mb-1 text-xs uppercase tracking-wider">
-                          Note per la Famiglia:
+                          {t.helpModals?.familyNoteTitle || "Note per la Famiglia:"}
                         </strong>
-                        Questa sezione raccoglie le vostre aspettative, desideri
-                        e visioni sul futuro di vostro figlio.
+                        {t.helpModals?.progettoVita?.meaning || "Questa sezione raccoglie le vostre aspettative, desideri e visioni sul futuro di vostro figlio."}
                       </div>
 
                       <div className="p-5 bg-blue-50/50 border border-blue-100/50 rounded-3xl">
                         <strong className="text-blue-900 font-bold block mb-1 text-xs uppercase tracking-wider">
-                          In un'ottica di Progetto di Vita:
+                          {t.helpModals?.progettoVitaPerspectiveTitle || "In un'ottica di Progetto di Vita:"}
                         </strong>
-                        Vi invitiamo a indicare gli obiettivi educativi, di
-                        autonomia personale, sociale o relazionale che vi
-                        piacerebbe che l'alunno raggiungesse, suddivisi per
-                        ciascuno dei tre anni della scuola secondaria di primo
-                        grado (scuola media).
+                        {t.helpModals?.progettoVita?.action || "Vi invitiamo a indicare gli obiettivi educativi, di autonomia personale, sociale o relazionale che vi piacerebbe che l'alunno raggiungesse, suddivisi per ciascuno dei tre anni della scuola secondaria di primo grado (scuola media)."}
                       </div>
                     </div>
 
@@ -7773,7 +8907,7 @@ export default function App() {
                       className="w-full mt-6 rounded-2xl h-14 text-sm font-black text-white bg-emerald-600 hover:bg-emerald-700 shadow-lg shadow-emerald-600/20"
                       onClick={() => setActiveInstructionsModal(null)}
                     >
-                      Ho capito, continua
+                      {t.helpModals?.understandBtn || "Ho capito, continua"}
                     </Button>
                   </div>
                 )}
