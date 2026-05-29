@@ -3,8 +3,96 @@ import { motion } from "motion/react";
 import { Button } from "./ui/button";
 import { Sparkles, Trash2, Globe, Heart, Play, RefreshCw, Upload } from "lucide-react";
 
+const gameTranslations = {
+  it: {
+    bubblesTitle: "🫧 Bolle di Sapone",
+    bubblesSub: "Tocca le bolle per farle scoppiare!",
+    bubblesPoints: "Punti:",
+    bubblesBlow: "Soffia Bolla 🫧",
+    stressTitle: "🛑 Pallina Antistress",
+    stressSub: "Schiaccia e tieni premuto la pallina!",
+    stressSqueezes: "Schiacciate:",
+    stressSqueezeBtn: "Spremi!",
+    stressFooter: "Premi per liberare l'energia e calmarti! 🌸",
+    memoryTitle: "🃏 Gioco delle Coppie (Memory)",
+    memorySub: "Cerca e abbina le 6 carte sul tavolo!",
+    memoryMoves: "Mosse:",
+    memoryReset: "Reset",
+    memoryWinTitle: "Super Bravissimo!",
+    memoryWinDesc: (moves) => `Hai completato il Memory con solo ${moves} mosse! Ti senti più calmo e felice?`,
+    memoryRetry: "Riprova 🎯",
+    memoryUploadTitle: "📸 Carica le tue Immagini Personalizzate",
+    memoryUploadSub: "Puoi caricare foto per usarle come carte nel gioco!",
+    memoryChooseBtn: "Scegli Foto",
+    memoryNoImages: "Nessuna immagine personalizzata caricata. Sto usando le icone di default (🐶, 🍉, 🚀).",
+    memoryFeedbackDefault: "Tocca le carte per trovare le coppie!",
+    memoryFeedbackWin: "Bravissimo! Hai abbinato tutte le carte! 🎉",
+    memoryFeedbackMatch: "Ottimo lavoro! Continua così! 🌟",
+    memoryFeedbackMismatch: "Riprova, cerca lo stesso disegno!",
+    memoryFeedbackUploaded: "Immagini caricate! Le coppie sono pronte.",
+    memoryFeedbackDeleted: "Immagine eliminata!"
+  },
+  ar: {
+    bubblesTitle: "🫧 فقاعات الصابون",
+    bubblesSub: "المس الفقاعات لتفجيرها!",
+    bubblesPoints: "النقاط:",
+    bubblesBlow: "انفخ فقاعة 🫧",
+    stressTitle: "🛑 كرة ضغط",
+    stressSub: "اضغط مع الاستمرار على الكرة!",
+    stressSqueezes: "الضغطات:",
+    stressSqueezeBtn: "اضغط!",
+    stressFooter: "اضغط لتحرير الطاقة والهدوء! 🌸",
+    memoryTitle: "🃏 لعبة الأزواج (الذاكرة)",
+    memorySub: "ابحث وطابق الـ 6 بطاقات على الطاولة!",
+    memoryMoves: "الحركات:",
+    memoryReset: "إعادة ضبط",
+    memoryWinTitle: "ممتاز جداً!",
+    memoryWinDesc: (moves) => `لقد أكملت لعبة الذاكرة في ${moves} حركات فقط! هل تشعر بالهدوء والسعادة؟`,
+    memoryRetry: "حاول مجدداً 🎯",
+    memoryUploadTitle: "📸 تحميل صورك الخاصة",
+    memoryUploadSub: "يمكنك تحميل الصور لاستخدامها كبطاقات في اللعبة!",
+    memoryChooseBtn: "اختر صورة",
+    memoryNoImages: "لم يتم تحميل أي صور مخصصة. يتم استخدام الرموز الافتراضية (🐶، 🍉، 🚀).",
+    memoryFeedbackDefault: "المس البطاقات للعثور على الأزواج!",
+    memoryFeedbackWin: "أحسنت! لقد طابقت جميع البطاقات! 🎉",
+    memoryFeedbackMatch: "عمل رائع! استمر هكذا! 🌟",
+    memoryFeedbackMismatch: "أعد المحاولة، ابحث عن نفس الرسم!",
+    memoryFeedbackUploaded: "تم تحميل الصور! الأزواج جاهزة.",
+    memoryFeedbackDeleted: "تم حذف الصورة!"
+  },
+  es: {
+    bubblesTitle: "🫧 Burbujas de Jabón",
+    bubblesSub: "¡Toca las burbujas para explotarlas!",
+    bubblesPoints: "Puntos:",
+    bubblesBlow: "Soplar Burbuja 🫧",
+    stressTitle: "🛑 Pelota Antiestrés",
+    stressSub: "¡Aprieta y mantén presionada la pelota!",
+    stressSqueezes: "Apretadas:",
+    stressSqueezeBtn: "¡Aprieta!",
+    stressFooter: "¡Aprieta para liberar energía y calmarte! 🌸",
+    memoryTitle: "🃏 Juego de Parejas (Memoria)",
+    memorySub: "¡Busca y empareja las 6 cartas de la mesa!",
+    memoryMoves: "Movimientos:",
+    memoryReset: "Reiniciar",
+    memoryWinTitle: "¡Súper Excelente!",
+    memoryWinDesc: (moves) => `¡Completaste la memoria con solo ${moves} movimientos! ¿Te sientes más tranquilo y feliz?`,
+    memoryRetry: "Intentar de nuevo 🎯",
+    memoryUploadTitle: "📸 Sube tus imágenes personalizadas",
+    memoryUploadSub: "¡Puedes subir fotos para usarlas como cartas en el juego!",
+    memoryChooseBtn: "Elegir fotos",
+    memoryNoImages: "No se han subido imágenes personalizadas. Se usan los iconos por defecto (🐶, 🍉, 🚀).",
+    memoryFeedbackDefault: "¡Toca las cartas para encontrar las parejas!",
+    memoryFeedbackWin: "¡Excelente! ¡Has emparejado todas las cartas! 🎉",
+    memoryFeedbackMatch: "¡Buen trabajo! ¡Sigue así! 🌟",
+    memoryFeedbackMismatch: "¡Inténtalo de nuevo, busca el mismo dibujo!",
+    memoryFeedbackUploaded: "¡Imágenes cargadas! Las parejas están listas.",
+    memoryFeedbackDeleted: "¡Imagen eliminada!"
+  }
+};
+
 // 1. SOAP BUBBLES GAME
-export function SoapBubblesGame() {
+export function SoapBubblesGame({ lang = "it" }: { lang?: string }) {
+  const t = gameTranslations[lang] || gameTranslations.it;
   const [bubbles, setBubbles] = useState<{ id: number; x: number; y: number; size: number; color: string; popped: boolean }[]>([]);
   const [poppedCount, setPoppedCount] = useState(0);
 
@@ -54,11 +142,11 @@ export function SoapBubblesGame() {
     <div className="bg-slate-900 border-4 border-cyan-400 rounded-[24px] sm:rounded-[40px] p-4 sm:p-8 relative overflow-hidden min-h-[420px] sm:min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-10">
         <div>
-          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-cyan-300">🫧 Bolle di Sapone</h4>
-          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">Tocca le bolle per farle scoppiare!</p>
+          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-cyan-300">{t.bubblesTitle}</h4>
+          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">{t.bubblesSub}</p>
         </div>
         <div className="bg-cyan-950/80 border border-cyan-800 px-4 py-1.5 sm:px-5 sm:py-2 rounded-xl sm:rounded-2xl shadow-lg">
-          <span className="font-sans text-cyan-200 font-bold uppercase text-[10px] sm:text-xs">Punti: <strong className="text-base sm:text-lg text-white font-black ml-1">{poppedCount}</strong></span>
+          <span className="font-sans text-cyan-200 font-bold uppercase text-[10px] sm:text-xs">{t.bubblesPoints} <strong className="text-base sm:text-lg text-white font-black ml-1">{poppedCount}</strong></span>
         </div>
       </div>
 
@@ -102,7 +190,7 @@ export function SoapBubblesGame() {
           }}
           className="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black rounded-2xl uppercase text-xs px-6 py-4 shadow-lg border-2 border-white/20"
         >
-          Soffia Bolla 🫧
+          {t.bubblesBlow}
         </Button>
       </div>
     </div>
@@ -110,7 +198,8 @@ export function SoapBubblesGame() {
 }
 
 // 2. STRESS BALL GAME
-export function StressBallGame() {
+export function StressBallGame({ lang = "it" }: { lang?: string }) {
+  const t = gameTranslations[lang] || gameTranslations.it;
   const [squeezeCount, setSqueezeCount] = useState(0);
   const [isSqueezing, setIsSqueezing] = useState(false);
   const [ballColor, setBallColor] = useState("#f43f5e");
@@ -131,11 +220,11 @@ export function StressBallGame() {
     <div className="bg-slate-900 border-4 border-rose-400 rounded-[24px] sm:rounded-[40px] p-4 sm:p-8 min-h-[420px] sm:min-h-[460px] shadow-2xl text-white flex flex-col justify-between w-full h-full">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-10">
         <div>
-          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-rose-300">🛑 Pallina Antistress</h4>
-          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">Schiaccia e tieni premuto la pallina!</p>
+          <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-rose-300">{t.stressTitle}</h4>
+          <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">{t.stressSub}</p>
         </div>
         <div className="bg-rose-950/80 border border-rose-800 px-4 py-1.5 sm:px-5 sm:py-2 rounded-xl sm:rounded-2xl shadow-lg">
-          <span className="font-sans text-rose-200 font-bold uppercase text-[10px] sm:text-xs">Schiacciate: <strong className="text-base sm:text-lg text-white font-black ml-1">{squeezeCount}</strong></span>
+          <span className="font-sans text-rose-200 font-bold uppercase text-[10px] sm:text-xs">{t.stressSqueezes} <strong className="text-base sm:text-lg text-white font-black ml-1">{squeezeCount}</strong></span>
         </div>
       </div>
 
@@ -161,13 +250,13 @@ export function StressBallGame() {
           <div className="absolute top-4 left-6 w-10 h-5 bg-white/25 rounded-full filter blur-[0.5px]" />
           <Heart size={36} className={`${isSqueezing ? 'animate-pulse scale-90 text-white/50' : 'text-white/80'} transition-transform`} />
           <span className="text-xs font-black uppercase text-white tracking-widest mt-2 select-none drop-shadow-md">
-            Spremi!
+            {t.stressSqueezeBtn}
           </span>
         </motion.div>
       </div>
 
       <div className="text-center font-bold text-slate-400 text-xs uppercase bg-slate-950/50 p-2 rounded-2xl border border-slate-800">
-        Premi per liberare l'energia e calmarti! 🌸
+        {t.stressFooter}
       </div>
     </div>
   );
@@ -182,7 +271,8 @@ interface CardItem {
   isMatched: boolean;
 }
 
-export function MemoryGame() {
+export function MemoryGame({ lang = "it" }: { lang?: string }) {
+  const t = gameTranslations[lang] || gameTranslations.it;
   const [uploadedImages, setUploadedImages] = useState<string[]>(() => {
     try {
       const stored = localStorage.getItem("relax_memory_images");
@@ -195,7 +285,7 @@ export function MemoryGame() {
   const [cards, setCards] = useState<CardItem[]>([]);
   const [selectedCards, setSelectedCards] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
-  const [feedback, setFeedback] = useState("Tocca le carte per trovare le coppie!");
+  const [feedback, setFeedback] = useState(t.memoryFeedbackDefault);
 
   const initGame = () => {
     const defaults = ["🐶", "🍉", "🚀", "🍦", "🎨", "⚽"];
@@ -226,11 +316,12 @@ export function MemoryGame() {
     setCards(gameCards);
     setSelectedCards([]);
     setMoves(0);
+    setFeedback(t.memoryFeedbackDefault);
   };
 
   useEffect(() => {
     initGame();
-  }, [uploadedImages]);
+  }, [uploadedImages, lang]);
 
   const handleCardClick = (idx: number) => {
     if (
@@ -264,14 +355,14 @@ export function MemoryGame() {
           
           const gameOver = matchedCards.every((c) => c.isMatched);
           if (gameOver) {
-            setFeedback("Bravissimo! Hai abbinato tutte le carte! 🎉");
+            setFeedback(t.memoryFeedbackWin);
           } else {
-            setFeedback("Ottimo lavoro! Continua così! 🌟");
+            setFeedback(t.memoryFeedbackMatch);
           }
         }, 300);
       } else {
         // MISMATCH
-        setFeedback("Riprova, cerca lo stesso disegno!");
+        setFeedback(t.memoryFeedbackMismatch);
         setTimeout(() => {
           const resetFlipped = [...cards];
           resetFlipped[firstIdx].isFlipped = false;
@@ -309,7 +400,7 @@ export function MemoryGame() {
       } catch (err) {
         console.error("Storage full or unavailable: ", err);
       }
-      setFeedback("Immagini caricate! Le coppie sono pronte.");
+      setFeedback(t.memoryFeedbackUploaded);
     });
   };
 
@@ -321,7 +412,7 @@ export function MemoryGame() {
     } catch (err) {
       console.error(err);
     }
-    setFeedback("Immagine eliminata!");
+    setFeedback(t.memoryFeedbackDeleted);
   };
 
   const isCompleted = cards.length > 0 && cards.every((c) => c.isMatched);
@@ -331,22 +422,22 @@ export function MemoryGame() {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 z-10">
         <div>
           <h4 className="text-xl sm:text-2xl font-black uppercase tracking-tight text-yellow-300">
-            🃏 Gioco delle Coppie (Memory)
+            {t.memoryTitle}
           </h4>
           <p className="text-slate-400 font-bold text-[10px] sm:text-xs uppercase tracking-wider mt-0.5">
-            Cerca e abbina le 6 carte sul tavolo!
+            {t.memorySub}
           </p>
         </div>
         <div className="flex gap-2 items-center w-full sm:w-auto justify-between sm:justify-end">
           <div className="bg-slate-950 px-3 py-1.5 rounded-xl border border-slate-800 text-[10px] sm:text-xs text-yellow-300 font-black">
-            Mosse: {moves}
+            {t.memoryMoves} {moves}
           </div>
           <button
             onClick={initGame}
             className="bg-yellow-500 hover:bg-yellow-600 active:scale-95 transition-transform text-slate-950 font-black rounded-xl uppercase text-[10px] px-3.5 py-1.5 flex items-center gap-1.5 cursor-pointer"
           >
             <RefreshCw size={10} />
-            Reset
+            {t.memoryReset}
           </button>
         </div>
       </div>
@@ -359,17 +450,16 @@ export function MemoryGame() {
         >
           <span className="text-6xl animate-bounce">🏆</span>
           <h5 className="text-3xl font-black text-yellow-300 uppercase italic tracking-tighter">
-            Super Bravissimo!
+            {t.memoryWinTitle}
           </h5>
           <p className="text-slate-300 font-bold max-w-xs text-sm">
-            Hai completato il Memory con solo {moves} mosse! Ti senti più calmo
-            e felice?
+            {t.memoryWinDesc(moves)}
           </p>
           <Button
             onClick={initGame}
             className="bg-yellow-400 hover:bg-yellow-500 text-slate-950 font-black uppercase rounded-2xl text-xs px-6 py-4 shadow-lg border-2 border-white/20 mt-2"
           >
-            Riprova 🎯
+            {t.memoryRetry}
           </Button>
         </motion.div>
       ) : (
@@ -429,16 +519,16 @@ export function MemoryGame() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
           <div>
             <h5 className="font-black text-xs uppercase text-yellow-400 tracking-wider">
-              📸 Carica le tue Immagini Personalizzate
+              {t.memoryUploadTitle}
             </h5>
             <p className="text-[10px] text-slate-400 font-bold uppercase mt-0.5">
-              Puoi caricare foto per usarle come carte nel gioco!
+              {t.memoryUploadSub}
             </p>
           </div>
           <div>
             <label className="bg-yellow-500 hover:bg-yellow-600 active:scale-95 transition-transform text-slate-950 font-black rounded-xl uppercase text-[10px] px-3.5 py-2 cursor-pointer flex items-center justify-center gap-1.5 self-start">
               <Upload size={12} />
-              Scegli Foto
+              {t.memoryChooseBtn}
               <input
                 type="file"
                 multiple
@@ -474,7 +564,7 @@ export function MemoryGame() {
           </div>
         ) : (
           <p className="text-[10px] font-bold text-slate-500 uppercase italic">
-            Nessuna immagine personalizzata caricata. Sto usando le icone di default (🐶, 🍉, 🚀).
+            {t.memoryNoImages}
           </p>
         )}
       </div>
@@ -484,9 +574,4 @@ export function MemoryGame() {
       </div>
     </div>
   );
-}
-
-// Utility class concatenator
-function cn(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
 }
