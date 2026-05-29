@@ -277,20 +277,18 @@ export default function GenogramEditor({ members, relationships, onChange, t, la
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 flex-1 min-h-[500px]">
-        <div className="lg:col-span-2 relative bg-white rounded-2xl border border-slate-200 overflow-x-auto overflow-y-hidden shadow-inner cursor-grab active:cursor-grabbing">
-          <div className="min-w-[800px] h-[500px]">
-            <svg 
-              ref={svgRef} 
-              className="w-full h-full"
-              onClick={() => {
-                setSelectedMemberId(null);
-                setIsConnecting(false);
-              }}
-            />
-          </div>
+        <div className="lg:col-span-2 relative bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-inner">
+          <svg 
+            ref={svgRef} 
+            className="w-full h-full min-h-[500px]"
+            onClick={() => {
+              setSelectedMemberId(null);
+              setIsConnecting(false);
+            }}
+          />
           {isConnecting && (
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-pulse z-10">
-              {t.selectToConnect || "Seleziona un altro membro per creare un legame"}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg animate-pulse">
+              Seleziona un altro membro per creare un legame
             </div>
           )}
         </div>
@@ -412,7 +410,7 @@ export default function GenogramEditor({ members, relationships, onChange, t, la
                     onClick={() => setIsConnecting(!isConnecting)}
                   >
                     <Heart size={18} className={isConnecting ? "fill-current" : ""} />
-                    {isConnecting ? (t.cancelRelation || "Annulla Legame") : (t.createRelation || "Crea Legame")}
+                    {isConnecting ? "Annulla Legame" : "Crea Legame"}
                   </Button>
                 </div>
               </div>
@@ -420,7 +418,7 @@ export default function GenogramEditor({ members, relationships, onChange, t, la
           ) : (
             <Card className="p-8 border-dashed border-2 flex flex-col items-center justify-center text-center text-slate-400 h-full">
               <Users size={48} className="mb-4 opacity-20" />
-              <p>{t.emptyState || "Seleziona un membro nel grafico per modificarne i dettagli o creare legami."}</p>
+              <p>Seleziona un membro nel grafico per modificarne i dettagli o creare legami.</p>
             </Card>
           )}
         </div>

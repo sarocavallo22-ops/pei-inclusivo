@@ -20,8 +20,6 @@ interface DidacticObservationProps {
   data: PEIData;
   onChange: (newData: PEIData) => void;
   onBack: () => void;
-  t: any;
-  lang: string;
 }
 
 const EVALUATION_LEVELS = [
@@ -133,43 +131,18 @@ const DIDACTIC_AREAS = [
       { key: "d530", title: "d530 – Bisogni corporali", desc: "Manifestare il bisogno di, pianificare ed espletare l'eliminazione di prodotti organici." },
       { key: "d550", title: "d550 – Mangiare", desc: "Manifestare il bisogno di mangiare ed eseguire i compiti coordinati di consumare il cibo (mensa)." },
       { key: "d560", title: "d560 – Bere", desc: "Manifestare il bisogno di bere, prendere una bevanda e consumarla." },
-      { key: "d7202", title: "d7202 – Regolare i comportamenti nelle interazioni", desc: "Regolare le emozioni e gli impulses, riducendo aggressioni verbali e fisiche (controllo del meltdown)." },
+      { key: "d7202", title: "d7202 – Regolare i comportamenti nelle interazioni", desc: "Regolare le emozioni e gli impulsi, riducendo aggressioni verbali e fisiche (controllo del meltdown)." },
       { key: "d8803", title: "d8803 – Gioco cooperativo condiviso", desc: "Unirsi ad altre persone nell'impegno prolungato in attività con oggetti o materiali." }
     ]
   }
 ];
 
-export function DidacticObservation({ data, onChange, onBack, t, lang }: DidacticObservationProps) {
+export function DidacticObservation({ data, onChange, onBack }: DidacticObservationProps) {
   const [activeAreaKey, setActiveAreaKey] = useState<string | null>(null);
   const [showSaveAlert, setShowSaveAlert] = useState(false);
 
-  const localizedAreas = DIDACTIC_AREAS.map(area => {
-    const tArea = t?.didacticObservation?.areas?.[area.key];
-    return {
-      ...area,
-      title: tArea?.title || area.title,
-      desc: tArea?.desc || area.desc,
-      indicators: area.indicators.map(ind => {
-        const tInd = tArea?.indicators?.[ind.key];
-        return {
-          ...ind,
-          title: tInd?.title || ind.title,
-          desc: tInd?.desc || ind.desc
-        };
-      })
-    };
-  });
-
-  const localizedEvalLevels = EVALUATION_LEVELS.map(level => {
-    const tLevel = t?.didacticObservation?.evalLevels?.[level.id];
-    return {
-      ...level,
-      label: tLevel || level.label
-    };
-  });
-
   // Load current values for selected area
-  const currentArea = localizedAreas.find(a => a.key === activeAreaKey);
+  const currentArea = DIDACTIC_AREAS.find(a => a.key === activeAreaKey);
   const existingRecord = (data.didacticObservations || []).find(o => o.area === activeAreaKey) || {
     id: "obs_" + Date.now(),
     subject: currentArea?.title || "",
@@ -211,8 +184,8 @@ export function DidacticObservation({ data, onChange, onBack, t, lang }: Didacti
 
   useEffect(() => {
     if (showSaveAlert) {
-      const tOut = setTimeout(() => setShowSaveAlert(false), 1500);
-      return () => clearTimeout(tOut);
+      const t = setTimeout(() => setShowSaveAlert(false), 1500);
+      return () => clearTimeout(t);
     }
   }, [showSaveAlert]);
 
@@ -233,10 +206,10 @@ export function DidacticObservation({ data, onChange, onBack, t, lang }: Didacti
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-[#0a192f]/60 backdrop-blur-md px-8 py-6 rounded-[35px] border border-white/10 shadow-xl">
               <div>
                 <span className="text-[10px] font-black uppercase tracking-widest bg-teal-500/15 text-teal-300 border border-teal-550/20 px-3 py-1 rounded-full">
-                  {t.didacticObservation.labelDidatticaOsservazione}
+                  DIDATTICA & OSSERVAZIONE
                 </span>
                 <p className="text-sm font-semibold text-blue-100/70 mt-1.5 leading-relaxed">
-                  {t.didacticObservation.descDidatticaOsservazione}
+                  Griglie d'osservazione e percorsi differenziati per le aree ministeriali d'alunno.
                 </p>
               </div>
               <Button
@@ -244,13 +217,13 @@ export function DidacticObservation({ data, onChange, onBack, t, lang }: Didacti
                 onClick={onBack}
                 className="rounded-2xl h-11 px-6 font-bold bg-white/10 border-white/20 text-white hover:bg-white/20 hover:text-white transition-all flex items-center gap-2 shrink-0 cursor-pointer"
               >
-                <ChevronLeft size={16} /> {t.didacticObservation.tornaAlMenu}
+                <ChevronLeft size={16} /> Torna al Menu
               </Button>
             </div>
 
             {/* List of 6 Areas - Styled EXACTLY like the user's screenshot */}
             <div className="flex flex-col gap-4 w-full">
-              {localizedAreas.map((area) => (
+              {DIDACTIC_AREAS.map((area) => (
                 <motion.button
                   key={area.key}
                   whileHover={{ scale: 1.015, y: -2 }}
@@ -291,11 +264,11 @@ export function DidacticObservation({ data, onChange, onBack, t, lang }: Didacti
                   onClick={() => setActiveAreaKey(null)}
                   className="rounded-2xl h-11 px-5 font-black text-white hover:bg-white/10 border border-white/10 cursor-pointer"
                 >
-                  <ChevronLeft size={16} className="mr-1" /> {t.didacticObservation.tornaAlleAree}
+                  <ChevronLeft size={16} className="mr-1" /> Torna alle Aree
                 </Button>
                 <div>
                   <span className="text-[10px] font-black uppercase tracking-widest bg-cyan-500/20 px-3 py-1 rounded-full text-cyan-400">
-                    {t.didacticObservation.programmazioneArea}
+                    PROGRAMMAZIONE AREA
                   </span>
                   <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mt-1.5 text-white">
                     {currentArea?.title}
@@ -305,177 +278,136 @@ export function DidacticObservation({ data, onChange, onBack, t, lang }: Didacti
               </div>
               <div className="flex items-center gap-2.5 bg-slate-900/80 px-4 py-2.5 rounded-2xl border border-white/5">
                 <Sliders size={15} className="text-cyan-400" />
-                <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">{t.didacticObservation.salvataggioAttivo}</span>
+                <span className="text-[10px] font-extrabold text-slate-400 uppercase tracking-wider">SALVATAGGIO ATTIVO</span>
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
               </div>
             </div>
 
             {/* MAIN FORM GROUP */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="w-full bg-slate-900/95 border border-white/10 rounded-[35px] p-6 md:p-8 space-y-6 shadow-xl relative text-slate-100">
               
-              {/* LEFT GROUP: PATH TYPE (4 cols) */}
-              <div className="lg:col-span-4 bg-slate-900/90 backdrop-blur-md border border-white/10 rounded-[35px] p-6 space-y-6 shadow-xl text-slate-100">
-                <div className="border-b border-white/5 pb-4">
-                  <span className="text-[9px] font-bold uppercase text-cyan-450 tracking-wider">{t.didacticObservation.sezione01}</span>
-                  <h4 className="text-sm font-black uppercase tracking-tight text-slate-100 flex items-center gap-2 mt-0.5">
-                    <BookOpen size={15} /> {t.didacticObservation.tipoPercorso}
-                  </h4>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  {[
-                    { id: 'A', value: t.didacticObservation.pathA, desc: t.didacticObservation.pathADesc },
-                    { id: 'B', value: t.didacticObservation.pathB, desc: t.didacticObservation.pathBDesc },
-                    { id: 'C', value: t.didacticObservation.pathC, desc: t.didacticObservation.pathCDesc }
-                  ].map((path) => {
-                    const isSelected = existingRecord.pathType === path.id;
-                    return (
-                      <button
-                        key={path.id}
-                        type="button"
-                        onClick={() => handleUpdateRecord({ pathType: path.id as any })}
-                        className={cn(
-                          "p-4 rounded-2xl text-left border-2 transition-all flex flex-col justify-between cursor-pointer text-slate-200",
-                          isSelected 
-                            ? "bg-[#111e3b] border-cyan-400 ring-2 ring-cyan-400/10 shadow-lg text-cyan-100"
-                            : "bg-slate-950/80 border-white/5 hover:bg-slate-950 text-slate-400 hover:text-slate-300"
-                        )}
-                      >
-                        <span className="text-xs font-black uppercase tracking-wide">{path.value}</span>
-                        <span className="text-[10px] font-semibold text-slate-500 mt-1.5 leading-normal">{path.desc}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="border-b border-white/5 pb-4">
+                <span className="text-[9px] font-bold uppercase text-cyan-400 tracking-wider">Osservazione</span>
+                <h4 className="text-base font-black uppercase tracking-tight text-white mt-0.5">
+                  Griglia di Osservazione Qualitativa
+                </h4>
               </div>
 
-              {/* RIGHT GROUP: INDICATORS GRID (8 cols) */}
-              <div className="lg:col-span-8 bg-slate-900/95 border border-white/10 rounded-[35px] p-6 md:p-8 space-y-6 shadow-xl relative text-slate-100">
-                
-                <div className="border-b border-white/5 pb-4">
-                  <span className="text-[9px] font-bold uppercase text-cyan-400 tracking-wider">{t.didacticObservation.sezione02}</span>
-                  <h4 className="text-base font-black uppercase tracking-tight text-white mt-0.5">
-                    {t.didacticObservation.grigliaOsservazione}
-                  </h4>
-                </div>
+              <div className="space-y-6">
+                {currentArea?.indicators.map((indicator, idx) => {
+                  const currentStatus = existingRecord.indicatorsStatus[indicator.key] || '';
+                  const currentNote = existingRecord.indicatorsNotes[indicator.key] || '';
 
-                <div className="space-y-6">
-                  {currentArea?.indicators.map((indicator, idx) => {
-                    const currentStatus = existingRecord.indicatorsStatus[indicator.key] || '';
-                    const currentNote = existingRecord.indicatorsNotes[indicator.key] || '';
-
-                    return (
-                      <div 
-                        key={indicator.key}
-                        className="bg-slate-950/70 rounded-[28px] p-5 border border-white/5 hover:border-white/10 transition-colors space-y-4"
-                      >
-                        <div className="flex flex-col justify-between items-stretch gap-4">
-                          <div className="space-y-1.5">
-                            <span className="text-[9px] font-extrabold text-teal-400 uppercase tracking-widest bg-teal-500/10 px-2 py-0.5 rounded">{t.didacticObservation.indicatore} {idx + 1}</span>
-                            <h5 className="text-sm font-black text-slate-100 uppercase tracking-tight">{indicator.title}</h5>
-                            <p className="text-[11px] font-medium text-slate-400 leading-normal">{indicator.desc}</p>
-                          </div>
-
-                          {/* 7-State ICF Qualifiers Layout */}
-                          <div className="space-y-2 mt-2">
-                            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">
-                              {t.didacticObservation.valutazioneQualificatore}
-                            </span>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-1.5 items-stretch bg-slate-900 border border-white/5 p-1.5 rounded-2xl w-full">
-                              {localizedEvalLevels.map((btn) => {
-                                const isActive = currentStatus === btn.id;
-                                return (
-                                  <button
-                                    key={btn.id}
-                                    type="button"
-                                    onClick={() => {
-                                      const updatedStatus = {
-                                        ...existingRecord.indicatorsStatus,
-                                        [indicator.key]: isActive ? null : btn.id
-                                      };
-                                      handleUpdateRecord({ indicatorsStatus: updatedStatus });
-                                    }}
-                                    className={cn(
-                                      "text-[9px] font-extrabold uppercase py-2 px-1 rounded-xl cursor-pointer transition-all text-center border-2 border-transparent flex items-center justify-center min-h-[44px]",
-                                      isActive
-                                        ? btn.colorClass
-                                        : "text-slate-400 bg-slate-950/40 border-white/5 hover:text-white hover:bg-slate-800 hover:border-white/10"
-                                    )}
-                                  >
-                                    {btn.label}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
+                  return (
+                    <div 
+                      key={indicator.key}
+                      className="bg-slate-950/70 rounded-[28px] p-5 border border-white/5 hover:border-white/10 transition-colors space-y-4"
+                    >
+                      <div className="flex flex-col justify-between items-stretch gap-4">
+                        <div className="space-y-1.5">
+                          <span className="text-[9px] font-extrabold text-teal-400 uppercase tracking-widest bg-teal-500/10 px-2 py-0.5 rounded">Indicatore {idx + 1}</span>
+                          <h5 className="text-sm font-black text-slate-100 uppercase tracking-tight">{indicator.title}</h5>
+                          <p className="text-[11px] font-medium text-slate-400 leading-normal">{indicator.desc}</p>
                         </div>
 
-                        {/* Note & Facilitators input field */}
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center border-t border-white/5 pt-3">
-                          <div className="md:col-span-3 flex items-center gap-1.5 text-[9px] font-bold uppercase text-slate-400 tracking-wider">
-                            <MessageSquare size={13} className="text-cyan-400" />
-                            <span>{t.didacticObservation.contestoNote}</span>
-                          </div>
-                          <div className="md:col-span-9">
-                            <input
-                              type="text"
-                              value={currentNote}
-                              onChange={(e) => {
-                                const updatedNotes = {
-                                  ...existingRecord.indicatorsNotes,
-                                  [indicator.key]: e.target.value
-                                };
-                                handleUpdateRecord({ indicatorsNotes: updatedNotes });
-                              }}
-                              placeholder={t.didacticObservation.placeholderNote}
-                              className="w-full bg-slate-900 border border-white/10 rounded-xl h-10 px-3 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 placeholder:text-slate-600 shadow-inner"
-                            />
+                        {/* 7-State ICF Qualifiers Layout */}
+                        <div className="space-y-2 mt-2">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">
+                            Valutazione dell'allineamento (Qualificatore ICF):
+                          </span>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-1.5 items-stretch bg-slate-900 border border-white/5 p-1.5 rounded-2xl w-full">
+                            {EVALUATION_LEVELS.map((btn) => {
+                              const isActive = currentStatus === btn.id;
+                              return (
+                                <button
+                                  key={btn.id}
+                                  type="button"
+                                  onClick={() => {
+                                    const updatedStatus = {
+                                      ...existingRecord.indicatorsStatus,
+                                      [indicator.key]: isActive ? null : btn.id
+                                    };
+                                    handleUpdateRecord({ indicatorsStatus: updatedStatus });
+                                  }}
+                                  className={cn(
+                                    "text-[9px] font-extrabold uppercase py-2 px-1 rounded-xl cursor-pointer transition-all text-center border-2 border-transparent flex items-center justify-center min-h-[44px]",
+                                    isActive
+                                      ? btn.colorClass
+                                      : "text-slate-400 bg-slate-950/40 border-white/5 hover:text-white hover:bg-slate-800 hover:border-white/10"
+                                  )}
+                                >
+                                  {btn.label}
+                                </button>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+
+                      {/* Note & Facilitators input field */}
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center border-t border-white/5 pt-3">
+                        <div className="md:col-span-3 flex items-center gap-1.5 text-[9px] font-bold uppercase text-slate-400 tracking-wider">
+                          <MessageSquare size={13} className="text-cyan-400" />
+                          <span>Contesto / Note:</span>
+                        </div>
+                        <div className="md:col-span-9">
+                          <input
+                            type="text"
+                            value={currentNote}
+                            onChange={(e) => {
+                              const updatedNotes = {
+                                ...existingRecord.indicatorsNotes,
+                                [indicator.key]: e.target.value
+                              };
+                              handleUpdateRecord({ indicatorsNotes: updatedNotes });
+                            }}
+                            placeholder="Fasce d'aiuto, compensazione, facilitatori installati..."
+                            className="w-full bg-slate-900 border border-white/10 rounded-xl h-10 px-3 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 placeholder:text-slate-600 shadow-inner"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Additional custom text editors */}
+              <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
+                    <Bookmark size={13} className="text-cyan-400" /> Obiettivi ed Attività Personalizzate
+                  </label>
+                  <textarea
+                    value={existingRecord.customObjectives || ""}
+                    onChange={(e) => handleUpdateRecord({ customObjectives: e.target.value })}
+                    placeholder="Traguardi di competenza specifici, abilità attese da raggiungere e facilitazioni stabilite..."
+                    className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
+                  />
                 </div>
 
-                {/* Additional custom text editors */}
-                <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
-                      <Bookmark size={13} className="text-cyan-400" /> {t.didacticObservation.obiettiviPersonalizzati}
-                    </label>
-                    <textarea
-                      value={existingRecord.customObjectives || ""}
-                      onChange={(e) => handleUpdateRecord({ customObjectives: e.target.value })}
-                      placeholder={t.didacticObservation.placeholderObiettivi}
-                      className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
-                      <FileText size={13} className="text-cyan-400" /> {t.didacticObservation.criteriValutazione}
-                    </label>
-                    <textarea
-                      value={existingRecord.assessments || ""}
-                      onChange={(e) => handleUpdateRecord({ assessments: e.target.value })}
-                      placeholder={t.didacticObservation.placeholderVerifica}
-                      className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
-                    />
-                  </div>
-
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
+                    <FileText size={13} className="text-cyan-400" /> Criteri di Verifica e Valutazione
+                  </label>
+                  <textarea
+                    value={existingRecord.assessments || ""}
+                    onChange={(e) => handleUpdateRecord({ assessments: e.target.value })}
+                    placeholder="Misure dispensative, tempi aggiuntivi per verifiche, prove adattate concordate prima quadrimestre..."
+                    className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
+                  />
                 </div>
 
-                {/* Confirm & Return Button */}
-                <div className="flex justify-end pt-4">
-                  <Button
-                    onClick={() => setActiveAreaKey(null)}
-                    className="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black rounded-2xl h-12 px-8 text-sm uppercase flex items-center gap-2 shadow-lg transition-all cursor-pointer"
-                  >
-                    <CheckCircle2 size={16} /> {t.didacticObservation.salvaTornaAree}
-                  </Button>
-                </div>
+              </div>
 
+              {/* Confirm & Return Button */}
+              <div className="flex justify-end pt-4">
+                <Button
+                  onClick={() => setActiveAreaKey(null)}
+                  className="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black rounded-2xl h-12 px-8 text-sm uppercase flex items-center gap-2 shadow-lg transition-all cursor-pointer"
+                >
+                  <CheckCircle2 size={16} /> Salva e Torna alle Aree
+                </Button>
               </div>
 
             </div>
@@ -493,7 +425,7 @@ export function DidacticObservation({ data, onChange, onBack, t, lang }: Didacti
             className="fixed bottom-6 right-6 z-50 bg-emerald-500 text-slate-950 font-black text-xs px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-2 border border-emerald-400 uppercase tracking-wide"
           >
             <Sparkles size={14} className="animate-spin" />
-            <span>{t.didacticObservation.salvataTempoReale}</span>
+            <span>Modifica Salvata in Tempo Reale</span>
           </motion.div>
         )}
       </AnimatePresence>
