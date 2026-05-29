@@ -117,9 +117,9 @@ type Language = "it" | "ar" | "es";
 
 const translations = {
   it: {
-    title: "my/our/PEI",
+    title: "my/our PEI",
     subtitle: "",
-    welcome: "my/our/PEI",
+    welcome: "my/our PEI",
     choose: "scegli da che parte iniziare a raccontarci di voi",
     appRules: "Regolamento e Istruzioni",
     peiExplanation: "Cos'è il PEI?",
@@ -271,12 +271,26 @@ const translations = {
         textColor: "text-blue-600",
         image: "/imparare.png",
       },
+      {
+        id: "daily_diary",
+        title: "Diario del giorno",
+        description: "Scrivi come sta oggi l'alunno e aggiorna il termometro",
+        rules: [
+          "Racconta l'andamento della giornata dell'alunno",
+          "Seleziona il livello di agitazione sul termometro emotivo",
+        ],
+        color: "bg-purple-600",
+        lightColor: "bg-purple-50",
+        borderColor: "border-purple-200",
+        textColor: "text-purple-600",
+        image: "/sentimenti.png",
+      },
     ],
   },
   ar: {
-    title: "my/our/PEI",
+    title: "my/our PEI",
     subtitle: "المشاركة النشطة بين المدرسة والأسرة",
-    welcome: "my/our/PEI",
+    welcome: "my/our PEI",
     choose: "اختر من أي جهة نبدأ بإخبارنا عنكم",
     appRules: "قواعد التطبيق",
     peiExplanation: "ما هو PEI؟",
@@ -372,12 +386,23 @@ const translations = {
         textColor: "text-blue-600",
         image: "/imparare.png",
       },
+      {
+        id: "daily_diary",
+        title: "يوميات اليوم",
+        description: "اكتب كيف يشعر الطالب اليوم وحدّث مقياس الحرارة",
+        rules: [],
+        color: "bg-purple-600",
+        lightColor: "bg-purple-50",
+        borderColor: "border-purple-200",
+        textColor: "text-purple-600",
+        image: "/sentimenti.png",
+      },
     ],
   },
   es: {
-    title: "my/our/PEI",
+    title: "my/our PEI",
     subtitle: "",
-    welcome: "my/our/PEI",
+    welcome: "my/our PEI",
     choose: "elige por dónde empezar a contarnos sobre ti",
     appRules: "Reglas de la App",
     peiExplanation: "¿Qué es el PEI?",
@@ -468,6 +493,17 @@ const translations = {
         color: "bg-emerald-600",
         textColor: "text-blue-600",
         image: "/imparare.png",
+      },
+      {
+        id: "daily_diary",
+        title: "Diario del día",
+        description: "Escribe cómo está el alumno hoy y actualiza el termómetro",
+        rules: [],
+        color: "bg-purple-600",
+        lightColor: "bg-purple-50",
+        borderColor: "border-purple-200",
+        textColor: "text-purple-600",
+        image: "/sentimenti.png",
       },
     ],
   },
@@ -564,75 +600,43 @@ const CAA_CATEGORIES = [
 ];
 
 const HandwritingMyPEI = () => {
-  const [phase, setPhase] = useState<"my" | "erasing" | "our">("my");
+  const [phase, setPhase] = useState<"my" | "our">("my");
 
   useEffect(() => {
-    let t1: any, t2: any, t3: any;
-    if (phase === "my") {
-      t1 = setTimeout(() => setPhase("erasing"), 2000);
-    } else if (phase === "erasing") {
-      t2 = setTimeout(() => setPhase("our"), 1500);
-    } else if (phase === "our") {
-      t3 = setTimeout(() => setPhase("my"), 3000);
-    }
-    return () => {
-      clearTimeout(t1);
-      clearTimeout(t2);
-      clearTimeout(t3);
-    };
-  }, [phase]);
+    const interval = setInterval(() => {
+      setPhase((prev) => (prev === "my" ? "our" : "my"));
+    }, 2500);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="relative inline-flex items-center justify-center min-h-[160px] w-full">
       <div className="relative flex items-center gap-2">
-        <motion.div
-          className="mr-4"
-          animate={
-            phase === "erasing"
-              ? {
-                  x: [120, 60, 120, 60],
-                  rotate: [0, -20, 20, -20, 0],
-                }
-              : {
-                  y: [0, -10, 0],
-                }
-          }
-          transition={{
-            duration: phase === "erasing" ? 1.5 : 2,
-            repeat: phase === "erasing" ? 0 : Infinity,
-          }}
-        >
-          <img
-            src={phase === "erasing" ? "/gomma.png" : "/matita.png"}
-            alt="Tool"
-            className="w-24 h-24 md:w-36 md:h-36 pointer-events-none"
-          />
-        </motion.div>
-
         <div className="relative flex items-end">
           <div className="relative w-[120px] md:w-[180px] flex justify-end">
             <AnimatePresence mode="wait">
               {phase === "my" ? (
                 <motion.span
                   key="my"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, filter: "blur(8px)", scale: 1.2 }}
+                  initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: 20, scale: 0.8 }}
+                  transition={{ duration: 0.5 }}
                   className="font-sans font-black text-white text-6xl md:text-8xl leading-none"
                 >
                   my
                 </motion.span>
-              ) : phase === "our" ? (
+              ) : (
                 <motion.span
                   key="our"
-                  initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  initial={{ opacity: 0, x: -20, scale: 0.8, rotate: -5 }}
+                  animate={{ opacity: 1, x: 0, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, x: 20, scale: 0.8, rotate: 5 }}
+                  transition={{ duration: 0.5 }}
                   className="font-cursive italic text-yellow-400 text-7xl md:text-9xl leading-none px-2"
                 >
                   our
                 </motion.span>
-              ) : (
-                <div className="w-full h-10" />
               )}
             </AnimatePresence>
           </div>
@@ -1151,6 +1155,25 @@ export default function App() {
 
   const [aiExplanation, setAiExplanation] = useState<string | null>(null);
   const [modalTitle, setModalTitle] = useState<string | null>(null);
+  const [amirFeeling, setAmirFeeling] = useState<"calmo" | "agitato" | "sovraccaricato">("calmo");
+  const [pulsantieraTab, setPulsantieraTab] = useState<"scelte" | "bisogni">("scelte");
+  const [passportTab, setPassportTab] = useState<"passport" | "autonomy">("passport");
+
+  const changeAmirFeeling = (feeling: "calmo" | "agitato" | "sovraccaricato") => {
+    setAmirFeeling(feeling);
+    setData((prev) => {
+      const updated = { ...prev, amirFeeling: feeling };
+      localStorage.setItem("mypei_data", JSON.stringify(updated));
+      return updated;
+    });
+  };
+
+  useEffect(() => {
+    if (data && data.amirFeeling && data.amirFeeling !== amirFeeling) {
+      setAmirFeeling(data.amirFeeling);
+    }
+  }, [data?.amirFeeling]);
+
   const [isExplaining, setIsExplaining] = useState(false);
   const [isGameActive, setIsGameActive] = useState(false);
   const [gameStep, setGameStep] = useState(0);
@@ -1530,12 +1553,7 @@ export default function App() {
   return (
     <div
       className={cn(
-        "min-h-screen transition-colors duration-500",
-        role === "student" || currentStep === null
-          ? "bg-[#0a192f]"
-          : currentStep !== null
-            ? steps[currentStep].lightColor
-            : "bg-[#0a192f]",
+        "min-h-screen transition-colors duration-500 bg-[#0a192f]",
         lang === "ar" ? "font-sans" : "",
       )}
       dir={lang === "ar" ? "rtl" : "ltr"}
@@ -1840,28 +1858,13 @@ export default function App() {
                           id: "passport",
                           title: "Passaporto comunicativo",
                           color: "bg-emerald-500",
+                          image: "/parlare tutti insieme.png",
                         },
                         {
-                          id: "scelte",
-                          title: "Scelte",
-                          color: "bg-yellow-500",
+                          id: "pulsantiera",
+                          title: "Pulsantiera",
+                          color: "bg-amber-500",
                           image: "/pulsante.png",
-                        },
-                        {
-                          id: "bisogni",
-                          title: "Bisogni",
-                          color: "bg-pink-500",
-                        },
-                        {
-                          id: "sentimenti",
-                          title: "Sentimenti",
-                          color: "bg-purple-500",
-                          image: "/sentimenti.png",
-                        },
-                        {
-                          id: "autonomy",
-                          title: "Diario delle autonomie",
-                          color: "bg-orange-500",
                         },
                         {
                           id: "relax",
@@ -1881,15 +1884,12 @@ export default function App() {
                           whileHover={{ scale: 1.05, y: -5 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => {
-                            if (sec.id === "scelte") {
-                              setStudentSubSection("scelte");
-                              setChoiceSubTab("decision");
-                            } else if (sec.id === "bisogni") {
-                              setStudentSubSection("bisogni");
-                              setChoiceSubTab("needs");
-                            } else if (sec.id === "sentimenti") {
-                              setStudentSubSection("sentimenti");
-                              setChoiceSubTab("feelings");
+                            if (sec.id === "pulsantiera") {
+                              setStudentSubSection("pulsantiera");
+                              setPulsantieraTab("scelte");
+                            } else if (sec.id === "passport") {
+                              setStudentSubSection("passport");
+                              setPassportTab("passport");
                             } else {
                               setStudentSubSection(sec.id as any);
                             }
@@ -1949,9 +1949,7 @@ export default function App() {
                     </div>
                   </div>
                 </>
-              ) : ["scelte", "bisogni", "sentimenti"].includes(
-                  studentSubSection as string,
-                ) ? (
+              ) : studentSubSection === "pulsantiera" ? (
                 <div className="w-full space-y-6 sm:space-y-8 bg-[#0a192f]/60 backdrop-blur-md p-4 sm:p-8 md:p-12 rounded-[24px] sm:rounded-[40px] md:rounded-[60px] min-h-[80vh] shadow-2xl border border-white/10">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-6">
@@ -1966,11 +1964,30 @@ export default function App() {
                         <ChevronLeft size={24} className="mr-2" /> Indietro
                       </Button>
                       <h2 className="text-4xl font-black text-white capitalize">
-                        {studentSubSection === "scelte"
-                          ? "Scelte"
-                          : studentSubSection === "bisogni"
-                            ? "Bisogni"
-                            : "Sentimenti"}
+                        <div className="flex gap-2 bg-white/10 p-1.5 rounded-2xl border border-white/15">
+                          <button
+                            onClick={() => setPulsantieraTab("scelte")}
+                            className={cn(
+                              "px-6 py-2 rounded-xl font-black text-xs sm:text-sm uppercase transition-all tracking-wider",
+                              pulsantieraTab === "scelte"
+                                ? "bg-amber-500 text-white shadow-lg"
+                                : "text-slate-300 hover:text-white"
+                            )}
+                          >
+                            Scelte
+                          </button>
+                          <button
+                            onClick={() => setPulsantieraTab("bisogni")}
+                            className={cn(
+                              "px-6 py-2 rounded-xl font-black text-xs sm:text-sm uppercase transition-all tracking-wider",
+                              pulsantieraTab === "bisogni"
+                                ? "bg-pink-500 text-white shadow-lg"
+                                : "text-slate-300 hover:text-white"
+                            )}
+                          >
+                            Bisogni
+                          </button>
+                        </div>
                       </h2>
                     </div>
 
@@ -1993,7 +2010,7 @@ export default function App() {
 
                   <div className="flex flex-col items-center justify-center space-y-16 py-12">
                     <AnimatePresence mode="wait">
-                      {choiceSubTab === "decision" && (
+                      {pulsantieraTab === "scelte" && (
                         <motion.div
                           key="decision"
                           initial={{ opacity: 0, scale: 0.95 }}
@@ -2391,7 +2408,7 @@ export default function App() {
                         </motion.div>
                       )}
 
-                      {studentSubSection === "bisogni" && (
+                      {pulsantieraTab === "bisogni" && (
                         <motion.div
                           key="needs-task-analysis-parent"
                           initial={{ opacity: 0, scale: 0.95 }}
@@ -2674,96 +2691,237 @@ export default function App() {
                           initial={{ opacity: 0, scale: 0.95 }}
                           animate={{ opacity: 1, scale: 1 }}
                           exit={{ opacity: 0, scale: 0.95 }}
-                          className="w-full max-w-4xl space-y-12"
+                          className="w-full max-w-4xl space-y-8"
                         >
                           <div className="text-center">
                             <h3 className="text-4xl font-black text-white uppercase italic tracking-tighter mb-2">
-                              Come mi sento?
+                              Misura le tue Emozioni
                             </h3>
-                            <p className="text-purple-200 font-medium">
-                              Esprimi le tue emozioni con i colori e i simboli
+                            <p className="text-indigo-200 font-bold uppercase tracking-wider text-xs sm:text-sm">
+                              Tocca un pulsante sul tablet per regolare il termometro
                             </p>
                           </div>
 
-                          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-                            {data.feelingsChoices.map((feeling) => (
-                              <motion.button
-                                key={feeling.id}
-                                whileHover={{ scale: 1.05, y: -5 }}
-                                whileTap={{ scale: 0.95 }}
-                                onClick={() =>
-                                  setData({
-                                    ...data,
-                                    choiceMood: (feeling.id === "felice"
-                                      ? "happy"
-                                      : "sad") as any,
-                                  })
-                                }
-                                className={cn(
-                                  "p-8 rounded-[60px] shadow-2xl border-8 transition-all flex flex-col items-center gap-6 bg-white",
-                                  feeling.id === "felice"
-                                    ? "border-emerald-400 ring-4 ring-emerald-500/20"
-                                    : feeling.id === "triste"
-                                      ? "border-blue-400 ring-4 ring-blue-500/20"
-                                      : feeling.id === "arrabbiato"
-                                        ? "border-rose-400 ring-4 ring-rose-500/20"
-                                        : "border-amber-400 ring-4 ring-amber-500/20",
-                                )}
-                              >
-                                <div className="w-32 h-32 md:w-48 md:h-48 rounded-[40px] flex items-center justify-center group-hover:scale-110 transition-transform p-6">
-                                  <img
-                                    src={feeling.img}
-                                    alt={feeling.label}
-                                    className="w-full h-full object-contain"
+                          {/* IMMERSIVE TABLET CONTAINER FRAME */}
+                          <div className="bg-slate-900 border-8 border-slate-700 rounded-[48px] p-6 md:p-10 shadow-2xl relative overflow-hidden flex flex-col md:flex-row gap-8 items-center md:items-stretch">
+                            
+                            {/* Inner camera/sensor bar to sell the tablet look */}
+                            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-20 h-4 bg-slate-700 rounded-full flex items-center justify-center gap-2">
+                              <div className="w-2 h-2 rounded-full bg-slate-950" />
+                              <div className="w-1.5 h-1.5 rounded-full bg-blue-900" />
+                            </div>
+
+                            {/* COLUMN 1: THE THERMOMETER */}
+                            <div className="w-full md:w-1/3 flex flex-col items-center justify-center bg-slate-950/70 p-6 rounded-[36px] border border-white/5 relative shadow-inner">
+                              <span className="text-[10px] font-black uppercase text-indigo-400 tracking-wider mb-4">
+                                Termometro Interno
+                              </span>
+
+                              <div className="flex items-end gap-1 relative">
+                                {/* Rule indicators on the left of thermometer */}
+                                <div className="flex flex-col justify-between h-72 text-[10px] font-mono text-slate-500 py-2 pr-1 select-none">
+                                  <span>100</span>
+                                  <span>75</span>
+                                  <span>50</span>
+                                  <span>25</span>
+                                  <span>0</span>
+                                </div>
+
+                                {/* Glass tube */}
+                                <div className="w-8 h-72 bg-slate-800/80 border-2 border-slate-700 rounded-full relative p-1 shadow-inner flex flex-col justify-end overflow-hidden">
+                                  {/* Mercury fluid liquid level */}
+                                  <motion.div
+                                    animate={{
+                                      height:
+                                        amirFeeling === "calmo"
+                                          ? "33%"
+                                          : amirFeeling === "agitato"
+                                            ? "66%"
+                                            : "100%",
+                                      background:
+                                        amirFeeling === "calmo"
+                                          ? "linear-gradient(to top, #059669, #34d399)"
+                                          : amirFeeling === "agitato"
+                                            ? "linear-gradient(to top, #d97706, #fbbf24)"
+                                            : "linear-gradient(to top, #dc2626, #f87171)",
+                                    }}
+                                    transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                                    className="w-full rounded-full animate-pulse"
                                   />
                                 </div>
-                                <span
+
+                                {/* Rule indicators on the right of thermometer */}
+                                <div className="flex flex-col justify-between h-72 text-[9px] font-bold text-slate-500 py-2 pl-1 select-none">
+                                  <span className={cn("transition-colors duration-200", amirFeeling === "sovraccaricato" ? "text-rose-400 font-extrabold" : "")}> max </span>
+                                  <span className={cn("transition-colors duration-200", amirFeeling === "agitato" ? "text-amber-400 font-extrabold" : "")}> medio </span>
+                                  <span className={cn("transition-colors duration-200", amirFeeling === "calmo" ? "text-emerald-400 font-extrabold" : "")}> calmo </span>
+                                </div>
+                              </div>
+
+                              {/* Big floating bulb at the bottom */}
+                              <div className="relative -mt-4 flex items-center justify-center">
+                                <motion.div
+                                  animate={{
+                                    backgroundColor:
+                                      amirFeeling === "calmo"
+                                        ? "#10b981"
+                                        : amirFeeling === "agitato"
+                                          ? "#f59e0b"
+                                          : "#ef4444",
+                                    boxShadow:
+                                      amirFeeling === "calmo"
+                                        ? "0 0 20px rgba(16, 185, 129, 0.6)"
+                                        : amirFeeling === "agitato"
+                                          ? "0 0 20px rgba(245, 158, 11, 0.6)"
+                                          : "0 0 20px rgba(239, 68, 68, 0.6)",
+                                  }}
+                                  transition={{ duration: 0.3 }}
+                                  className="w-16 h-16 rounded-full flex items-center justify-center z-10"
+                                >
+                                  <span className="text-2xl select-none">
+                                    {amirFeeling === "calmo" ? "😊" : amirFeeling === "agitato" ? "😟" : "🤬"}
+                                  </span>
+                                </motion.div>
+                              </div>
+
+                              <span className={cn(
+                                "text-sm font-black uppercase tracking-wider mt-5 px-3 py-1.5 rounded-full select-none text-center",
+                                amirFeeling === "calmo"
+                                  ? "bg-emerald-500/15 text-emerald-300 border border-emerald-500/20"
+                                  : amirFeeling === "agitato"
+                                    ? "bg-amber-500/15 text-amber-300 border border-amber-500/20"
+                                    : "bg-rose-500/15 text-rose-300 border border-rose-500/20"
+                              )}>
+                                {amirFeeling === "calmo" ? "Stato: Calmo" : amirFeeling === "agitato" ? "Stato: Agitato" : "Stato: Sovraccarico"}
+                              </span>
+                            </div>
+
+                            {/* COLUMN 2: THE 3 HUGE ARASAAC BUTTONS */}
+                            <div className="w-full md:w-2/3 flex flex-col justify-between gap-5 col-span-2">
+                              <span className="text-[10px] font-black uppercase text-indigo-400 tracking-wider text-center md:text-left">
+                                Seleziona come ti senti in questo momento:
+                              </span>
+
+                              <div className="flex flex-col gap-4 flex-1 justify-center">
+                                {/* CALMO / FELICE (GREEN) */}
+                                <motion.button
+                                  whileHover={{ scale: 1.02, x: 5 }}
+                                  whileTap={{ scale: 0.98 }}
+                                  onClick={() => setAmirFeeling("calmo")}
                                   className={cn(
-                                    "text-2xl font-black uppercase italic tracking-tighter",
-                                    feeling.id === "felice"
-                                      ? "text-emerald-700"
-                                      : feeling.id === "triste"
-                                        ? "text-blue-700"
-                                        : feeling.id === "arrabbiato"
-                                          ? "text-rose-700"
-                                          : "text-amber-700",
+                                    "w-full p-4 sm:p-5 rounded-[28px] border-4 transition-all text-left flex items-center justify-between cursor-pointer shadow-lg",
+                                    amirFeeling === "calmo"
+                                      ? "bg-emerald-950/70 border-emerald-400 text-emerald-100 ring-4 ring-emerald-500/20"
+                                      : "bg-slate-950/60 border-transparent text-slate-400 hover:text-slate-300 hover:bg-slate-950/90"
                                   )}
                                 >
-                                  {feeling.label}
-                                </span>
-                              </motion.button>
-                            ))}
-                          </div>
-                        </motion.div>
-                      )}
+                                  <div className="flex items-center gap-4">
+                                    <div className="w-16 h-16 rounded-2xl bg-emerald-500 text-slate-950 flex items-center justify-center text-3xl font-bold font-mono shadow-md shadow-emerald-900/40 select-none">
+                                      😊
+                                    </div>
+                                    <div>
+                                      <h4 className="text-lg font-black uppercase tracking-tight text-white leading-tight">
+                                        Calmo / Felice
+                                      </h4>
+                                      <p className="text-slate-400 text-xs mt-1">
+                                        Mi sento sereno, pronto per l'attività o la lezione.
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="w-6 h-6 rounded-full border-2 border-emerald-400 flex items-center justify-center shrink-0">
+                                    {amirFeeling === "calmo" && <div className="w-3.5 h-3.5 rounded-full bg-emerald-400" />}
+                                  </div>
+                                </motion.button>
 
-                      {studentSubSection === "sentimenti" && (
-                        <motion.div
-                          key="feelings"
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.95 }}
-                          className="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-8"
-                        >
-                          {data.feelingsChoices.map((feeling) => (
-                            <motion.button
-                              key={feeling.id}
-                              whileHover={{ scale: 1.05 }}
-                              whileTap={{ scale: 0.95 }}
-                              className="bg-white p-6 rounded-[40px] shadow-2xl border-4 border-white/20 flex flex-col items-center gap-4 group"
-                            >
-                              <div className="w-32 h-32 rounded-3xl overflow-hidden group-hover:scale-110 transition-transform">
-                                <img
-                                  src={feeling.img}
-                                  alt={feeling.label}
-                                  className="w-full h-full object-contain"
-                                />
+                                {/* AGITATO / ANSIOSO (YELLOW) */}
+                                <motion.button
+                                  whileHover={{ scale: 1.02, x: 5 }}
+                                  whileTap={{ scale: 0.98 }}
+                                  onClick={() => setAmirFeeling("agitato")}
+                                  className={cn(
+                                    "w-full p-4 sm:p-5 rounded-[28px] border-4 transition-all text-left flex items-center justify-between cursor-pointer shadow-lg",
+                                    amirFeeling === "agitato"
+                                      ? "bg-amber-950/70 border-amber-400 text-amber-100 ring-4 ring-amber-500/20"
+                                      : "bg-slate-950/60 border-transparent text-slate-400 hover:text-slate-300 hover:bg-slate-950/90"
+                                  )}
+                                >
+                                  <div className="flex items-center gap-4">
+                                    <div className="w-16 h-16 rounded-2xl bg-amber-500 text-slate-950 flex items-center justify-center text-3xl font-bold font-mono shadow-md shadow-amber-900/40 select-none">
+                                      😟
+                                    </div>
+                                    <div>
+                                      <h4 className="text-lg font-black uppercase tracking-tight text-white leading-tight">
+                                        Agitato / Ansioso
+                                      </h4>
+                                      <p className="text-slate-400 text-xs mt-1">
+                                        Sento energia in eccesso, ansia o difficoltà a stare fermo.
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="w-6 h-6 rounded-full border-2 border-amber-400 flex items-center justify-center shrink-0">
+                                    {amirFeeling === "agitato" && <div className="w-3.5 h-3.5 rounded-full bg-amber-400" />}
+                                  </div>
+                                </motion.button>
+
+                                {/* SOVRACCARICATO / RABBIA (RED) */}
+                                <motion.button
+                                  whileHover={{ scale: 1.02, x: 5 }}
+                                  whileTap={{ scale: 0.98 }}
+                                  onClick={() => setAmirFeeling("sovraccaricato")}
+                                  className={cn(
+                                    "w-full p-4 sm:p-5 rounded-[28px] border-4 transition-all text-left flex items-center justify-between cursor-pointer shadow-lg",
+                                    amirFeeling === "sovraccaricato"
+                                      ? "bg-rose-950/70 border-rose-400 text-rose-100 ring-4 ring-rose-500/20"
+                                      : "bg-slate-950/60 border-transparent text-slate-400 hover:text-slate-300 hover:bg-slate-950/90"
+                                  )}
+                                >
+                                  <div className="flex items-center gap-4">
+                                    <div className="w-16 h-16 rounded-2xl bg-rose-500 text-slate-950 flex items-center justify-center text-3xl font-bold font-mono shadow-md shadow-rose-900/40 select-none">
+                                      🤬
+                                    </div>
+                                    <div>
+                                      <h4 className="text-lg font-black uppercase tracking-tight text-white leading-tight">
+                                        Sovraccaricato / Rabbia
+                                      </h4>
+                                      <p className="text-slate-400 text-xs mt-1">
+                                        Sensazione di meltdown o forte frustrazione. Ho bisogno di aiuto.
+                                      </p>
+                                    </div>
+                                  </div>
+                                  <div className="w-6 h-6 rounded-full border-2 border-rose-400 flex items-center justify-center shrink-0">
+                                    {amirFeeling === "sovraccaricato" && <div className="w-3.5 h-3.5 rounded-full bg-rose-400" />}
+                                  </div>
+                                </motion.button>
                               </div>
-                              <span className="text-xl font-black text-slate-800 uppercase italic">
-                                {feeling.label}
-                              </span>
-                            </motion.button>
-                          ))}
+
+                              {/* HELP/REgulation TRIGGERS IF STATE NOT GREEN */}
+                              <AnimatePresence mode="wait">
+                                {amirFeeling !== "calmo" && (
+                                  <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: 10 }}
+                                    className="p-4 bg-white/5 border border-white/10 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3"
+                                  >
+                                    <div className="flex items-center gap-2.5 text-left">
+                                      <span className="text-xl shrink-0">💡</span>
+                                      <p className="text-xs font-semibold text-indigo-200">
+                                        {amirFeeling === "agitato"
+                                          ? "Amir, suggeriamo un piccolo esercizio di respirazione per calmarsi."
+                                          : "Amir, ti consigliamo di fare subito una sessione nella bolla relax."}
+                                      </p>
+                                    </div>
+                                    <Button
+                                      onClick={() => setStudentSubSection("relax")}
+                                      className="rounded-xl text-[10px] font-black uppercase tracking-wider bg-indigo-500 text-white hover:bg-indigo-600 px-4 py-2 cursor-pointer shadow-md shrink-0 border-none h-auto"
+                                    >
+                                      Entra in Bolla Relax 🌀
+                                    </Button>
+                                  </motion.div>
+                                )}
+                              </AnimatePresence>
+                            </div>
+                          </div>
                         </motion.div>
                       )}
                     </AnimatePresence>
@@ -2854,80 +3012,166 @@ export default function App() {
                         </motion.button>
                       </div>
 
-                      {/* Top Bar: Weather Selection */}
-                      <div className="flex flex-col md:flex-row gap-6 items-center justify-between bg-white/10 p-8 rounded-[40px] border border-white/10 backdrop-blur-md">
-                        <div className="flex flex-wrap gap-4 items-center w-full justify-center lg:justify-between">
-                          {/* Day Selection */}
-                          <div className="flex items-center gap-2 bg-black/20 p-2 rounded-2xl">
-                            {[
-                              "Lun",
-                              "Mar",
-                              "Mer",
-                              "Gio",
-                              "Ven",
-                              "Sab",
-                              "Dom",
-                            ].map((d) => (
-                              <button
-                                key={d}
-                                onClick={() =>
-                                  setData({
-                                    ...data,
-                                    agendaDay:
-                                      d === "Lun"
-                                        ? "Lunedì"
-                                        : d === "Mar"
-                                          ? "Martedì"
-                                          : d === "Mer"
-                                            ? "Mercoledì"
-                                            : d === "Gio"
-                                              ? "Giovedì"
-                                              : d === "Ven"
-                                                ? "Venerdì"
-                                                : d === "Sab"
-                                                  ? "Sabato"
-                                                  : "Domenica",
-                                  })
-                                }
-                                className={cn(
-                                  "px-4 py-2 rounded-xl font-bold text-sm transition-all",
-                                  data.agendaDay.startsWith(d)
-                                    ? "bg-white text-blue-600 shadow-lg"
-                                    : "text-white/60 hover:text-white",
-                                )}
-                              >
-                                {d}
-                              </button>
-                            ))}
+                      {/* Top Bar: Weather and Thermometer */}
+                      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-6xl mx-auto items-stretch">
+                        
+                        {/* Day and Weather Selection */}
+                        <div className="lg:col-span-2 flex flex-col md:flex-row gap-6 p-8 rounded-[40px] border border-white/10 backdrop-blur-md bg-white/10 items-center justify-between">
+                          <div className="flex flex-col gap-6 w-full">
+                            <div>
+                              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-1">📅 Scegli il giorno</h4>
+                              <p className="text-blue-200 text-xs font-medium">Seleziona il giorno della settimana per l'agenda visiva</p>
+                            </div>
+                            
+                            {/* Day Selection Row */}
+                            <div className="flex flex-wrap gap-2 bg-black/20 p-2 rounded-2xl w-fit justify-center">
+                              {[
+                                "Lun",
+                                "Mar",
+                                "Mer",
+                                "Gio",
+                                "Ven",
+                                "Sab",
+                                "Dom",
+                              ].map((d) => (
+                                <button
+                                  key={d}
+                                  onClick={() =>
+                                    setData({
+                                      ...data,
+                                      agendaDay:
+                                        d === "Lun"
+                                          ? "Lunedì"
+                                          : d === "Mar"
+                                            ? "Martedì"
+                                            : d === "Mer"
+                                              ? "Mercoledì"
+                                              : d === "Gio"
+                                                ? "Giovedì"
+                                                : d === "Ven"
+                                                  ? "Venerdì"
+                                                  : d === "Sab"
+                                                    ? "Sabato"
+                                                    : "Domenica",
+                                    })
+                                  }
+                                  className={cn(
+                                    "px-4 py-2 rounded-xl font-bold text-sm transition-all",
+                                    data.agendaDay.startsWith(d)
+                                      ? "bg-white text-blue-600 shadow-lg"
+                                      : "text-white/60 hover:text-white",
+                                  )}
+                                >
+                                  {d}
+                                </button>
+                              ))}
+                            </div>
+
+                            <hr className="border-white/10" />
+
+                            <div>
+                              <h4 className="text-xl font-black text-white uppercase italic tracking-tighter mb-1 font-sans">🌤️ Scegli il meteo</h4>
+                              <p className="text-blue-200 text-xs font-medium">Seleziona il tempo di oggi</p>
+                            </div>
+
+                            {/* Weather Selection Row */}
+                            <div className="flex items-center gap-2 bg-white/5 p-2 rounded-2xl border border-white/10 w-fit">
+                              {[
+                                { id: "Sereno", icon: <Sun size={20} /> },
+                                { id: "Nuvoloso", icon: <Cloud size={20} /> },
+                                { id: "Pioggia", icon: <CloudRain size={20} /> },
+                                { id: "Vento", icon: <Wind size={20} /> },
+                                { id: "Neve", icon: <Snowflake size={20} /> },
+                              ].map((w) => (
+                                <button
+                                  key={w.id}
+                                  onClick={() =>
+                                    setData({ ...data, agendaWeather: w.id })
+                                  }
+                                  className={cn(
+                                    "p-3 rounded-xl transition-all",
+                                    data.agendaWeather === w.id
+                                      ? "bg-blue-600 text-white shadow-lg scale-110"
+                                      : "text-slate-300 hover:text-blue-400",
+                                  )}
+                                  title={w.id}
+                                >
+                                  {w.icon}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Feeling Thermometer - MOVED HERE! */}
+                        <div className="flex flex-col p-6 rounded-[40px] border border-white/10 bg-slate-900/90 shadow-2xl items-center justify-center relative min-h-[320px]">
+                          <span className="text-[11px] font-black uppercase text-indigo-400 tracking-widest mb-3">🌡️ Termometro Emotivo</span>
+                          
+                          <div className="flex items-end gap-3 relative pb-2 w-full justify-center">
+                            {/* Rule indicators on the left of thermometer */}
+                            <div className="flex flex-col justify-between h-48 text-[9px] font-mono text-slate-500 py-1 pr-1 select-none">
+                              <span>100</span>
+                              <span>50</span>
+                              <span>0</span>
+                            </div>
+
+                            {/* Glass tube */}
+                            <div className="w-6 h-48 bg-slate-800 border border-slate-700 rounded-full relative p-0.5 shadow-inner flex flex-col justify-end overflow-hidden">
+                              {/* Mercury fluid level */}
+                              <motion.div
+                                animate={{
+                                  height:
+                                    (data.amirFeeling || amirFeeling) === "calmo"
+                                      ? "33%"
+                                      : (data.amirFeeling || amirFeeling) === "agitato"
+                                        ? "66%"
+                                        : "100%",
+                                  background:
+                                    (data.amirFeeling || amirFeeling) === "calmo"
+                                      ? "linear-gradient(to top, #059669, #34d399)"
+                                      : (data.amirFeeling || amirFeeling) === "agitato"
+                                        ? "linear-gradient(to top, #d97706, #fbbf24)"
+                                        : "linear-gradient(to top, #dc2626, #f87171)",
+                                }}
+                                transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                                className="w-full rounded-full animate-pulse"
+                              />
+                            </div>
+
+                            {/* Rule indicators on the right of thermometer */}
+                            <div className="flex flex-col justify-between h-48 text-[10px] font-bold text-slate-400 py-1 pl-1 select-none">
+                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "sovraccaricato" ? "text-rose-400 font-black" : "")}> sovraccarico </span>
+                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "agitato" ? "text-amber-400 font-black" : "")}> agitato </span>
+                              <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "calmo" ? "text-emerald-400 font-black" : "")}> calmo </span>
+                            </div>
                           </div>
 
-                          {/* Weather Selection */}
-                          <div className="flex items-center gap-2 bg-white/90 p-2 rounded-2xl">
+                          {/* Quick Interactive Bulb Face */}
+                          <div className="relative mt-2 flex items-center justify-center gap-2">
                             {[
-                              { id: "Sereno", icon: <Sun size={20} /> },
-                              { id: "Nuvoloso", icon: <Cloud size={20} /> },
-                              { id: "Pioggia", icon: <CloudRain size={20} /> },
-                              { id: "Vento", icon: <Wind size={20} /> },
-                              { id: "Neve", icon: <Snowflake size={20} /> },
-                            ].map((w) => (
+                              { id: "calmo", icon: "😊", tooltip: "Calmo", color: "text-emerald-400 border-emerald-500/30 bg-emerald-500/10" },
+                              { id: "agitato", icon: "😟", tooltip: "Agitato", color: "text-amber-400 border-amber-500/30 bg-amber-500/10" },
+                              { id: "sovraccaricato", icon: "🤬", tooltip: "Sovraccarico", color: "text-rose-400 border-rose-500/30 bg-rose-500/10" },
+                            ].map((feel) => (
                               <button
-                                key={w.id}
-                                onClick={() =>
-                                  setData({ ...data, agendaWeather: w.id })
-                                }
+                                key={feel.id}
+                                onClick={() => {
+                                  changeAmirFeeling(feel.id as any);
+                                }}
                                 className={cn(
-                                  "p-3 rounded-xl transition-all",
-                                  data.agendaWeather === w.id
-                                    ? "bg-blue-600 text-white shadow-lg scale-110"
-                                    : "text-slate-400 hover:text-blue-500",
+                                  "w-12 h-12 rounded-2xl flex items-center justify-center text-xl border transition-all hover:scale-110",
+                                  (data.amirFeeling || amirFeeling) === feel.id
+                                    ? feel.color + " ring-2 ring-indigo-500 scale-105 font-bold"
+                                    : "border-white/5 bg-white/5 text-slate-400"
                                 )}
-                                title={w.id}
+                                title={feel.tooltip}
                               >
-                                {w.icon}
+                                {feel.icon}
                               </button>
                             ))}
                           </div>
                         </div>
+
                       </div>
 
                       <div className="flex flex-col gap-12 items-start justify-center">
@@ -4242,6 +4486,41 @@ export default function App() {
                               </Button>
                             </div>
 
+                            {/* Message from Family */}
+                            {(data.familyDailyNote || data.amirFeeling) && (
+                              <div className="bg-purple-50 rounded-[35px] border-4 border-purple-100 p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6">
+                                <div className="text-4xl">🏡</div>
+                                <div className="flex-1 space-y-2">
+                                  <div className="flex flex-wrap items-center gap-3">
+                                    <h5 className="text-xl font-black text-purple-900 uppercase">
+                                      Messaggio da Casa
+                                    </h5>
+                                    {data.amirFeeling && (
+                                      <span className={cn(
+                                        "px-3 py-1 rounded-full text-[11px] font-black uppercase tracking-wider border",
+                                        data.amirFeeling === "calmo"
+                                          ? "bg-emerald-50 text-emerald-700 border-emerald-200"
+                                          : data.amirFeeling === "agitato"
+                                            ? "bg-amber-50 text-amber-700 border-amber-200"
+                                            : "bg-rose-50 text-rose-700 border-rose-200"
+                                      )}>
+                                        Stato emotivo: {
+                                          data.amirFeeling === "calmo"
+                                            ? "😊 Calmo/Felice"
+                                            : data.amirFeeling === "agitato"
+                                              ? "😟 Agitato/Ansioso"
+                                              : "🤬 Sovraccaricato/Rabbia"
+                                        }
+                                      </span>
+                                    )}
+                                  </div>
+                                  <p className="text-purple-950 font-medium italic leading-relaxed text-md text-left">
+                                    "{data.familyDailyNote || "La famiglia non ha scritto commenti, ma ha aggiornato il termometro emotivo di oggi."}"
+                                  </p>
+                                </div>
+                              </div>
+                            )}
+
                             <div className="space-y-8">
                               {data.dailyDiary.map((entry, idx) => (
                                 <motion.div
@@ -4757,7 +5036,41 @@ export default function App() {
                   )}
 
                   {studentSubSection === "passport" && (
-                    <div className="w-full max-w-4xl mx-auto p-4">
+                    <div className="w-full max-w-7xl mx-auto p-4 flex flex-col items-center">
+                      {/* Top Tabs Switcher inside Passaporto comunicativo */}
+                      <div className="flex gap-2 bg-white/10 p-1.5 rounded-[20px] border border-white/15 mb-8 print:hidden w-fit">
+                        <button
+                          onClick={() => {
+                            setPassportTab("passport");
+                            setActiveSubjectId(null);
+                          }}
+                          className={cn(
+                            "px-6 py-2.5 rounded-xl font-black text-xs sm:text-sm uppercase transition-all tracking-wider flex items-center gap-2 cursor-pointer",
+                            passportTab === "passport"
+                              ? "bg-emerald-500 text-white shadow-lg"
+                              : "text-slate-300 hover:text-white"
+                          )}
+                        >
+                          <span>📝</span> Il Mio Passaporto
+                        </button>
+                        <button
+                          onClick={() => {
+                            setPassportTab("autonomy");
+                            setActiveSubjectId(null);
+                          }}
+                          className={cn(
+                            "px-6 py-2.5 rounded-xl font-black text-xs sm:text-sm uppercase transition-all tracking-wider flex items-center gap-2 cursor-pointer",
+                            passportTab === "autonomy"
+                              ? "bg-orange-500 text-white shadow-lg"
+                              : "text-slate-300 hover:text-white"
+                          )}
+                        >
+                          <span>🛀</span> Diario delle Autonomie
+                        </button>
+                      </div>
+
+                      {passportTab === "passport" && (
+                        <div className="w-full max-w-4xl mx-auto">
                       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 print:hidden">
                         <div className="flex gap-3">
                           <Button
@@ -5274,8 +5587,8 @@ export default function App() {
                     </div>
                   )}
 
-                  {studentSubSection === "autonomy" && (
-                    <div className="w-full max-w-7xl mx-auto p-4">
+                      {passportTab === "autonomy" && (
+                        <div className="w-full max-w-7xl mx-auto">
                       {!activeSubjectId ? (
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                           {data.autonomyDiary.map((subject) => {
@@ -5486,6 +5799,8 @@ export default function App() {
                                 </div>
                               );
                             })}
+                        </div>
+                      )}
                         </div>
                       )}
                     </div>
@@ -6093,10 +6408,31 @@ export default function App() {
 
                           {/* Sezione Obiettivi da Raggiungere */}
                           <div className="space-y-3">
-                            <h4 className="text-lg font-black text-slate-900 border-l-4 border-blue-500 pl-4 uppercase tracking-tight">
-                              Obiettivi da raggiungere per questa materia
-                            </h4>
-                            <p className="text-xs text-slate-500 font-medium">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-l-4 border-blue-500 pl-4">
+                              <h4 className="text-lg font-black text-slate-900 uppercase tracking-tight">
+                                Obiettivi da raggiungere per questa materia
+                              </h4>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setModalTitle("Modello SMART per gli Obiettivi");
+                                  setAiExplanation(
+                                    `La formulazione degli obiettivi secondo il modello <strong>S.M.A.R.T.</strong> garantisce la chiarezza e l'efficacia del percorso didattico personalizzato:<br/><br/>` +
+                                    `• <strong>S - Specific (Specifico):</strong> L'obiettivo descrive esattamente cosa l'alunno deve essere in grado di fare, senza ambiguità. Usa verbi d'azione osservabili (es. scrivere, identificare, scegliere, eseguire), evitando termini vaghi (es. comprendere, migliorare).<br/><br/>` +
+                                    `• <strong>M - Measurable (Misurabile):</strong> Deve essere possibile determinare oggettivamente se l'obiettivo è stato raggiunto. Definisci criteri quantitativi o percentuali (es. 'correttamente in 4 casi su 5', 'con un aiuto visivo massimo', 'almeno 3 parole').<br/><br/>` +
+                                    `• <strong>A - Achievable (Raggiungibile):</strong> Definisci traguardi realistici basati sulle potenzialità reali dell'alunno, considerando i suoi punti di forza e barriere (un traguardo troppo ambizioso genera frustrazione).<br/><br/>` +
+                                    `• <strong>R - Relevant (Rilevante):</strong> L'obiettivo ha importanza concreta per la vita dell'alunno, la sua autonomia scolastica e sociale o per lo sviluppo di abilità funzionali collegate alla sua quotidianità.<br/><br/>` +
+                                    `• <strong>T - Time-bound (Temporizzato):</strong> Stabilisci scadenze precise entro cui verificare il traguardo (es. 'entro il primo quadrimestre', 'entro la fine dell'anno scolastico', 'nell'arco di 3 mesi').<br/><br/>` +
+                                    `<strong>Esempio SMART:</strong><br/>` +
+                                    `<em>«Entro marzo [T], l'alunno identificherà autonomamente [S] i giorni della settimana su un calendario illustrato [A, R] con una precisione di almeno 5 risposte corrette su 7 tentativi [M].»</em>`
+                                  );
+                                }}
+                                className="inline-flex items-center gap-1.5 px-3 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white rounded-full text-xs font-black uppercase tracking-wider self-start sm:self-center shadow-md shadow-indigo-200 hover:shadow-indigo-300 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+                              >
+                                <Sparkles size={12} /> Guida SMART
+                              </button>
+                            </div>
+                            <p className="text-xs text-slate-500 font-medium pl-4">
                               Indica le competenze e i traguardi d'apprendimento specifici previsti in questo anno per l'alunno:
                             </p>
                             <textarea
@@ -7022,6 +7358,148 @@ export default function App() {
                       </div>
                     </motion.div>
                   </>
+                )}
+
+                {currentStep === 3 && (
+                  <div className="space-y-8 animate-fadeIn text-slate-800">
+                    <div className="space-y-4 mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className="p-3 rounded-2xl bg-purple-100 text-purple-600">
+                          <BookCheck size={28} className="animate-pulse" />
+                        </div>
+                        <Label className="text-2xl font-black text-slate-900">
+                          Diario del Giorno & Termometro Emotivo
+                        </Label>
+                      </div>
+                      <p className="text-slate-500 font-medium text-sm leading-relaxed max-w-3xl">
+                        Condividi con la scuola le informazioni sull'inizio della giornata di Amir e compila il suo stato emotivo iniziale.
+                        Le informazioni inserite qui aggiorneranno direttamente il termometro dell'alunno ed esporranno la spunta con il livello scelto.
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {/* Left Block: Diary Note */}
+                      <div className="p-8 bg-white border-2 border-slate-100 rounded-[40px] shadow-sm space-y-6 flex flex-col justify-between">
+                        <div className="space-y-4">
+                          <Label className="text-lg font-black text-slate-800 flex items-center gap-2">
+                            <span className="w-2.5 h-2.5 rounded-full bg-purple-500"></span>
+                            Come sta Amir oggi?
+                          </Label>
+                          <textarea
+                            className="w-full min-h-[180px] p-5 rounded-3xl border border-slate-200 focus:border-purple-500 focus:ring-4 focus:ring-purple-50 outline-none transition-all text-sm text-slate-950 bg-slate-50/20 leading-relaxed"
+                            placeholder="Scrivi qui una nota per gli insegnanti (es. Ha dormito bene? Come ha fatto colazione? È sereno?)..."
+                            value={data.familyDailyNote || ""}
+                            onChange={(e) => {
+                              setData({ ...data, familyDailyNote: e.target.value });
+                            }}
+                          />
+                        </div>
+
+                        {/* Quick Suggest Buttons */}
+                        <div className="space-y-3">
+                          <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">💡 Suggerimenti Rapidi</span>
+                          <div className="flex flex-wrap gap-2 block">
+                            {[
+                              "Ha dormito bene ed è tranquillo.",
+                              "È un po' stanco questa mattina.",
+                              "È molto entusiasta e pronto per le attività.",
+                              "È un po' agitato per il cambio d'agenda."
+                            ].map((suggest) => (
+                              <button
+                                key={suggest}
+                                type="button"
+                                onClick={() => {
+                                  const currentText = data.familyDailyNote || "";
+                                  const spacer = currentText ? " " : "";
+                                  if (!currentText.includes(suggest)) {
+                                    setData({ ...data, familyDailyNote: currentText + spacer + suggest });
+                                  }
+                                }}
+                                className="px-3 py-1.5 rounded-xl bg-slate-50 border border-slate-100 hover:border-purple-200 hover:bg-purple-50 text-slate-600 hover:text-purple-700 text-xs font-medium transition-all text-left"
+                              >
+                                + {suggest}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Block: Thermometer & State Selection */}
+                      <div className="p-8 bg-slate-950 text-white rounded-[40px] shadow-xl space-y-6 flex flex-col items-center justify-center border-4 border-purple-500/10">
+                        <Label className="text-md font-bold uppercase tracking-wider text-purple-400 text-center flex items-center gap-2">
+                          🌡️ Compila il Termometro dell'Umore
+                        </Label>
+                        
+                        <div className="flex items-end gap-3 relative pb-2 w-full justify-center">
+                          {/* Scale indicators */}
+                          <div className="flex flex-col justify-between h-48 text-[9px] font-mono text-slate-600 py-1 pr-1 select-none">
+                            <span>100</span>
+                            <span>50</span>
+                            <span>0</span>
+                          </div>
+
+                          {/* Thermometer Tube */}
+                          <div className="w-7 h-48 bg-slate-900 border-2 border-slate-800 rounded-full relative p-0.5 shadow-inner flex flex-col justify-end overflow-hidden">
+                            {/* Mercury Fluid level */}
+                            <motion.div
+                              animate={{
+                                height:
+                                  (data.amirFeeling || amirFeeling) === "calmo"
+                                    ? "33%"
+                                    : (data.amirFeeling || amirFeeling) === "agitato"
+                                      ? "66%"
+                                      : "100%",
+                                background:
+                                  (data.amirFeeling || amirFeeling) === "calmo"
+                                    ? "linear-gradient(to top, #059669, #34d399)"
+                                    : (data.amirFeeling || amirFeeling) === "agitato"
+                                      ? "linear-gradient(to top, #d97706, #fbbf24)"
+                                      : "linear-gradient(to top, #dc2626, #f87171)",
+                              }}
+                              transition={{ type: "spring", stiffness: 60, damping: 15 }}
+                              className="w-full rounded-full animate-pulse"
+                            />
+                          </div>
+
+                          {/* Level Labels */}
+                          <div className="flex flex-col justify-between h-48 text-[11px] font-bold text-slate-400 py-1 pl-1 select-none">
+                            <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "sovraccaricato" ? "text-rose-400 font-extrabold" : "")}> 🔴 Sovraccarico </span>
+                            <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "agitato" ? "text-amber-400 font-extrabold" : "")}> 🟡 Agitato </span>
+                            <span className={cn("transition-colors duration-200", (data.amirFeeling || amirFeeling) === "calmo" ? "text-emerald-400 font-extrabold" : "")}> 🟢 Calmo </span>
+                          </div>
+                        </div>
+
+                        {/* Feeling choices - checks/spunte info */}
+                        <div className="flex flex-col w-full gap-3 mt-2">
+                          <span className="text-center text-xs text-slate-400 font-semibold uppercase tracking-wider">Spunta lo stato emotivo di oggi:</span>
+                          <div className="grid grid-cols-3 gap-3 w-full">
+                            {[
+                              { id: "calmo", label: "Calmo/Felice", icon: "😊", activeBg: "bg-emerald-500 text-white border-emerald-400 shadow-md shadow-emerald-500/20" },
+                              { id: "agitato", label: "Agitato/Ansioso", icon: "😟", activeBg: "bg-amber-500 text-white border-amber-400 shadow-md shadow-amber-500/20" },
+                              { id: "sovraccaricato", label: "Sovraccarico/Rabbia", icon: "🤬", activeBg: "bg-rose-500 text-white border-rose-400 shadow-md shadow-rose-500/20" }
+                            ].map((feel) => (
+                              <button
+                                key={feel.id}
+                                type="button"
+                                onClick={() => {
+                                  changeAmirFeeling(feel.id as any);
+                                }}
+                                className={cn(
+                                  "p-4 rounded-2xl flex flex-col items-center gap-1.5 justify-center border-2 transition-all hover:scale-105 active:scale-95 text-center font-bold text-xs cursor-pointer",
+                                  (data.amirFeeling || amirFeeling) === feel.id
+                                    ? feel.activeBg
+                                    : "border-slate-800 bg-slate-900/40 text-slate-400 hover:border-slate-700"
+                                )}
+                              >
+                                <span className="text-2xl">{feel.icon}</span>
+                                <span>{feel.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 )}
 
                 {/* Navigation Buttons */}

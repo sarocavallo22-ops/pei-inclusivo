@@ -203,4 +203,6 @@ export interface PEIData {
   didacticGeneralObservations?: {
     [key: string]: boolean | null;
   };
+  amirFeeling?: 'calmo' | 'agitato' | 'sovraccaricato';
+  familyDailyNote?: string;
 }

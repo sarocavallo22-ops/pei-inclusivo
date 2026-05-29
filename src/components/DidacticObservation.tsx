@@ -85,10 +85,18 @@ const DIDACTIC_AREAS = [
     title: "AREA ARTISTICA/MUSICALE/MOTORIA",
     desc: "Arte e immagine, Musica, Scienze motorie",
     indicators: [
-      { key: "art_regole", title: "Coordinazione Motoria e Spaziale", desc: "Si orienta nello spazio palestra, esegue percorsi e controlla la postura." },
-      { key: "art_coordin", title: "Rispetto delle Regole del Gioco", desc: "Partecipa ad attività motorie di gruppo rispettando compagni e arbitro." },
-      { key: "art_creativ", title: "Espressione Artistica e Manualità", desc: "Utilizza linguaggi grafici, plastici e controlla la motricità fine." },
-      { key: "art_music", title: "Linguaggio Musicale", desc: "Riconosce ritmi, suoni, canta o riproduce suoni con piccoli strumenti." }
+      { key: "b1471", title: "b1471 – Qualità delle funzioni psicomotorie", desc: "Comportamento non verbale nella giusta sequenza e coordinazione." },
+      { key: "b1472", title: "b1472 – Organizzazione delle funzioni psicomotorie", desc: "Sequenze complesse di movimento dirette a uno scopo." },
+      { key: "b1561", title: "b1561 – Percezione visiva", desc: "Distinguere forma, dimensione, colore e altri stimoli oculari (essenziale per Arte)." },
+      { key: "b1564", title: "b1564 – Percezione tattile", desc: "Distinguere differenze di struttura (ruvido, liscio) attraverso il tocco." },
+      { key: "b1565", title: "b1565 – Percezione visuo-spaziale", desc: "Distinguere con la vista la posizione relativa di oggetti nell'ambiente o in relazione a se stessi." },
+      { key: "b176", title: "b176 – Funzione mentale di sequenza dei movimenti complessi", desc: "Sequenziare e coordinare movimenti complessi e finalizzati." },
+      { key: "d1450", title: "d1450 – Apprendere le abilità di uso di strumenti di scrittura", desc: "Tenere in mano una matita, un gessetto, usare una tastiera o il mouse." },
+      { key: "d410", title: "d410 – Cambiare la posizione corporea di base", desc: "Assumere e abbandonare una posizione corporea e muoversi." },
+      { key: "d415", title: "d415 – Mantenere una posizione corporea", desc: "Rimanere nella stessa posizione corporea come richiesto." },
+      { key: "d440", title: "d440 – Uso fine della mano", desc: "Compiere le azioni coordinate del maneggiare oggetti, raccoglierli, manipolarli e lasciarli andare." },
+      { key: "d450", title: "d450 – Camminare", desc: "Muoversi lungo una superficie a piedi (passeggiare, gironzolare)." },
+      { key: "d3352", title: "d3352 – Produrre disegni e fotografie", desc: "Comunicare un significato disegnando, dipingendo o utilizzando diagrammi e immagini." }
     ]
   },
   {
@@ -96,9 +104,16 @@ const DIDACTIC_AREAS = [
     title: "INSEGNAMENTI TRASVERSALI",
     desc: "Educazione Civica, Alternativa alla religione ed L1/L2",
     indicators: [
-      { key: "civ_regole", title: "Cittadinanza e Relazioni", desc: "Dimostra attitudine alla convivenza civile e solidale con il gruppo classe." },
-      { key: "civ_amb", title: "Rispetto dell'Ambiente", desc: "Rispetta e conserva gli arredi, i materiali scolastici e differenzia i rifiuti." },
-      { key: "civ_digit", title: "Consapevolezza Digitale", desc: "Utilizza i dispositivi tecnologici con rispetto delle regole comportamentali (Netiquette)." }
+      { key: "b1641", title: "b1641 – Organizzazione e pianificazione", desc: "Organizzare e pianificare idee, qualità o caratteristiche generali." },
+      { key: "b1642", title: "b1642 – Gestione del tempo", desc: "Ordinare gli eventi in una sequenza cronologica, assegnando una certa quantità di tempo." },
+      { key: "b1643", title: "b1643 – Flessibilità cognitiva", desc: "Cambiare strategie, o variare inclinazioni mentali nella soluzione di problemi." },
+      { key: "b1645", title: "b1645 – Giudizio", desc: "Discriminare e valutare le diverse opzioni coinvolte nel formarsi un'opinione." },
+      { key: "d177", title: "d177 – Prendere decisioni", desc: "Effettuare una scelta tra più opzioni, metterla in atto e valutarne le conseguenze." },
+      { key: "d2401", title: "d2401 – Gestire lo stress", desc: "Far fronte alla pressione associata all'esecuzione di un compito (aspettare il proprio turno, parlare davanti alla classe, monitorare il tempo)." },
+      { key: "d2402", title: "d2402 – Gestire le crisi", desc: "Affrontare i punti di svolta di una situazione, decidendo quando chiedere aiuto." },
+      { key: "d2500", title: "d2500 – Accettare la novità", desc: "Gestire comportamento ed emozioni rispondendo in modo appropriato alle situazioni nuove." },
+      { key: "d7100", title: "d7100 – Rispetto e cordialità nelle relazioni", desc: "Mostrare e rispondere a cure, simpatia, considerazione e stima." },
+      { key: "d7203", title: "d7203 – Interagire secondo le regole sociali", desc: "Agire in maniera indipendente nelle interazioni e aderire alle convenzioni sociali." }
     ]
   },
   {
@@ -106,9 +121,18 @@ const DIDACTIC_AREAS = [
     title: "EDUCATIVA SCOLASTICA",
     desc: "Supporto educativo e assistenza all'autonomia",
     indicators: [
-      { key: "edu_auton", title: "Autonomia Personale", desc: "Cura l'igiene del sé, l'alimentazione e la vestizione in modo indipendente." },
-      { key: "edu_gestione", title: "Organizzazione dei Materiali", desc: "Prepara l'astuccio, il diario e i quaderni secondo l'orario delle lezioni." },
-      { key: "edu_relaz", title: "Gestione dei Tempi e delle Frustrazioni", desc: "Tollera l'attesa, gestisce la frustrazione e chiede aiuto opportunamente." }
+      { key: "b1521", title: "b1521 – Regolazione dell'emozione", desc: "Controllo dell'esperienza e delle manifestazioni emozionali." },
+      { key: "d2102", title: "d2102 – Intraprendere un compito singolo autonomamente", desc: "Gestire ed eseguire un compito da soli senza l'assistenza di altri." },
+      { key: "d2300", title: "d2300 – Seguire delle routine", desc: "Sotto la guida di altri eseguire procedimenti o incombenze quotidiane basilari." },
+      { key: "d2304", title: "d2304 – Gestire i cambiamenti nella routine quotidiana", desc: "Compiere transizioni appropriate in risposta a nuove necessità o cambi di attività." },
+      { key: "d315", title: "d315 – Comunicare con ricevere messaggi non verbali", desc: "Comprendere significati tramite gesti, simboli e disegni (es. uso del tablet o della CAA)." },
+      { key: "d3350", title: "d3350 – Produrre gesti con il corpo", desc: "Comunicare messaggi tramite movimenti intenzionali del corpo (mimica, posture, indicazione)." },
+      { key: "d3351", title: "d3351 – Produrre segni e simboli", desc: "Comunicare un significato usando segni, simboli e sistemi di notazione." },
+      { key: "d530", title: "d530 – Bisogni corporali", desc: "Manifestare il bisogno di, pianificare ed espletare l'eliminazione di prodotti organici." },
+      { key: "d550", title: "d550 – Mangiare", desc: "Manifestare il bisogno di mangiare ed eseguire i compiti coordinati di consumare il cibo (mensa)." },
+      { key: "d560", title: "d560 – Bere", desc: "Manifestare il bisogno di bere, prendere una bevanda e consumarla." },
+      { key: "d7202", title: "d7202 – Regolare i comportamenti nelle interazioni", desc: "Regolare le emozioni e gli impulsi, riducendo aggressioni verbali e fisiche (controllo del meltdown)." },
+      { key: "d8803", title: "d8803 – Gioco cooperativo condiviso", desc: "Unirsi ad altre persone nell'impegno prolungato in attività con oggetti o materiali." }
     ]
   }
 ];
@@ -260,171 +284,130 @@ export function DidacticObservation({ data, onChange, onBack }: DidacticObservat
             </div>
 
             {/* MAIN FORM GROUP */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            <div className="w-full bg-slate-900/95 border border-white/10 rounded-[35px] p-6 md:p-8 space-y-6 shadow-xl relative text-slate-100">
               
-              {/* LEFT GROUP: PATH TYPE (4 cols) */}
-              <div className="lg:col-span-4 bg-slate-900/90 backdrop-blur-md border border-white/10 rounded-[35px] p-6 space-y-6 shadow-xl text-slate-100">
-                <div className="border-b border-white/5 pb-4">
-                  <span className="text-[9px] font-bold uppercase text-cyan-400 tracking-wider">Sezione 01</span>
-                  <h4 className="text-sm font-black uppercase tracking-tight text-slate-100 flex items-center gap-2 mt-0.5">
-                    <BookOpen size={15} /> Tipo di Percorso (PEI)
-                  </h4>
-                </div>
-
-                <div className="flex flex-col gap-3">
-                  {[
-                    { id: 'A', value: 'Percorso A - Ordinario', desc: 'Con verifiche equipollenti e prove d\'esame ordinarie.' },
-                    { id: 'B', value: 'Percorso B - Semplificato', desc: 'Verifiche adattate, obiettivi ridotti o dispense mirate.' },
-                    { id: 'C', value: 'Percorso C - Differenziato', desc: 'Obiettivi didattici non riconducibili a quelli ministeriali.' }
-                  ].map((path) => {
-                    const isSelected = existingRecord.pathType === path.id;
-                    return (
-                      <button
-                        key={path.id}
-                        type="button"
-                        onClick={() => handleUpdateRecord({ pathType: path.id as any })}
-                        className={cn(
-                          "p-4 rounded-2xl text-left border-2 transition-all flex flex-col justify-between cursor-pointer text-slate-200",
-                          isSelected 
-                            ? "bg-[#111e3b] border-cyan-400 ring-2 ring-cyan-400/10 shadow-lg text-cyan-100"
-                            : "bg-slate-950/80 border-white/5 hover:bg-slate-950 text-slate-400 hover:text-slate-300"
-                        )}
-                      >
-                        <span className="text-xs font-black uppercase tracking-wide">{path.value}</span>
-                        <span className="text-[10px] font-semibold text-slate-500 mt-1.5 leading-normal">{path.desc}</span>
-                      </button>
-                    );
-                  })}
-                </div>
+              <div className="border-b border-white/5 pb-4">
+                <span className="text-[9px] font-bold uppercase text-cyan-400 tracking-wider">Osservazione</span>
+                <h4 className="text-base font-black uppercase tracking-tight text-white mt-0.5">
+                  Griglia di Osservazione Qualitativa
+                </h4>
               </div>
 
-              {/* RIGHT GROUP: INDICATORS GRID (8 cols) */}
-              <div className="lg:col-span-8 bg-slate-900/95 border border-white/10 rounded-[35px] p-6 md:p-8 space-y-6 shadow-xl relative text-slate-100">
-                
-                <div className="border-b border-white/5 pb-4">
-                  <span className="text-[9px] font-bold uppercase text-cyan-400 tracking-wider">Sezione 02</span>
-                  <h4 className="text-base font-black uppercase tracking-tight text-white mt-0.5">
-                    Griglia di Osservazione Qualitativa
-                  </h4>
-                </div>
+              <div className="space-y-6">
+                {currentArea?.indicators.map((indicator, idx) => {
+                  const currentStatus = existingRecord.indicatorsStatus[indicator.key] || '';
+                  const currentNote = existingRecord.indicatorsNotes[indicator.key] || '';
 
-                <div className="space-y-6">
-                  {currentArea?.indicators.map((indicator, idx) => {
-                    const currentStatus = existingRecord.indicatorsStatus[indicator.key] || '';
-                    const currentNote = existingRecord.indicatorsNotes[indicator.key] || '';
-
-                    return (
-                      <div 
-                        key={indicator.key}
-                        className="bg-slate-950/70 rounded-[28px] p-5 border border-white/5 hover:border-white/10 transition-colors space-y-4"
-                      >
-                        <div className="flex flex-col justify-between items-stretch gap-4">
-                          <div className="space-y-1.5">
-                            <span className="text-[9px] font-extrabold text-teal-400 uppercase tracking-widest bg-teal-500/10 px-2 py-0.5 rounded">Indicatore {idx + 1}</span>
-                            <h5 className="text-sm font-black text-slate-100 uppercase tracking-tight">{indicator.title}</h5>
-                            <p className="text-[11px] font-medium text-slate-400 leading-normal">{indicator.desc}</p>
-                          </div>
-
-                          {/* 7-State ICF Qualifiers Layout */}
-                          <div className="space-y-2 mt-2">
-                            <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">
-                              Valutazione dell'allineamento (Qualificatore ICF):
-                            </span>
-                            <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-1.5 items-stretch bg-slate-900 border border-white/5 p-1.5 rounded-2xl w-full">
-                              {EVALUATION_LEVELS.map((btn) => {
-                                const isActive = currentStatus === btn.id;
-                                return (
-                                  <button
-                                    key={btn.id}
-                                    type="button"
-                                    onClick={() => {
-                                      const updatedStatus = {
-                                        ...existingRecord.indicatorsStatus,
-                                        [indicator.key]: isActive ? null : btn.id
-                                      };
-                                      handleUpdateRecord({ indicatorsStatus: updatedStatus });
-                                    }}
-                                    className={cn(
-                                      "text-[9px] font-extrabold uppercase py-2 px-1 rounded-xl cursor-pointer transition-all text-center border-2 border-transparent flex items-center justify-center min-h-[44px]",
-                                      isActive
-                                        ? btn.colorClass
-                                        : "text-slate-400 bg-slate-950/40 border-white/5 hover:text-white hover:bg-slate-800 hover:border-white/10"
-                                    )}
-                                  >
-                                    {btn.label}
-                                  </button>
-                                );
-                              })}
-                            </div>
-                          </div>
+                  return (
+                    <div 
+                      key={indicator.key}
+                      className="bg-slate-950/70 rounded-[28px] p-5 border border-white/5 hover:border-white/10 transition-colors space-y-4"
+                    >
+                      <div className="flex flex-col justify-between items-stretch gap-4">
+                        <div className="space-y-1.5">
+                          <span className="text-[9px] font-extrabold text-teal-400 uppercase tracking-widest bg-teal-500/10 px-2 py-0.5 rounded">Indicatore {idx + 1}</span>
+                          <h5 className="text-sm font-black text-slate-100 uppercase tracking-tight">{indicator.title}</h5>
+                          <p className="text-[11px] font-medium text-slate-400 leading-normal">{indicator.desc}</p>
                         </div>
 
-                        {/* Note & Facilitators input field */}
-                        <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center border-t border-white/5 pt-3">
-                          <div className="md:col-span-3 flex items-center gap-1.5 text-[9px] font-bold uppercase text-slate-400 tracking-wider">
-                            <MessageSquare size={13} className="text-cyan-400" />
-                            <span>Contesto / Note:</span>
-                          </div>
-                          <div className="md:col-span-9">
-                            <input
-                              type="text"
-                              value={currentNote}
-                              onChange={(e) => {
-                                const updatedNotes = {
-                                  ...existingRecord.indicatorsNotes,
-                                  [indicator.key]: e.target.value
-                                };
-                                handleUpdateRecord({ indicatorsNotes: updatedNotes });
-                              }}
-                              placeholder="Fasce d'aiuto, compensazione, facilitatori installati..."
-                              className="w-full bg-slate-900 border border-white/10 rounded-xl h-10 px-3 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 placeholder:text-slate-600 shadow-inner"
-                            />
+                        {/* 7-State ICF Qualifiers Layout */}
+                        <div className="space-y-2 mt-2">
+                          <span className="text-[9px] font-bold uppercase tracking-wider text-slate-500">
+                            Valutazione dell'allineamento (Qualificatore ICF):
+                          </span>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-1.5 items-stretch bg-slate-900 border border-white/5 p-1.5 rounded-2xl w-full">
+                            {EVALUATION_LEVELS.map((btn) => {
+                              const isActive = currentStatus === btn.id;
+                              return (
+                                <button
+                                  key={btn.id}
+                                  type="button"
+                                  onClick={() => {
+                                    const updatedStatus = {
+                                      ...existingRecord.indicatorsStatus,
+                                      [indicator.key]: isActive ? null : btn.id
+                                    };
+                                    handleUpdateRecord({ indicatorsStatus: updatedStatus });
+                                  }}
+                                  className={cn(
+                                    "text-[9px] font-extrabold uppercase py-2 px-1 rounded-xl cursor-pointer transition-all text-center border-2 border-transparent flex items-center justify-center min-h-[44px]",
+                                    isActive
+                                      ? btn.colorClass
+                                      : "text-slate-400 bg-slate-950/40 border-white/5 hover:text-white hover:bg-slate-800 hover:border-white/10"
+                                  )}
+                                >
+                                  {btn.label}
+                                </button>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+
+                      {/* Note & Facilitators input field */}
+                      <div className="grid grid-cols-1 md:grid-cols-12 gap-3 items-center border-t border-white/5 pt-3">
+                        <div className="md:col-span-3 flex items-center gap-1.5 text-[9px] font-bold uppercase text-slate-400 tracking-wider">
+                          <MessageSquare size={13} className="text-cyan-400" />
+                          <span>Contesto / Note:</span>
+                        </div>
+                        <div className="md:col-span-9">
+                          <input
+                            type="text"
+                            value={currentNote}
+                            onChange={(e) => {
+                              const updatedNotes = {
+                                ...existingRecord.indicatorsNotes,
+                                [indicator.key]: e.target.value
+                              };
+                              handleUpdateRecord({ indicatorsNotes: updatedNotes });
+                            }}
+                            placeholder="Fasce d'aiuto, compensazione, facilitatori installati..."
+                            className="w-full bg-slate-900 border border-white/10 rounded-xl h-10 px-3 text-xs font-bold text-white focus:outline-none focus:border-cyan-500 placeholder:text-slate-600 shadow-inner"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Additional custom text editors */}
+              <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6">
+                
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
+                    <Bookmark size={13} className="text-cyan-400" /> Obiettivi ed Attività Personalizzate
+                  </label>
+                  <textarea
+                    value={existingRecord.customObjectives || ""}
+                    onChange={(e) => handleUpdateRecord({ customObjectives: e.target.value })}
+                    placeholder="Traguardi di competenza specifici, abilità attese da raggiungere e facilitazioni stabilite..."
+                    className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
+                  />
                 </div>
 
-                {/* Additional custom text editors */}
-                <div className="mt-8 pt-6 border-t border-white/5 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
-                      <Bookmark size={13} className="text-cyan-400" /> Obiettivi ed Attività Personalizzate
-                    </label>
-                    <textarea
-                      value={existingRecord.customObjectives || ""}
-                      onChange={(e) => handleUpdateRecord({ customObjectives: e.target.value })}
-                      placeholder="Traguardi di competenza specifici, abilità attese da raggiungere e facilitazioni stabilite..."
-                      className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
-                      <FileText size={13} className="text-cyan-400" /> Criteri di Verifica e Valutazione
-                    </label>
-                    <textarea
-                      value={existingRecord.assessments || ""}
-                      onChange={(e) => handleUpdateRecord({ assessments: e.target.value })}
-                      placeholder="Misure dispensative, tempi aggiuntivi per verifiche, prove adattate concordate prima quadrimestre..."
-                      className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
-                    />
-                  </div>
-
+                <div className="space-y-2">
+                  <label className="text-[10px] font-black uppercase text-slate-400 tracking-wider flex items-center gap-1.5">
+                    <FileText size={13} className="text-cyan-400" /> Criteri di Verifica e Valutazione
+                  </label>
+                  <textarea
+                    value={existingRecord.assessments || ""}
+                    onChange={(e) => handleUpdateRecord({ assessments: e.target.value })}
+                    placeholder="Misure dispensative, tempi aggiuntivi per verifiche, prove adattate concordate prima quadrimestre..."
+                    className="w-full min-h-[120px] p-4 rounded-2xl border-2 border-slate-800 bg-slate-950/60 focus:ring-2 focus:ring-cyan-500 outline-none transition-all text-xs font-medium text-white placeholder-slate-600 resize-y"
+                  />
                 </div>
 
-                {/* Confirm & Return Button */}
-                <div className="flex justify-end pt-4">
-                  <Button
-                    onClick={() => setActiveAreaKey(null)}
-                    className="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black rounded-2xl h-12 px-8 text-sm uppercase flex items-center gap-2 shadow-lg transition-all cursor-pointer"
-                  >
-                    <CheckCircle2 size={16} /> Salva e Torna alle Aree
-                  </Button>
-                </div>
+              </div>
 
+              {/* Confirm & Return Button */}
+              <div className="flex justify-end pt-4">
+                <Button
+                  onClick={() => setActiveAreaKey(null)}
+                  className="bg-cyan-500 hover:bg-cyan-600 text-slate-950 font-black rounded-2xl h-12 px-8 text-sm uppercase flex items-center gap-2 shadow-lg transition-all cursor-pointer"
+                >
+                  <CheckCircle2 size={16} /> Salva e Torna alle Aree
+                </Button>
               </div>
 
             </div>
