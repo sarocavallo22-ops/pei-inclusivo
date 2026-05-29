@@ -123,7 +123,7 @@ const translations = {
     choose: "scegli da che parte iniziare a raccontarci di voi",
     appRules: "Regolamento e Istruzioni",
     peiExplanation: "Cos'è il PEI?",
-    progettoVita: "Progetto di Vita",
+    progettoVitaLabel: "Progetto di Vita",
     appRulesContent:
       "Benvenuti in myPEI! Ecco come usare l'app:\n\n1. AGENDA VISIVA: Organizza la giornata su sfondo bianco per una migliore visibilità. Ogni attività può avere un timer personalizzato (clicca l'orologio) con un conto alla rovescia a pallini, studiato per aiutare la percezione del tempo. Usa il blu per il lavoro e il giallo per la pausa.\n\n2. TOKEN ATTIVITÀ: Premia i successi! Personalizza il gettone e il traguardo. Puoi gestire un archivio di immagini per i premi e cancellare quelle che non servono più.\n\n3. PULSANTIERA: Divisa in Scelte, Bisogni e Sentimenti. Include archivi per 'Cosa desidero fare', 'Con chi?' e 'Dove?'. La barra gialla e i pallini mostrano visivamente quanto tempo manca alla fine.\n\n4. DIARIO DEL GIORNO: Documenta la giornata con foto e commenti. L'IA può aiutarti a descrivere le attività e puoi tradurre i testi in arabo per favorire la comunicazione con la famiglia.",
     progettoVitaContent:
@@ -286,6 +286,33 @@ const translations = {
         image: "/sentimenti.png",
       },
     ],
+    progettoVita: {
+      title: "Il mio progetto di vita",
+      weGrowTogether: "Cresciamo Insieme",
+      sub: "Qui puoi scrivere e immaginare il tuo futuro, la tua autonomia e tutto ciò che desideri imparare o fare meglio anno dopo anno!",
+      notesForFamily: "Note per la Famiglia",
+      classFirst: "Classe Prima",
+      classSecond: "Classe Seconda",
+      classThird: "Classe Terza",
+      goalsForYear: "I miei traguardi per il {year}° anno",
+      myCommunication: "La mia Comunicazione",
+      communicationPlaceholder: "Come voglio comunicare con i compagni e i professori?",
+      myAutonomy: "La mia Autonomia",
+      autonomyPlaceholder: "Cosa voglio saper fare da solo (es. preparare lo zaino, spostarmi)?",
+      myLearning: "I miei Apprendimenti",
+      learningPlaceholder: "Quali materie o laboratori voglio approfondire?",
+      myRelations: "Le mie Relazioni",
+      relationsPlaceholder: "Come voglio stare con gli altri, con gli amici e fare gruppo?",
+    },
+    relax: {
+      title: "La mia bolla relax",
+      sub: "I miei momenti di tranquillità",
+      addActivity: "Aggiungi attività",
+      calmingExercises: "Esercizi e Attività Rilassanti",
+      soapBubbles: "Bolle di Sapone",
+      stressBall: "Schiaccia la Pallina",
+      memory: "Memory",
+    },
   },
   ar: {
     title: "my/our PEI",
@@ -398,6 +425,33 @@ const translations = {
         image: "/sentimenti.png",
       },
     ],
+    progettoVita: {
+      title: "مشروع حياتي",
+      weGrowTogether: "نكبر معاً",
+      sub: "هنا يمكنك كتابة وتخيل مستقبلك، واستقلاليتك وكل ما ترغب في تعلمه أو القيام به بشكل أفضل عاماً بعد عام!",
+      notesForFamily: "ملاحظات للعائلة",
+      classFirst: "الصف الأول",
+      classSecond: "الصف الثاني",
+      classThird: "الصف الثالث",
+      goalsForYear: "أهدافي للسنة {year}",
+      myCommunication: "اتصالاتي",
+      communicationPlaceholder: "كيف أريد التواصل مع الزملاء والمعلمين؟",
+      myAutonomy: "استقلاليتي",
+      autonomyPlaceholder: "ماذا أريد أن أعرف كيف أفعل بمفردي (مثال: تحضير الحقيبة، التنقل)؟",
+      myLearning: "تعليمي",
+      learningPlaceholder: "ما هي المواد أو المختبرات التي أريد تعميقها؟",
+      myRelations: "علاقاتي",
+      relationsPlaceholder: "كيف أريد أن أكون مع الآخرين، مع الأصدقاء وتشكيل مجموعة؟",
+    },
+    relax: {
+      title: "فقاعة الاسترخاء الخاصة بي",
+      sub: "لحظات الهدوء الخاصة بي",
+      addActivity: "إضافة نشاط",
+      calmingExercises: "تمارين وأنشطة مهدئة",
+      soapBubbles: "فقاعات الصابون",
+      stressBall: "كرة الضغط",
+      memory: "لعبة الذاكرة",
+    },
   },
   es: {
     title: "my/our PEI",
@@ -506,6 +560,33 @@ const translations = {
         image: "/sentimenti.png",
       },
     ],
+    progettoVita: {
+      title: "Mi proyecto de vida",
+      weGrowTogether: "Crecemos Juntos",
+      sub: "¡Aquí puedes escribir e imaginar tu futuro, tu autonomía y todo lo que deseas aprender o hacer mejor año tras año!",
+      notesForFamily: "Notas para la Familia",
+      classFirst: "Primer Año",
+      classSecond: "Segundo Año",
+      classThird: "Tercer Año",
+      goalsForYear: "Mis metas para el año {year}",
+      myCommunication: "Mi Comunicación",
+      communicationPlaceholder: "¿Cómo quiero comunicarme con compañeros y profesores?",
+      myAutonomy: "Mi Autonomía",
+      autonomyPlaceholder: "¿Qué quiero saber hacer solo (ej. preparar la mochila, moverme)?",
+      myLearning: "Mis Aprendizajes",
+      learningPlaceholder: "¿Qué asignaturas o talleres quiero profundizar?",
+      myRelations: "Mis Relaciones",
+      relationsPlaceholder: "¿Cómo quiero estar con los demás, con amigos y formar grupo?",
+    },
+    relax: {
+      title: "Mi burbuja de relax",
+      sub: "Mis momentos de tranquilidad",
+      addActivity: "Añadir actividad",
+      calmingExercises: "Ejercicios y Actividades Calmantes",
+      soapBubbles: "Burbujas de Jabón",
+      stressBall: "Pelota Antiestrés",
+      memory: "Memoria",
+    },
   },
 };
 
@@ -1561,30 +1642,29 @@ export default function App() {
       {/* Header */}
       {isStarted && (
         <header className="bg-white/10 backdrop-blur-md border-b border-white/10 sticky top-0 z-50">
-          <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="max-w-7xl mx-auto px-2 sm:px-4 h-16 flex items-center justify-between gap-2">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center bg-white shadow-lg overflow-hidden shrink-0">
+                <img
+                  src="/leggere.png"
+                  alt="Logo"
+                  className="w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
               <DropdownMenu>
                 <DropdownMenuTrigger
                   nativeButton={false}
                   render={
-                    <div className="flex items-center gap-3 cursor-pointer group">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-white shadow-lg transition-all group-hover:scale-110 overflow-hidden">
-                        <img
-                          src="/leggere.png"
-                          alt="Logo"
-                          className="w-full h-full object-cover"
-                          referrerPolicy="no-referrer"
-                        />
-                      </div>
-                      <div className="flex flex-col">
-                        <h1 className="font-black text-2xl tracking-tighter text-white leading-none">
-                          my/<span className="text-yellow-400 italic">our</span>
-                          /PEI
-                        </h1>
-                        <p className="text-[10px] font-black text-blue-200 uppercase tracking-widest mt-0.5 opacity-60">
-                          Menu
-                        </p>
-                      </div>
+                    <div className="flex items-center gap-2 cursor-pointer group min-w-0">
+                      {/* Mobile: hamburger icon */}
+                      <button className="sm:hidden w-9 h-9 rounded-xl bg-white/15 backdrop-blur-sm border border-white/20 flex items-center justify-center text-white hover:bg-white/25 active:scale-95 transition-all shadow-lg shrink-0">
+                        <Menu size={18} />
+                      </button>
+                      {/* Desktop: my/our/PEI text */}
+                      <h1 className="hidden sm:block font-black text-xl tracking-tighter text-white leading-none group-hover:text-blue-200 transition-colors truncate">
+                        my/<span className="text-yellow-400 italic">our</span>/PEI
+                      </h1>
                     </div>
                   }
                 />
@@ -1612,7 +1692,7 @@ export default function App() {
                   </DropdownMenuItem>
                   <DropdownMenuItem
                     onClick={() =>
-                      showStaticModal(t.progettoVita, t.progettoVitaContent)
+                      showStaticModal(t.progettoVitaLabel, t.progettoVitaContent)
                     }
                     className="rounded-xl p-3 flex items-center gap-3 cursor-pointer focus:bg-blue-50"
                   >
@@ -1620,7 +1700,7 @@ export default function App() {
                       <Sparkles size={18} />
                     </div>
                     <span className="font-bold text-slate-700">
-                      {t.progettoVita}
+                      {t.progettoVitaLabel}
                     </span>
                   </DropdownMenuItem>
                   <DropdownMenuItem
@@ -1734,11 +1814,11 @@ export default function App() {
                     my/<span className="text-yellow-400 italic">our</span>/PEI
                   </h2>
                 </div>
-                <div className="py-2 md:py-4 space-y-2 max-w-none md:max-w-4xl mx-auto px-4">
-                  <p className="text-xl sm:text-2xl md:text-3xl text-blue-100 font-medium lowercase tracking-wide text-center leading-relaxed whitespace-nowrap">
+                <div className="py-2 md:py-4 space-y-2 max-w-xl mx-auto px-4">
+                  <p className="text-base sm:text-2xl md:text-3xl text-blue-100 font-medium lowercase tracking-wide text-center leading-relaxed">
                     partecipazione attiva scuola-famiglia per l'alunno
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-blue-400 font-bold lowercase tracking-wider opacity-80">
+                  <p className="text-xs sm:text-base md:text-lg text-blue-400 font-bold lowercase tracking-wider opacity-80">
                     scegli il tuo percorso
                   </p>
                 </div>
@@ -2970,45 +3050,45 @@ export default function App() {
                   {studentSubSection === "day" && (
                     <div className="flex flex-col gap-8 w-full max-w-6xl mx-auto">
                       {/* Sub-tab Switcher */}
-                      <div className="flex justify-center gap-4">
+                      <div className="flex flex-col sm:flex-row justify-center items-center gap-2 sm:gap-3 w-full">
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setDayTab("agenda")}
                           className={cn(
-                            "flex-1 md:flex-none md:min-w-[200px] p-6 rounded-[32px] font-black text-xl uppercase transition-all shadow-xl flex items-center justify-center gap-3",
+                            "w-full sm:w-auto sm:flex-1 md:flex-none md:min-w-[180px] px-4 py-3 sm:p-4 md:p-6 rounded-2xl sm:rounded-[32px] font-black text-sm sm:text-base md:text-xl uppercase transition-all shadow-xl flex items-center justify-center gap-2 sm:gap-3",
                             dayTab === "agenda"
                               ? "bg-white text-blue-600 shadow-blue-500/20"
                               : "bg-white/10 text-white border border-white/10 hover:bg-white/20",
                           )}
                         >
-                          <Calendar size={28} /> Agenda Visiva
+                          <Calendar size={20} className="sm:w-6 sm:h-6 md:w-7 md:h-7 shrink-0" /> Agenda Visiva
                         </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setDayTab("tokens")}
                           className={cn(
-                            "flex-1 md:flex-none md:min-w-[200px] p-6 rounded-[32px] font-black text-xl uppercase transition-all shadow-xl flex items-center justify-center gap-3",
+                            "w-full sm:w-auto sm:flex-1 md:flex-none md:min-w-[180px] px-4 py-3 sm:p-4 md:p-6 rounded-2xl sm:rounded-[32px] font-black text-sm sm:text-base md:text-xl uppercase transition-all shadow-xl flex items-center justify-center gap-2 sm:gap-3",
                             dayTab === "tokens"
                               ? "bg-white text-blue-600 shadow-blue-500/20"
                               : "bg-white/10 text-white border border-white/10 hover:bg-white/20",
                           )}
                         >
-                          <CircleDot size={28} /> Token Attività
+                          <CircleDot size={20} className="sm:w-6 sm:h-6 md:w-7 md:h-7 shrink-0" /> Token Attività
                         </motion.button>
                         <motion.button
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                           onClick={() => setDayTab("diary")}
                           className={cn(
-                            "flex-1 md:flex-none md:min-w-[200px] p-6 rounded-[32px] font-black text-xl uppercase transition-all shadow-xl flex items-center justify-center gap-3",
+                            "w-full sm:w-auto sm:flex-1 md:flex-none md:min-w-[180px] px-4 py-3 sm:p-4 md:p-6 rounded-2xl sm:rounded-[32px] font-black text-sm sm:text-base md:text-xl uppercase transition-all shadow-xl flex items-center justify-center gap-2 sm:gap-3",
                             dayTab === "diary"
                               ? "bg-white text-blue-600 shadow-blue-500/20"
                               : "bg-white/10 text-white border border-white/10 hover:bg-white/20",
                           )}
                         >
-                          <BookCheck size={28} /> Diario del giorno
+                          <BookCheck size={20} className="sm:w-6 sm:h-6 md:w-7 md:h-7 shrink-0" /> Diario del giorno
                         </motion.button>
                       </div>
 
@@ -3874,7 +3954,7 @@ export default function App() {
                           /* Right Panel: Token Economy */
                           <div className="flex-1 w-full space-y-8">
                             {/* Token Economy (Modified from Goose Game) */}
-                            <div className="bg-white/95 rounded-[40px] p-10 shadow-2xl border-none">
+                            <div className="bg-white/95 rounded-[24px] sm:rounded-[40px] p-4 sm:p-6 md:p-10 shadow-2xl border-none">
                               {/* Objectives Section */}
                               <div className="mb-6">
                                 <Button
@@ -3882,9 +3962,9 @@ export default function App() {
                                     setShowObjectives(!showObjectives)
                                   }
                                   variant="ghost"
-                                  className="w-full flex justify-between items-center bg-slate-50 p-6 rounded-3xl hover:bg-slate-100 transition-colors"
+                                  className="w-full flex justify-between items-center bg-slate-50 p-3 sm:p-6 rounded-2xl sm:rounded-3xl hover:bg-slate-100 transition-colors"
                                 >
-                                  <span className="text-xl font-black text-slate-800 uppercase tracking-tight">
+                                  <span className="text-sm sm:text-xl font-black text-slate-800 uppercase tracking-tight">
                                     OBIETTIVI DELLA GIORNATA
                                   </span>
                                   {showObjectives ? (
@@ -3963,21 +4043,21 @@ export default function App() {
                                 </AnimatePresence>
                               </div>
 
-                              <div className="flex justify-between items-center mb-8">
-                                <h4 className="text-2xl font-black text-slate-900 uppercase">
+                              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 mb-4 sm:mb-8">
+                                <h4 className="text-base sm:text-2xl font-black text-slate-900 uppercase">
                                   TOKEN ECONOMY DELLE ATTIVITÀ
                                 </h4>
-                                <div className="flex items-center gap-4">
-                                  <div className="flex bg-slate-100 p-1 rounded-2xl gap-1">
+                                <div className="flex flex-wrap items-center gap-2 sm:gap-4">
+                                  <div className="flex bg-slate-100 p-1 rounded-xl sm:rounded-2xl gap-1">
                                     <Button
                                       variant="ghost"
                                       size="icon"
                                       onClick={() =>
                                         setIsTokenSelectionOpen(true)
                                       }
-                                      className="bg-blue-600 text-white hover:bg-blue-700 rounded-xl px-4 py-2 w-auto h-auto flex items-center gap-2 font-black uppercase text-xs"
+                                      className="bg-blue-600 text-white hover:bg-blue-700 rounded-lg sm:rounded-xl px-2 sm:px-4 py-1.5 sm:py-2 w-auto h-auto flex items-center gap-1.5 sm:gap-2 font-black uppercase text-[10px] sm:text-xs"
                                     >
-                                      <PlusCircle size={16} /> Personalizza
+                                      <PlusCircle size={14} className="shrink-0" /> Personalizza
                                       Gettone
                                     </Button>
                                     <Button
@@ -3996,9 +4076,9 @@ export default function App() {
                                           });
                                         }
                                       }}
-                                      className="text-slate-600 hover:bg-white rounded-xl w-10 h-10"
+                                      className="text-slate-600 hover:bg-white rounded-lg sm:rounded-xl w-8 h-8 sm:w-10 sm:h-10"
                                     >
-                                      <Minus size={20} />
+                                      <Minus size={16} />
                                     </Button>
                                     <Button
                                       variant="ghost"
@@ -4012,12 +4092,12 @@ export default function App() {
                                           });
                                         }
                                       }}
-                                      className="text-slate-600 hover:bg-white rounded-xl w-10 h-10"
+                                      className="text-slate-600 hover:bg-white rounded-lg sm:rounded-xl w-8 h-8 sm:w-10 sm:h-10"
                                     >
-                                      <Plus size={20} />
+                                      <Plus size={16} />
                                     </Button>
                                   </div>
-                                  <Badge className="bg-blue-600 text-white px-4 py-2 rounded-xl text-lg">
+                                  <Badge className="bg-blue-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl text-sm sm:text-lg">
                                     {data.agendaProgress} /{" "}
                                     {data.tokenStepsCount}
                                   </Badge>
@@ -4154,9 +4234,9 @@ export default function App() {
                                 )}
                               </AnimatePresence>
 
-                              <div className="flex items-center gap-4 min-w-max pb-4">
+                              <div className="flex flex-col items-center gap-4 sm:gap-6 pb-4">
                                 {/* Start cell */}
-                                <div className="w-24 h-24 rounded-3xl bg-blue-600 flex items-center justify-center shadow-lg shrink-0 overflow-hidden border-4 border-white/20">
+                                <div className="w-16 h-16 sm:w-24 sm:h-24 rounded-2xl sm:rounded-3xl bg-blue-600 flex items-center justify-center shadow-lg shrink-0 overflow-hidden border-4 border-white/20">
                                   <img
                                     src="/inizio.png"
                                     alt="Start"
@@ -4164,7 +4244,8 @@ export default function App() {
                                   />
                                 </div>
 
-                                {/* Path */}
+                                {/* Token Grid */}
+                                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3 sm:gap-4 w-full max-w-md sm:max-w-xl mx-auto">
                                 {Array.from({
                                   length: data.tokenStepsCount,
                                 }).map((_, idx) => {
@@ -4177,12 +4258,8 @@ export default function App() {
                                   const isCurrent =
                                     idx === stepsStatus.indexOf(false);
                                   return (
-                                    <div
-                                      key={idx}
-                                      className="flex items-center gap-4"
-                                    >
-                                      <div className="w-4 h-1 bg-slate-200 rounded-full" />
                                       <motion.button
+                                        key={idx}
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.9 }}
                                         onClick={() => {
@@ -4197,7 +4274,7 @@ export default function App() {
                                           });
                                         }}
                                         className={cn(
-                                          "w-20 h-20 rounded-[28px] border-4 flex flex-col items-center justify-center gap-1 transition-all relative overflow-hidden shrink-0",
+                                          "aspect-square w-full max-w-[80px] mx-auto rounded-2xl sm:rounded-[28px] border-4 flex flex-col items-center justify-center gap-1 transition-all relative overflow-hidden",
                                           isReached
                                             ? "bg-emerald-500 border-emerald-600 text-white shadow-lg"
                                             : isCurrent
@@ -4209,28 +4286,26 @@ export default function App() {
                                           data.tokenSymbol ? (
                                             <img
                                               src={data.tokenSymbol}
-                                              className="absolute inset-0 w-full h-full object-contain p-2"
+                                              className="absolute inset-0 w-full h-full object-contain p-1.5 sm:p-2"
                                             />
                                           ) : (
                                             <CheckCircle2
-                                              size={32}
-                                              className="relative z-10"
+                                              size={24}
+                                              className="relative z-10 sm:w-8 sm:h-8"
                                             />
                                           )
                                         ) : (
-                                          <span className="text-xl font-black relative z-10">
+                                          <span className="text-lg sm:text-xl font-black relative z-10">
                                             {idx + 1}
                                           </span>
                                         )}
                                       </motion.button>
-                                    </div>
                                   );
                                 })}
+                                </div>
 
-                                {/* End cell */}
-                                <div className="flex items-center gap-4">
-                                  <div className="w-4 h-1 bg-slate-200 rounded-full" />
-                                  <div className="relative">
+                                {/* End cell / Reward */}
+                                <div className="relative mt-2">
                                     <motion.button
                                       whileHover={{ scale: 1.05 }}
                                       whileTap={{ scale: 0.95 }}
@@ -4238,10 +4313,10 @@ export default function App() {
                                         setIsRewardSelectionOpen(true)
                                       }
                                       className={cn(
-                                        "w-32 h-32 rounded-[40px] bg-rose-500 flex items-center justify-center text-white font-black shadow-2xl shrink-0 overflow-hidden border-8 border-white/20 transition-all",
+                                        "w-24 h-24 sm:w-32 sm:h-32 rounded-[28px] sm:rounded-[40px] bg-rose-500 flex items-center justify-center text-white font-black shadow-2xl shrink-0 overflow-hidden border-4 sm:border-8 border-white/20 transition-all",
                                         data.agendaProgress >=
                                           data.tokenStepsCount
-                                          ? "ring-8 ring-rose-400 ring-offset-4"
+                                          ? "ring-4 sm:ring-8 ring-rose-400 ring-offset-2 sm:ring-offset-4"
                                           : "opacity-30 grayscale-[1]",
                                       )}
                                     >
@@ -4261,7 +4336,7 @@ export default function App() {
                                       <div className="absolute inset-0 bg-black/10 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
                                         <Sparkles
                                           className="text-white"
-                                          size={32}
+                                          size={24}
                                         />
                                       </div>
                                     </motion.button>
@@ -4270,12 +4345,11 @@ export default function App() {
                                       <motion.div
                                         initial={{ scale: 0 }}
                                         animate={{ scale: 1 }}
-                                        className="absolute -top-4 -right-4 bg-yellow-400 text-white p-3 rounded-2xl shadow-xl z-20"
+                                        className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-yellow-400 text-white p-2 sm:p-3 rounded-xl sm:rounded-2xl shadow-xl z-20"
                                       >
-                                        <ThumbsUp size={24} />
+                                        <ThumbsUp size={18} />
                                       </motion.div>
                                     )}
-                                  </div>
                                 </div>
                               </div>
 
@@ -4449,13 +4523,13 @@ export default function App() {
                         )}
 
                         {dayTab === "diary" && (
-                          <div className="bg-white/95 rounded-[40px] p-10 shadow-2xl space-y-8">
-                            <div className="flex justify-between items-center bg-slate-50 p-6 rounded-3xl border-4 border-slate-100">
+                          <div className="bg-white/95 rounded-[24px] sm:rounded-[40px] p-4 sm:p-6 md:p-10 shadow-2xl space-y-4 sm:space-y-8">
+                            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-4 bg-slate-50 p-3 sm:p-6 rounded-2xl sm:rounded-3xl border-2 sm:border-4 border-slate-100">
                               <div>
-                                <h4 className="text-3xl font-black text-slate-900 uppercase">
+                                <h4 className="text-lg sm:text-3xl font-black text-slate-900 uppercase">
                                   Diario Giornaliero
                                 </h4>
-                                <p className="text-slate-500 font-bold">
+                                <p className="text-xs sm:text-base text-slate-500 font-bold">
                                   Racconta la tua giornata con foto e commenti
                                 </p>
                               </div>
@@ -4480,15 +4554,15 @@ export default function App() {
                                     ],
                                   });
                                 }}
-                                className="h-16 px-8 rounded-3xl bg-blue-600 text-white hover:bg-blue-700 font-black uppercase shadow-xl flex items-center gap-3"
+                                className="h-10 sm:h-16 px-4 sm:px-8 rounded-2xl sm:rounded-3xl bg-blue-600 text-white hover:bg-blue-700 font-black uppercase shadow-xl flex items-center gap-2 sm:gap-3 text-xs sm:text-base shrink-0"
                               >
-                                <Plus size={24} /> Nuovo Inserimento
+                                <Plus size={18} className="shrink-0" /> Nuovo Inserimento
                               </Button>
                             </div>
 
                             {/* Message from Family */}
                             {(data.familyDailyNote || data.amirFeeling) && (
-                              <div className="bg-purple-50 rounded-[35px] border-4 border-purple-100 p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-6">
+                              <div className="bg-purple-50 rounded-2xl sm:rounded-[35px] border-2 sm:border-4 border-purple-100 p-4 sm:p-8 shadow-sm flex flex-col md:flex-row items-center md:items-start gap-3 sm:gap-6">
                                 <div className="text-4xl">🏡</div>
                                 <div className="flex-1 space-y-2">
                                   <div className="flex flex-wrap items-center gap-3">
@@ -4521,18 +4595,18 @@ export default function App() {
                               </div>
                             )}
 
-                            <div className="space-y-8">
+                            <div className="space-y-4 sm:space-y-8">
                               {data.dailyDiary.map((entry, idx) => (
                                 <motion.div
                                   layout
                                   initial={{ opacity: 0, y: 20 }}
                                   animate={{ opacity: 1, y: 0 }}
                                   key={entry.id}
-                                  className="bg-white rounded-[40px] p-8 shadow-xl border-4 border-slate-50 relative group"
+                                  className="bg-white rounded-2xl sm:rounded-[40px] p-4 sm:p-8 shadow-xl border-2 sm:border-4 border-slate-50 relative group"
                                 >
-                                  <div className="flex flex-col lg:flex-row gap-8">
-                                    <div className="w-full lg:w-1/3 flex flex-col gap-4">
-                                      <div className="aspect-[4/3] rounded-[30px] border-4 border-dashed border-slate-200 bg-slate-50 overflow-hidden relative flex flex-col items-center justify-center group/photo">
+                                  <div className="flex flex-col lg:flex-row gap-4 sm:gap-8">
+                                    <div className="w-full lg:w-1/3 flex flex-col gap-3 sm:gap-4">
+                                      <div className="aspect-[4/3] rounded-2xl sm:rounded-[30px] border-2 sm:border-4 border-dashed border-slate-200 bg-slate-50 overflow-hidden relative flex flex-col items-center justify-center group/photo">
                                         {entry.photo ? (
                                           <>
                                             <img
@@ -4671,7 +4745,7 @@ export default function App() {
                                             });
                                           }}
                                           placeholder="Scrivi qui cosa hai fatto oggi..."
-                                          className="w-full bg-slate-50 border-4 border-slate-100 rounded-3xl p-6 font-bold text-slate-800 focus:ring-blue-500 focus:border-blue-200 transition-all min-h-[150px] shadow-inner"
+                                          className="w-full bg-slate-50 border-2 sm:border-4 border-slate-100 rounded-2xl sm:rounded-3xl p-3 sm:p-6 font-bold text-slate-800 text-sm sm:text-base focus:ring-blue-500 focus:border-blue-200 transition-all min-h-[100px] sm:min-h-[150px] shadow-inner"
                                         />
                                       </div>
 
@@ -4687,7 +4761,7 @@ export default function App() {
                                             !entry.comment ||
                                             isTranslating === `diary-${idx}`
                                           }
-                                          className="h-12 px-6 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black uppercase text-xs flex items-center gap-2 shadow-lg"
+                                          className="h-10 sm:h-12 px-4 sm:px-6 rounded-xl sm:rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-black uppercase text-[10px] sm:text-xs flex items-center gap-1.5 sm:gap-2 shadow-lg"
                                         >
                                           {isTranslating === `diary-${idx}` ? (
                                             <Loader2
@@ -4706,7 +4780,7 @@ export default function App() {
                                           onClick={() =>
                                             downloadDiaryEntry(entry)
                                           }
-                                          className="h-12 px-6 rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black uppercase text-xs flex items-center gap-2 shadow-lg cursor-pointer transition-all active:scale-95"
+                                          className="h-10 sm:h-12 px-4 sm:px-6 rounded-xl sm:rounded-2xl bg-blue-600 hover:bg-blue-700 text-white font-black uppercase text-[10px] sm:text-xs flex items-center gap-1.5 sm:gap-2 shadow-lg cursor-pointer transition-all active:scale-95"
                                         >
                                           <Download
                                             size={16}
@@ -4796,9 +4870,9 @@ export default function App() {
                   )}
 
                   {studentSubSection === "diary" && (
-                    <div className="w-full max-w-7xl mx-auto p-4">
+                    <div className="w-full max-w-7xl mx-auto p-2 sm:p-4">
                       {!activeSubjectId ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 max-w-5xl mx-auto">
                           {data.schoolDiary.map((subject) => {
                             const Icon =
                               subject.name === "Italiano"
@@ -4815,18 +4889,18 @@ export default function App() {
                                 key={subject.id}
                                 onClick={() => setActiveSubjectId(subject.id)}
                                 className={cn(
-                                  "relative h-64 rounded-[40px] shadow-2xl overflow-hidden group flex flex-col items-center justify-center gap-6 border-8 border-white/20",
+                                  "relative h-44 sm:h-64 rounded-[24px] sm:rounded-[40px] shadow-2xl overflow-hidden group flex flex-col items-center justify-center gap-4 sm:gap-6 border-4 sm:border-8 border-white/20",
                                   subject.color,
                                 )}
                               >
                                 <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
-                                <div className="z-10 bg-white/20 p-6 rounded-[30px] backdrop-blur-md">
-                                  <Icon size={64} className="text-white" />
+                                <div className="z-10 bg-white/20 p-4 sm:p-6 rounded-[20px] sm:rounded-[30px] backdrop-blur-md">
+                                  <Icon className="w-10 h-10 sm:w-16 sm:h-16 text-white" />
                                 </div>
-                                <h3 className="z-10 text-3xl font-black text-white uppercase tracking-tighter">
+                                <h3 className="z-10 text-xl sm:text-3xl font-black text-white uppercase tracking-tighter">
                                   {subject.name}
                                 </h3>
-                                <div className="z-10 px-6 py-2 bg-white/10 rounded-full text-white/80 font-bold text-sm backdrop-blur-sm">
+                                <div className="z-10 px-4 py-1.5 bg-white/10 rounded-full text-white/80 font-bold text-xs sm:text-sm backdrop-blur-sm">
                                   {subject.activities.length} attivit
                                   {subject.activities.length === 1 ? "à" : "à"}{" "}
                                   salvate
@@ -4851,11 +4925,11 @@ export default function App() {
                               return (
                                 <div
                                   key={subject.id}
-                                  className="bg-white rounded-[50px] shadow-2xl overflow-hidden border-8 border-white flex flex-col min-h-[700px]"
+                                  className="bg-white rounded-[24px] sm:rounded-[50px] shadow-2xl overflow-hidden border-2 sm:border-8 border-white flex flex-col min-h-[500px] sm:min-h-[700px]"
                                 >
                                   <div
                                     className={cn(
-                                      "p-10 text-white",
+                                      "p-4 sm:p-10 text-white",
                                       subject.color,
                                     )}
                                   >
@@ -4863,7 +4937,7 @@ export default function App() {
                                       <Button
                                         variant="ghost"
                                         onClick={() => setActiveSubjectId(null)}
-                                        className="bg-white/20 hover:bg-white/40 text-white rounded-2xl font-black uppercase text-xs px-6"
+                                        className="bg-white/20 hover:bg-white/40 text-white rounded-2xl font-black uppercase text-xs px-4 sm:px-6"
                                       >
                                         ← Torna allo zaino
                                       </Button>
@@ -4871,16 +4945,16 @@ export default function App() {
                                         Area Alunno
                                       </div>
                                     </div>
-                                    <div className="flex items-end justify-between mt-6">
-                                      <div className="flex items-center gap-6">
-                                        <div className="w-20 h-20 bg-white/20 rounded-[30px] flex items-center justify-center backdrop-blur-md">
-                                          <Icon size={40} />
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mt-6 gap-4">
+                                      <div className="flex items-center gap-3 sm:gap-6">
+                                        <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white/20 rounded-[15px] sm:rounded-[30px] flex items-center justify-center backdrop-blur-md shrink-0">
+                                          <Icon className="w-6 h-6 sm:w-10 sm:h-10 text-white" />
                                         </div>
                                         <div>
-                                          <h3 className="text-5xl font-black uppercase tracking-tighter">
+                                          <h3 className="text-2xl sm:text-5xl font-black uppercase tracking-tighter">
                                             {subject.name}
                                           </h3>
-                                          <p className="text-white/70 font-bold uppercase tracking-widest text-sm">
+                                          <p className="text-white/70 font-bold uppercase tracking-widest text-xs sm:text-sm">
                                             Lo zaino delle mie attività
                                           </p>
                                         </div>
@@ -4888,9 +4962,9 @@ export default function App() {
                                       <div className="relative group">
                                         <Button
                                           size="lg"
-                                          className="h-16 px-8 rounded-3xl bg-white text-slate-900 hover:bg-white/90 font-black uppercase shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3"
+                                          className="h-12 px-4 sm:h-16 sm:px-8 rounded-xl sm:rounded-3xl bg-white text-slate-900 hover:bg-white/90 font-black uppercase shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3 text-xs sm:text-sm"
                                         >
-                                          <Plus size={24} /> Carica Attività
+                                          <Plus className="w-4 h-4 sm:w-6 sm:h-6" /> Carica Attività
                                         </Button>
                                         <input
                                           type="file"
@@ -4937,7 +5011,10 @@ export default function App() {
                                     </div>
                                   </div>
 
-                                  <div className="flex-1 p-10 bg-slate-50/50 overflow-y-auto max-h-[600px] custom-scrollbar">
+                                  <div className="flex-1 p-4 sm:p-10 bg-slate-50/50 overflow-y-auto max-h-[600px] custom-scrollbar">
+                                    <div className="w-full flex justify-center">
+                                      <Icon className="w-8 h-8 opacity-20" />
+                                    </div>
                                     {subject.activities.length === 0 ? (
                                       <div className="h-full flex flex-col items-center justify-center text-slate-300 gap-6 opacity-50 py-32">
                                         <div className="w-32 h-32 rounded-[40px] border-4 border-dashed border-slate-200 flex items-center justify-center">
@@ -5070,7 +5147,7 @@ export default function App() {
                       </div>
 
                       {passportTab === "passport" && (
-                        <div className="w-full max-w-4xl mx-auto">
+                        <div className="w-full max-w-4xl mx-auto px-2 sm:px-0">
                       <div className="flex flex-col md:flex-row justify-between items-center mb-6 gap-4 print:hidden">
                         <div className="flex gap-3">
                           <Button
@@ -5099,13 +5176,13 @@ export default function App() {
 
                       <div
                         id="passport-card"
-                        className="bg-white rounded-[40px] shadow-2xl overflow-hidden border-8 border-emerald-500/20 relative"
+                        className="bg-white rounded-[24px] sm:rounded-[40px] shadow-2xl overflow-hidden border-2 sm:border-8 border-emerald-500/20 relative"
                       >
                         <div className="absolute top-0 left-0 w-full h-32 bg-emerald-500/10 -z-0" />
 
-                        <div className="p-10 relative z-10 flex flex-col md:flex-row gap-10">
-                          <div className="flex flex-col items-center gap-6 md:w-1/3">
-                            <div className="w-48 h-64 bg-slate-100 rounded-3xl border-4 border-slate-200 overflow-hidden relative group shadow-xl">
+                        <div className="p-4 sm:p-10 relative z-10 flex flex-col md:flex-row gap-6 sm:gap-10">
+                          <div className="flex flex-col items-center gap-4 sm:gap-6 md:w-1/3">
+                            <div className="w-40 h-52 sm:w-48 sm:h-64 bg-slate-100 rounded-[20px] sm:rounded-3xl border-2 sm:border-4 border-slate-200 overflow-hidden relative group shadow-xl">
                               {data.passport.photo ? (
                                 <img
                                   src={data.passport.photo}
@@ -5114,8 +5191,8 @@ export default function App() {
                                 />
                               ) : (
                                 <div className="w-full h-full flex flex-col items-center justify-center text-slate-300">
-                                  <User size={64} />
-                                  <span className="text-xs font-black uppercase mt-2">
+                                  <User size={48} className="sm:w-16 sm:h-16" />
+                                  <span className="text-[10px] sm:text-xs font-black uppercase mt-2">
                                     Foto
                                   </span>
                                 </div>
@@ -5143,9 +5220,9 @@ export default function App() {
                               />
                             </div>
 
-                            <div className="w-full space-y-4">
-                              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
+                            <div className="w-full space-y-3 sm:space-y-4">
+                              <div className="bg-slate-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-100">
+                                <label className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-0.5 sm:mb-1">
                                   Nome
                                 </label>
                                 <input
@@ -5160,11 +5237,11 @@ export default function App() {
                                     })
                                   }
                                   placeholder="Inserisci nome"
-                                  className="w-full bg-transparent border-none p-0 font-black text-xl text-slate-800 placeholder:text-slate-300 focus:ring-0"
+                                  className="w-full bg-transparent border-none p-0 font-black text-lg sm:text-xl text-slate-800 placeholder:text-slate-300 focus:ring-0"
                                 />
                               </div>
-                              <div className="bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-1">
+                              <div className="bg-slate-50 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-slate-100">
+                                <label className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest block mb-0.5 sm:mb-1">
                                   Cognome
                                 </label>
                                 <input
@@ -5179,7 +5256,7 @@ export default function App() {
                                     })
                                   }
                                   placeholder="Inserisci cognome"
-                                  className="w-full bg-transparent border-none p-0 font-black text-xl text-slate-800 placeholder:text-slate-300 focus:ring-0"
+                                  className="w-full bg-transparent border-none p-0 font-black text-lg sm:text-xl text-slate-800 placeholder:text-slate-300 focus:ring-0"
                                 />
                               </div>
                             </div>
@@ -5194,21 +5271,21 @@ export default function App() {
                                 repeat: Infinity,
                                 ease: "easeInOut",
                               }}
-                              className="mt-4 flex items-center justify-center p-4 border-2 border-emerald-500/20 rounded-full bg-emerald-50 text-emerald-600 cursor-help"
+                              className="mt-2 sm:mt-4 flex items-center justify-center p-3 sm:p-4 border-2 border-emerald-500/20 rounded-full bg-emerald-50 text-emerald-600 cursor-help"
                               title="Il mio segno unico"
                             >
-                              <Fingerprint size={48} />
+                              <Fingerprint className="w-10 h-10 sm:w-12 sm:h-12" />
                             </motion.div>
                           </div>
 
-                          <div className="flex-1 space-y-8">
+                          <div className="flex-1 space-y-6 sm:space-y-8">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                              <div className="bg-white p-4 rounded-3xl border-2 border-slate-50 shadow-sm flex items-center gap-4">
-                                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-600 shrink-0">
-                                  <Calendar size={20} />
+                              <div className="bg-white p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-4">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-lg sm:rounded-xl flex items-center justify-center text-blue-600 shrink-0">
+                                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
                                 </div>
                                 <div className="flex-1">
-                                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
+                                  <label className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest block">
                                     Data di nascita
                                   </label>
                                   <input
@@ -5223,16 +5300,16 @@ export default function App() {
                                         },
                                       })
                                     }
-                                    className="w-full bg-transparent border-none p-0 font-bold text-slate-800 focus:ring-0"
+                                    className="w-full bg-transparent border-none p-0 font-bold text-sm sm:text-base text-slate-800 focus:ring-0"
                                   />
                                 </div>
                               </div>
-                              <div className="bg-white p-4 rounded-3xl border-2 border-slate-50 shadow-sm flex items-center gap-4">
-                                <div className="w-10 h-10 bg-rose-100 rounded-xl flex items-center justify-center text-rose-600 shrink-0">
-                                  <MapPin size={20} />
+                              <div className="bg-white p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-slate-100 shadow-sm flex items-center gap-3 sm:gap-4">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-rose-100 rounded-lg sm:rounded-xl flex items-center justify-center text-rose-600 shrink-0">
+                                  <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                                 </div>
                                 <div className="flex-1">
-                                  <label className="text-[10px] font-black text-slate-400 uppercase tracking-widest block">
+                                  <label className="text-[9px] sm:text-[10px] font-black text-slate-400 uppercase tracking-widest block">
                                     Residenza
                                   </label>
                                   <input
@@ -5247,330 +5324,148 @@ export default function App() {
                                       })
                                     }
                                     placeholder="Città"
-                                    className="w-full bg-transparent border-none p-0 font-bold text-slate-800 focus:ring-0"
+                                    className="w-full bg-transparent border-none p-0 font-bold text-sm sm:text-base text-slate-800 focus:ring-0"
                                   />
                                 </div>
                               </div>
                             </div>
 
-                            <div className="bg-emerald-50/50 p-6 rounded-[32px] border border-emerald-100">
-                              <div className="flex items-center gap-3 mb-4">
+                            <div className="bg-emerald-50/50 p-4 sm:p-6 rounded-[24px] sm:rounded-[32px] border border-emerald-100">
+                              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                                 <ThumbsUp
-                                  className="text-emerald-500"
+                                  className="text-emerald-500 w-5 h-5 sm:w-6 sm:h-6"
                                   size={24}
                                 />
-                                <h4 className="font-black text-emerald-900 uppercase">
+                                <h4 className="font-black text-sm sm:text-base text-emerald-900 uppercase">
                                   Cosa mi piace
                                 </h4>
                               </div>
-                              <div className="flex flex-wrap gap-3 mb-4">
-                                {data.passport.likes.map((item, i) => (
-                                  <div key={i} className="group relative">
-                                    <Badge className="bg-white text-emerald-600 border-emerald-200 p-1 pr-2 rounded-2xl font-bold shadow-sm flex items-center gap-2 h-14">
-                                      {item.type === "image" ? (
-                                        <img
-                                          src={item.content}
-                                          className="w-10 h-10 rounded-xl object-contain bg-slate-50"
-                                        />
-                                      ) : (
-                                        <span className="px-2">
-                                          {item.content}
-                                        </span>
-                                      )}
-                                      <button
-                                        onClick={() => {
-                                          const newLikes = [
-                                            ...data.passport.likes,
-                                          ];
-                                          newLikes.splice(i, 1);
-                                          setData({
-                                            ...data,
-                                            passport: {
-                                              ...data.passport,
-                                              likes: newLikes,
-                                            },
-                                          });
-                                        }}
-                                        className="ml-1 text-slate-300 hover:text-rose-500 transition-colors"
-                                      >
-                                        <X size={14} />
-                                      </button>
-                                    </Badge>
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="flex gap-2">
-                                <input
-                                  placeholder="Scrivi e premi invio..."
-                                  className="flex-1 bg-white border-emerald-100 rounded-2xl px-4 py-3 font-medium focus:ring-emerald-500 shadow-inner"
-                                  onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                      const val = (e.target as HTMLInputElement)
-                                        .value;
-                                      if (val) {
+                              <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
+                                {data.passport.likes.map((like, index) => (
+                                  <div
+                                    key={index}
+                                    className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-xl sm:rounded-2xl border border-emerald-100 text-xs sm:text-sm font-bold text-emerald-800 flex items-center gap-1.5 sm:gap-2 shadow-sm"
+                                  >
+                                    <span>{like.icon}</span>
+                                    <input
+                                      value={like.text}
+                                      onChange={(e) => {
+                                        const newLikes = [...data.passport.likes];
+                                        newLikes[index].text = e.target.value;
                                         setData({
                                           ...data,
                                           passport: {
                                             ...data.passport,
-                                            likes: [
-                                              ...data.passport.likes,
-                                              { type: "text", content: val },
-                                            ],
+                                            likes: newLikes,
                                           },
                                         });
-                                        (e.target as HTMLInputElement).value =
-                                          "";
-                                      }
-                                    }
-                                  }}
-                                />
-                                <div className="relative">
-                                  <Button
-                                    variant="outline"
-                                    className="h-12 border-emerald-100 bg-white text-emerald-600 rounded-2xl hover:bg-emerald-50"
-                                  >
-                                    <FileImage size={24} />
-                                  </Button>
-                                  <input
-                                    type="file"
-                                    className="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*"
-                                    onChange={(e) => {
-                                      const file = e.target.files?.[0];
-                                      if (file) {
-                                        const reader = new FileReader();
-                                        reader.onloadend = () => {
-                                          setData({
-                                            ...data,
-                                            passport: {
-                                              ...data.passport,
-                                              likes: [
-                                                ...data.passport.likes,
-                                                {
-                                                  type: "image",
-                                                  content:
-                                                    reader.result as string,
-                                                },
-                                              ],
-                                            },
-                                          });
-                                        };
-                                        reader.readAsDataURL(file);
-                                      }
-                                    }}
-                                  />
-                                </div>
+                                      }}
+                                      className="bg-transparent border-none p-0 focus:ring-0 w-20 sm:w-28 font-bold"
+                                    />
+                                  </div>
+                                ))}
                               </div>
                             </div>
 
-                            <div className="bg-rose-50/50 p-6 rounded-[32px] border border-rose-100">
-                              <div className="flex items-center gap-3 mb-4">
+                            <div className="bg-rose-50/50 p-4 sm:p-6 rounded-[24px] sm:rounded-[32px] border border-rose-100">
+                              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                                 <ThumbsDown
-                                  className="text-rose-500"
+                                  className="text-rose-500 w-5 h-5 sm:w-6 sm:h-6"
                                   size={24}
                                 />
-                                <h4 className="font-black text-rose-900 uppercase">
-                                  Cosa non mi piace
+                                <h4 className="font-black text-sm sm:text-base text-rose-900 uppercase">
+                                  Cosa NON mi piace
                                 </h4>
                               </div>
-                              <div className="flex flex-wrap gap-3 mb-4">
-                                {data.passport.dislikes.map((item, i) => (
-                                  <div key={i} className="group relative">
-                                    <Badge className="bg-white text-rose-600 border-rose-200 p-1 pr-2 rounded-2xl font-bold shadow-sm flex items-center gap-2 h-14">
-                                      {item.type === "image" ? (
-                                        <img
-                                          src={item.content}
-                                          className="w-10 h-10 rounded-xl object-contain bg-slate-50"
-                                        />
-                                      ) : (
-                                        <span className="px-2">
-                                          {item.content}
-                                        </span>
-                                      )}
-                                      <button
-                                        onClick={() => {
-                                          const newDis = [
-                                            ...data.passport.dislikes,
-                                          ];
-                                          newDis.splice(i, 1);
-                                          setData({
-                                            ...data,
-                                            passport: {
-                                              ...data.passport,
-                                              dislikes: newDis,
-                                            },
-                                          });
-                                        }}
-                                        className="ml-1 text-slate-300 hover:text-rose-500 transition-colors"
-                                      >
-                                        <X size={14} />
-                                      </button>
-                                    </Badge>
-                                  </div>
-                                ))}
-                              </div>
-                              <div className="flex gap-2">
-                                <input
-                                  placeholder="Scrivi e premi invio..."
-                                  className="flex-1 bg-white border-rose-100 rounded-2xl px-4 py-3 font-medium focus:ring-rose-500 shadow-inner"
-                                  onKeyDown={(e) => {
-                                    if (e.key === "Enter") {
-                                      const val = (e.target as HTMLInputElement)
-                                        .value;
-                                      if (val) {
+                              <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
+                                {data.passport.dislikes.map((dislike, index) => (
+                                  <div
+                                    key={index}
+                                    className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white rounded-xl sm:rounded-2xl border border-rose-100 text-xs sm:text-sm font-bold text-rose-800 flex items-center gap-1.5 sm:gap-2 shadow-sm"
+                                  >
+                                    <span>{dislike.icon}</span>
+                                    <input
+                                      value={dislike.text}
+                                      onChange={(e) => {
+                                        const newDislikes = [
+                                          ...data.passport.dislikes,
+                                        ];
+                                        newDislikes[index].text = e.target.value;
                                         setData({
                                           ...data,
                                           passport: {
                                             ...data.passport,
-                                            dislikes: [
-                                              ...data.passport.dislikes,
-                                              { type: "text", content: val },
-                                            ],
+                                            dislikes: newDislikes,
                                           },
                                         });
-                                        (e.target as HTMLInputElement).value =
-                                          "";
-                                      }
-                                    }
-                                  }}
-                                />
-                                <div className="relative">
-                                  <Button
-                                    variant="outline"
-                                    className="h-12 border-rose-100 bg-white text-rose-600 rounded-2xl hover:bg-rose-50"
-                                  >
-                                    <FileImage size={24} />
-                                  </Button>
-                                  <input
-                                    type="file"
-                                    className="absolute inset-0 opacity-0 cursor-pointer"
-                                    accept="image/*"
-                                    onChange={(e) => {
-                                      const file = e.target.files?.[0];
-                                      if (file) {
-                                        const reader = new FileReader();
-                                        reader.onloadend = () => {
-                                          setData({
-                                            ...data,
-                                            passport: {
-                                              ...data.passport,
-                                              dislikes: [
-                                                ...data.passport.dislikes,
-                                                {
-                                                  type: "image",
-                                                  content:
-                                                    reader.result as string,
-                                                },
-                                              ],
-                                            },
-                                          });
-                                        };
-                                        reader.readAsDataURL(file);
-                                      }
-                                    }}
-                                  />
-                                </div>
+                                      }}
+                                      className="bg-transparent border-none p-0 focus:ring-0 w-20 sm:w-28 font-bold"
+                                    />
+                                  </div>
+                                ))}
                               </div>
                             </div>
 
-                            <div className="bg-slate-50 p-6 rounded-[32px] border border-slate-100 overflow-hidden">
-                              <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-red-600">
-                                  <Youtube size={24} />
-                                </div>
-                                <h4 className="font-black text-slate-800 uppercase">
-                                  Le mie canzoni e video preferiti
+                            <div className="bg-sky-50/50 p-4 sm:p-6 rounded-[24px] sm:rounded-[32px] border border-sky-100">
+                              <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+                                <HelpCircle
+                                  className="text-sky-500 w-5 h-5 sm:w-6 sm:h-6"
+                                  size={24}
+                                />
+                                <h4 className="font-black text-sm sm:text-base text-sky-900 uppercase">
+                                  Come aiutarmi
                                 </h4>
                               </div>
-                              <div className="space-y-3 mb-6 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                                {data.passport.youtubeLinks.map((link, i) => {
-                                  // Simple abbreviation helper
-                                  const displayLink =
-                                    link.length > 30
-                                      ? link.substring(0, 27) + "..."
-                                      : link;
-                                  return (
-                                    <div
-                                      key={i}
-                                      className="flex items-center justify-between bg-white p-4 rounded-2xl border border-slate-100 shadow-sm group hover:border-red-200 transition-colors"
-                                    >
-                                      <a
-                                        href={
-                                          link.startsWith("http")
-                                            ? link
-                                            : `https://${link}`
-                                        }
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="flex items-center gap-4 hover:opacity-80 transition-opacity flex-1 min-w-0"
-                                      >
-                                        <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-500 shrink-0">
-                                          <Youtube size={16} />
-                                        </div>
-                                        <span className="text-sm font-bold text-blue-600 truncate underline">
-                                          {displayLink}
-                                        </span>
-                                      </a>
-                                      <button
-                                        onClick={() => {
-                                          const newLinks = [
-                                            ...data.passport.youtubeLinks,
-                                          ];
-                                          newLinks.splice(i, 1);
+                              <div className="space-y-2 sm:space-y-3">
+                                {data.passport.helpMe.map((item, index) => (
+                                  <div
+                                    key={index}
+                                    className="p-3 sm:p-4 bg-white rounded-xl sm:rounded-2xl border border-sky-100 flex items-start gap-2.5 sm:gap-3 shadow-sm"
+                                  >
+                                    <span className="text-lg sm:text-xl shrink-0 mt-0.5">
+                                      {item.icon}
+                                    </span>
+                                    <div className="flex-1">
+                                      <input
+                                        value={item.title}
+                                        onChange={(e) => {
+                                          const newHelp = [...data.passport.helpMe];
+                                          newHelp[index].title = e.target.value;
                                           setData({
                                             ...data,
                                             passport: {
                                               ...data.passport,
-                                              youtubeLinks: newLinks,
+                                              helpMe: newHelp,
                                             },
                                           });
                                         }}
-                                        className="text-slate-300 hover:text-rose-500 ml-4 shrink-0 p-2 hover:bg-rose-50 rounded-lg transition-all"
-                                        title="Rimuovi link"
-                                      >
-                                        <Trash2 size={18} />
-                                      </button>
-                                    </div>
-                                  );
-                                })}
-                              </div>
-                              <div className="w-full">
-                                <div className="relative group">
-                                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-red-500 transition-colors">
-                                    <Youtube size={20} />
-                                  </div>
-                                  <input
-                                    placeholder="Incolla link YouTube e premi invio"
-                                    className="w-full bg-white border-slate-200 rounded-2xl pl-12 pr-4 py-3 font-medium focus:ring-2 focus:ring-red-500 focus:border-red-500 shadow-inner text-sm transition-all"
-                                    onKeyDown={(e) => {
-                                      if (e.key === "Enter") {
-                                        const val = (
-                                          e.target as HTMLInputElement
-                                        ).value;
-                                        if (val) {
+                                        className="w-full bg-transparent border-none p-0 font-black text-xs sm:text-sm text-sky-950 focus:ring-0 mb-0.5"
+                                      />
+                                      <textarea
+                                        value={item.desc}
+                                        onChange={(e) => {
+                                          const newHelp = [...data.passport.helpMe];
+                                          newHelp[index].desc = e.target.value;
                                           setData({
                                             ...data,
                                             passport: {
                                               ...data.passport,
-                                              youtubeLinks: [
-                                                ...data.passport.youtubeLinks,
-                                                val,
-                                              ],
+                                              helpMe: newHelp,
                                             },
                                           });
-                                          (e.target as HTMLInputElement).value =
-                                            "";
-                                        }
-                                      }
-                                    }}
-                                  />
-                                </div>
+                                        }}
+                                        className="w-full bg-transparent border-none p-0 text-[10px] sm:text-xs text-sky-700 focus:ring-0 resize-none font-bold"
+                                        rows={2}
+                                      />
+                                    </div>
+                                  </div>
+                                ))}
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        <div className="bg-emerald-500 py-3 px-10 flex justify-between items-center text-white/90 font-black text-[10px] uppercase tracking-widest">
+                        <div className="bg-emerald-500 py-3 px-4 sm:px-10 flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center text-white/90 font-black text-[9px] sm:text-[10px] uppercase tracking-widest text-center sm:text-left">
                           <span>Passaporto Comunicativo myPEI</span>
                           <div className="flex gap-4">
                             <span>
@@ -5588,9 +5483,9 @@ export default function App() {
                   )}
 
                       {passportTab === "autonomy" && (
-                        <div className="w-full max-w-7xl mx-auto">
+                        <div className="w-full max-w-7xl mx-auto px-2 sm:px-0">
                       {!activeSubjectId ? (
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto">
                           {data.autonomyDiary.map((subject) => {
                             const Icon =
                               subject.name === "Igiene"
@@ -5607,18 +5502,18 @@ export default function App() {
                                 key={subject.id}
                                 onClick={() => setActiveSubjectId(subject.id)}
                                 className={cn(
-                                  "relative h-64 rounded-[40px] shadow-2xl overflow-hidden group flex flex-col items-center justify-center gap-6 border-8 border-white/20",
+                                  "relative h-44 sm:h-64 rounded-[24px] sm:rounded-[40px] shadow-2xl overflow-hidden group flex flex-col items-center justify-center gap-4 sm:gap-6 border-4 sm:border-8 border-white/20",
                                   subject.color,
                                 )}
                               >
                                 <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors" />
-                                <div className="z-10 bg-white/20 p-6 rounded-[30px] backdrop-blur-md">
-                                  <Icon size={64} className="text-white" />
+                                <div className="z-10 bg-white/20 p-4 sm:p-6 rounded-[20px] sm:rounded-[30px] backdrop-blur-md">
+                                  <Icon className="w-10 h-10 sm:w-16 sm:h-16 text-white" />
                                 </div>
-                                <h3 className="z-10 text-3xl font-black text-white uppercase tracking-tighter">
+                                <h3 className="z-10 text-xl sm:text-3xl font-black text-white uppercase tracking-tighter">
                                   {subject.name}
                                 </h3>
-                                <div className="z-10 px-6 py-2 bg-white/10 rounded-full text-white/80 font-bold text-sm backdrop-blur-sm">
+                                <div className="z-10 px-4 py-1.5 bg-white/10 rounded-full text-white/80 font-bold text-xs sm:text-sm backdrop-blur-sm">
                                   {subject.activities.length} schede salvate
                                 </div>
                               </motion.button>
@@ -5641,11 +5536,11 @@ export default function App() {
                               return (
                                 <div
                                   key={subject.id}
-                                  className="bg-white rounded-[50px] shadow-2xl overflow-hidden border-8 border-white flex flex-col min-h-[700px]"
+                                  className="bg-white rounded-[24px] sm:rounded-[50px] shadow-2xl overflow-hidden border-2 sm:border-8 border-white flex flex-col min-h-[500px] sm:min-h-[700px]"
                                 >
                                   <div
                                     className={cn(
-                                      "p-10 text-white",
+                                      "p-4 sm:p-10 text-white",
                                       subject.color,
                                     )}
                                   >
@@ -5653,7 +5548,7 @@ export default function App() {
                                       <Button
                                         variant="ghost"
                                         onClick={() => setActiveSubjectId(null)}
-                                        className="bg-white/20 hover:bg-white/40 text-white rounded-2xl font-black uppercase text-xs px-6"
+                                        className="bg-white/20 hover:bg-white/40 text-white rounded-2xl font-black uppercase text-xs px-4 sm:px-6"
                                       >
                                         ← Torna alle autonomie
                                       </Button>
@@ -5661,16 +5556,16 @@ export default function App() {
                                         Il mio Diario
                                       </div>
                                     </div>
-                                    <div className="flex items-end justify-between mt-6">
-                                      <div className="flex items-center gap-6">
-                                        <div className="w-20 h-20 bg-white/20 rounded-[30px] flex items-center justify-center backdrop-blur-md">
-                                          <Icon size={40} />
+                                    <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mt-6 gap-4">
+                                      <div className="flex items-center gap-3 sm:gap-6">
+                                        <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white/20 rounded-[15px] sm:rounded-[30px] flex items-center justify-center backdrop-blur-md shrink-0">
+                                          <Icon className="w-6 h-6 sm:w-10 sm:h-10 text-white" />
                                         </div>
                                         <div>
-                                          <h3 className="text-5xl font-black uppercase tracking-tighter">
+                                          <h3 className="text-2xl sm:text-5xl font-black uppercase tracking-tighter">
                                             {subject.name}
                                           </h3>
-                                          <p className="text-white/70 font-bold uppercase tracking-widest text-sm">
+                                          <p className="text-white/70 font-bold uppercase tracking-widest text-xs sm:text-sm">
                                             Le mie conquiste
                                           </p>
                                         </div>
@@ -5678,9 +5573,9 @@ export default function App() {
                                       <div className="relative group">
                                         <Button
                                           size="lg"
-                                          className="h-16 px-8 rounded-3xl bg-white text-slate-900 hover:bg-white/90 font-black uppercase shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3"
+                                          className="h-12 px-4 sm:h-16 sm:px-8 rounded-xl sm:rounded-3xl bg-white text-slate-900 hover:bg-white/90 font-black uppercase shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center gap-3 text-xs sm:text-sm"
                                         >
-                                          <Plus size={24} /> Aggiungi Foto
+                                          <Plus className="w-4 h-4 sm:w-6 sm:h-6" /> Aggiungi Foto
                                         </Button>
                                         <input
                                           type="file"
@@ -5729,7 +5624,7 @@ export default function App() {
                                     </div>
                                   </div>
 
-                                  <div className="flex-1 p-10 bg-slate-50/50 overflow-y-auto max-h-[600px] custom-scrollbar">
+                                  <div className="flex-1 p-4 sm:p-10 bg-slate-50/50 overflow-y-auto max-h-[600px] custom-scrollbar">
                                     {subject.activities.length === 0 ? (
                                       <div className="h-full flex flex-col items-center justify-center text-slate-300 gap-6 opacity-50 py-32">
                                         <div className="w-32 h-32 rounded-[40px] border-4 border-dashed border-slate-200 flex items-center justify-center">
@@ -5812,10 +5707,10 @@ export default function App() {
                         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-6 mb-8 sm:mb-12">
                           <div>
                             <h3 className="text-3xl sm:text-4xl font-black text-white uppercase italic tracking-tighter">
-                              La mia bolla relax
+                              {(t as any).relax.title}
                             </h3>
                             <p className="text-indigo-200 font-bold uppercase tracking-widest text-xs sm:text-sm mt-1 sm:mt-2">
-                              I miei momenti di tranquillità
+                              {(t as any).relax.sub}
                             </p>
                           </div>
                           <div className="relative group">
@@ -5823,7 +5718,7 @@ export default function App() {
                               size="lg"
                               className="h-16 px-8 rounded-3xl bg-indigo-500 text-white hover:bg-indigo-600 font-black uppercase shadow-2xl flex items-center gap-3"
                             >
-                              <Plus size={24} /> Aggiungi attività
+                              <Plus size={24} /> {(t as any).relax.addActivity}
                             </Button>
                             <input
                               type="file"
@@ -5861,7 +5756,7 @@ export default function App() {
                         {/* Interactive Calming Tools Row */}
                         <div className="mb-12 bg-white/5 p-4 sm:p-8 rounded-[24px] sm:rounded-[40px] border-2 border-white/5 shadow-inner">
                           <h4 className="text-lg font-black text-white uppercase tracking-wider mb-6 text-center md:text-left">
-                            Esercizi e Attività Calmanti
+                            {(t as any).relax.calmingExercises}
                           </h4>
                           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                             {/* Option 1: Soap Bubbles */}
@@ -5884,7 +5779,7 @@ export default function App() {
                             >
                               <span className="text-4xl">🫧</span>
                               <span className="font-black text-sm uppercase tracking-tight">
-                                Bolle di Sapone
+                                {(t as any).relax.soapBubbles}
                               </span>
                             </motion.button>
 
@@ -5908,7 +5803,7 @@ export default function App() {
                             >
                               <span className="text-4xl">🔴</span>
                               <span className="font-black text-sm uppercase tracking-tight">
-                                Schiaccia la Pallina
+                                {(t as any).relax.stressBall}
                               </span>
                             </motion.button>
 
@@ -5932,7 +5827,7 @@ export default function App() {
                             >
                               <span className="text-4xl">🃏</span>
                               <span className="font-black text-sm uppercase tracking-tight">
-                                Memory
+                                {(t as any).relax.memory}
                               </span>
                             </motion.button>
                           </div>
@@ -5961,10 +5856,10 @@ export default function App() {
                               <Coffee size={64} />
                             </div>
                             <p className="text-2xl font-black uppercase text-center">
-                              Cosa ti fa stare bene?
+                              {lang === "ar" ? "ما الذي يجعلك تشعر بالرضا؟" : lang === "es" ? "¿Qué te hace sentir bien?" : "Cosa ti fa stare bene?"}
                               <br />
                               <span className="text-sm font-bold opacity-60">
-                                Carica foto o video rilassanti
+                                {lang === "ar" ? "تحميل صور أو مقاطع فيديو مهدئة" : lang === "es" ? "Sube fotos o videos relajantes" : "Carica foto o video rilassanti"}
                               </span>
                             </p>
                           </div>
@@ -6012,22 +5907,20 @@ export default function App() {
                   )}
 
                   {studentSubSection === "progetto_vita" && (
-                    <div className="w-full max-w-6xl mx-auto p-4">
-                      <div className="bg-yellow-100/10 backdrop-blur-md rounded-[50px] p-8 md:p-12 border-4 border-yellow-400/20">
+                    <div className="w-full max-w-6xl mx-auto p-2 sm:p-4">
+                      <div className="bg-yellow-100/10 backdrop-blur-md rounded-[28px] sm:rounded-[50px] p-4 sm:p-8 md:p-12 border-4 border-yellow-400/20">
                         {/* Header card with gold/orange badge */}
-                        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-10 bg-yellow-400 text-slate-900 p-8 rounded-[40px] shadow-lg relative overflow-hidden">
+                        <div className="flex flex-col md:flex-row justify-between items-center text-center md:text-left gap-6 mb-10 bg-yellow-400 text-slate-900 p-6 sm:p-8 rounded-[30px] sm:rounded-[40px] shadow-lg relative overflow-hidden">
                           <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full translate-x-1/4 -translate-y-1/4 pointer-events-none" />
-                          <div className="space-y-2">
+                          <div className="space-y-2 flex flex-col items-center md:items-start w-full md:w-auto">
                             <span className="text-[11px] font-black uppercase tracking-widest bg-yellow-950/20 px-3 py-1 rounded-full text-yellow-900">
-                              Cresciamo Insieme
+                              {(t as any).progettoVita.weGrowTogether}
                             </span>
-                            <h3 className="text-3xl md:text-4xl font-black uppercase tracking-tight">
-                              Il mio progetto di vita
+                            <h3 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase tracking-tight">
+                              {(t as any).progettoVita.title}
                             </h3>
-                            <p className="text-sm font-medium opacity-90 max-w-xl">
-                              Qui puoi scrivere e immaginare il tuo futuro, la
-                              tua autonomia e tutto ciò che desideri imparare o
-                              fare meglio anno dopo anno!
+                            <p className="text-xs sm:text-sm font-medium opacity-90 max-w-xl">
+                              {(t as any).progettoVita.sub}
                             </p>
                           </div>
 
@@ -6036,26 +5929,26 @@ export default function App() {
                             onClick={() =>
                               setActiveInstructionsModal("progetto_vita")
                             }
-                            className="bg-yellow-950/10 hover:bg-yellow-950/20 border border-yellow-950/20 px-5 py-3 rounded-2xl text-xs font-black flex items-center gap-2 transition-transform hover:scale-105 active:scale-95"
+                            className="bg-yellow-950/10 hover:bg-yellow-950/20 border border-yellow-950/20 px-5 py-3 rounded-2xl text-xs font-black flex items-center gap-2 transition-transform hover:scale-105 active:scale-95 whitespace-nowrap"
                           >
-                            <Info size={16} /> Note per la Famiglia
+                            <Info size={16} /> {(t as any).progettoVita.notesForFamily}
                           </button>
                         </div>
 
                         {/* Middle tabs - Classes */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 mb-8">
                           {([1, 2, 3] as const).map((classId) => (
                             <button
                               key={classId}
                               type="button"
                               onClick={() => setActiveClassTab(classId)}
-                              className={`p-6 rounded-[35px] border-2 text-left relative overflow-hidden transition-all shadow-sm group ${
+                              className={`p-4 sm:p-6 rounded-[24px] sm:rounded-[35px] border-2 text-left relative overflow-hidden transition-all shadow-sm group ${
                                 activeClassTab === classId
                                   ? "border-yellow-500 bg-yellow-400/20 ring-4 ring-yellow-400/10"
                                   : "border-white/10 bg-white/5 hover:bg-white/15"
                               }`}
                             >
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-3 justify-center md:justify-start">
                                 <span
                                   className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold font-mono transition-colors ${
                                     activeClassTab === classId
@@ -6067,18 +5960,17 @@ export default function App() {
                                 </span>
                                 <span
                                   className={cn(
-                                    "text-lg font-black",
+                                    "text-base sm:text-lg font-black",
                                     activeClassTab === classId
                                       ? "text-yellow-400"
                                       : "text-white",
                                   )}
                                 >
-                                  Classe{" "}
                                   {classId === 1
-                                    ? "Prima"
+                                    ? (t as any).progettoVita.classFirst
                                     : classId === 2
-                                      ? "Seconda"
-                                      : "Terza"}
+                                      ? (t as any).progettoVita.classSecond
+                                      : (t as any).progettoVita.classThird}
                                 </span>
                               </div>
                             </button>
@@ -6090,27 +5982,27 @@ export default function App() {
                           key={activeClassTab}
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
-                          className="p-8 bg-white/5 border border-white/10 rounded-[40px] space-y-8"
+                          className="p-4 sm:p-8 bg-white/5 border border-white/10 rounded-[24px] sm:rounded-[40px] space-y-6 sm:space-y-8"
                         >
-                          <h4 className="text-2xl font-black text-white flex items-center gap-3">
+                          <h4 className="text-xl sm:text-2xl font-black text-white flex items-center justify-center md:justify-start gap-3">
                             <span className="w-8 h-8 rounded-xl bg-yellow-400 text-slate-950 flex items-center justify-center text-xs font-bold font-mono">
                               {activeClassTab}°
                             </span>
-                            I miei traguardi per il {activeClassTab}° anno
+                            {(t as any).progettoVita.goalsForYear.replace("{year}", String(activeClassTab))}
                           </h4>
 
-                          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
                             {/* Comunicazione */}
-                            <div className="space-y-4 p-6 rounded-3xl bg-blue-500/10 border border-blue-500/20 shadow-sm relative overflow-hidden group">
+                            <div className="space-y-4 p-5 sm:p-6 rounded-[24px] sm:rounded-3xl bg-blue-500/10 border border-blue-500/20 shadow-sm relative overflow-hidden group">
                               <div className="flex items-center gap-3">
                                 <span className="text-2xl">🗣️</span>
-                                <Label className="text-lg font-black text-white block">
-                                  La mia Comunicazione
+                                <Label className="text-base sm:text-lg font-black text-white block">
+                                  {(t as any).progettoVita.myCommunication}
                                 </Label>
                               </div>
                               <textarea
-                                className="w-full min-h-[140px] p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
-                                placeholder="Come voglio comunicare con i compagni e i professori?"
+                                className="w-full min-h-[140px] p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
+                                placeholder={(t as any).progettoVita.communicationPlaceholder}
                                 value={
                                   activeClassTab === 1
                                     ? data.communication1 || ""
@@ -6131,16 +6023,16 @@ export default function App() {
                             </div>
 
                             {/* Autonomia */}
-                            <div className="space-y-4 p-6 rounded-3xl bg-amber-500/10 border border-amber-500/20 shadow-sm relative overflow-hidden group">
+                            <div className="space-y-4 p-5 sm:p-6 rounded-[24px] sm:rounded-3xl bg-amber-500/10 border border-amber-500/20 shadow-sm relative overflow-hidden group">
                               <div className="flex items-center gap-3">
                                 <span className="text-2xl">🚶</span>
-                                <Label className="text-lg font-black text-white block">
-                                  La mia Autonomia
+                                <Label className="text-base sm:text-lg font-black text-white block">
+                                  {(t as any).progettoVita.myAutonomy}
                                 </Label>
                               </div>
                               <textarea
-                                className="w-full min-h-[140px] p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
-                                placeholder="Cosa voglio saper fare da solo (es. preparare lo zaino, spostarmi)?"
+                                className="w-full min-h-[140px] p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
+                                placeholder={(t as any).progettoVita.autonomyPlaceholder}
                                 value={
                                   activeClassTab === 1
                                     ? data.autonomy1 || ""
@@ -6160,16 +6052,16 @@ export default function App() {
                             </div>
 
                             {/* Apprendimenti */}
-                            <div className="space-y-4 p-6 rounded-3xl bg-purple-500/10 border border-purple-500/20 shadow-sm relative overflow-hidden group">
+                            <div className="space-y-4 p-5 sm:p-6 rounded-[24px] sm:rounded-3xl bg-purple-500/10 border border-purple-500/20 shadow-sm relative overflow-hidden group">
                               <div className="flex items-center gap-3">
                                 <span className="text-2xl">📚</span>
-                                <Label className="text-lg font-black text-white block">
-                                  I miei Apprendimenti
+                                <Label className="text-base sm:text-lg font-black text-white block">
+                                  {(t as any).progettoVita.myLearning}
                                 </Label>
                               </div>
                               <textarea
-                                className="w-full min-h-[140px] p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
-                                placeholder="Quali materie o laboratori voglio approfondire?"
+                                className="w-full min-h-[140px] p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
+                                placeholder={(t as any).progettoVita.learningPlaceholder}
                                 value={
                                   activeClassTab === 1
                                     ? data.learning1 || ""
@@ -6189,16 +6081,16 @@ export default function App() {
                             </div>
 
                             {/* Relazioni */}
-                            <div className="space-y-4 p-6 rounded-3xl bg-rose-500/10 border border-rose-500/20 shadow-sm relative overflow-hidden group">
+                            <div className="space-y-4 p-5 sm:p-6 rounded-[24px] sm:rounded-3xl bg-rose-500/10 border border-rose-500/20 shadow-sm relative overflow-hidden group">
                               <div className="flex items-center gap-3">
                                 <span className="text-2xl">🤝</span>
-                                <Label className="text-lg font-black text-white block">
-                                  Le mie Relazioni
+                                <Label className="text-base sm:text-lg font-black text-white block">
+                                  {(t as any).progettoVita.myRelations}
                                 </Label>
                               </div>
                               <textarea
-                                className="w-full min-h-[140px] p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
-                                placeholder="Come voglio stare con gli altri, con gli amici e fare gruppo?"
+                                className="w-full min-h-[140px] p-4 sm:p-5 rounded-2xl border border-white/10 bg-white/5 focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/20 outline-none transition-all text-sm text-white"
+                                placeholder={(t as any).progettoVita.relationsPlaceholder}
                                 value={
                                   activeClassTab === 1
                                     ? data.relation1 || ""
@@ -6246,8 +6138,8 @@ export default function App() {
                         </div>
                       </Card>
                     )}
-                </div>
-              )}
+                  </div>
+                )}
             </motion.div>
           ) : role === "school-family" ? (
             <motion.div
@@ -6255,6 +6147,7 @@ export default function App() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
+              className="w-full flex flex-col items-center"
             >
               <CAACommunicator onBack={() => setRole(null)} />
             </motion.div>

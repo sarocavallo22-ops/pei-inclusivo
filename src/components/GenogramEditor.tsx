@@ -181,6 +181,7 @@ export default function GenogramEditor({ members, relationships, onChange, t, la
       .data(members, d => d.id)
       .join('g')
       .attr('class', 'member-node cursor-move')
+      .style('touch-action', 'none')
       .attr('transform', d => `translate(${d.x}, ${d.y})`)
       .on('click', (event, d) => {
         event.stopPropagation();
@@ -281,6 +282,7 @@ export default function GenogramEditor({ members, relationships, onChange, t, la
           <svg 
             ref={svgRef} 
             className="w-full h-full min-h-[500px]"
+            style={{ touchAction: 'none' }}
             onClick={() => {
               setSelectedMemberId(null);
               setIsConnecting(false);
