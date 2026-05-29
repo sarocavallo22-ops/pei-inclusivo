@@ -279,7 +279,7 @@ export default function CAACommunicator({ onBack }: CAACommunicatorProps) {
     const displayedSymbols = isSearchActive ? searchResults : DEFAULT_SYMBOLS;
 
     return (
-        <div className="space-y-8">
+        <div className="w-full space-y-8">
             <div className="flex flex-col md:flex-row items-center justify-center gap-6 relative">
                 <div className="text-center">
                     <h2 className="text-5xl font-black text-white">Scuola-Famiglia</h2>
